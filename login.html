@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — Portal Login</title>
+  <meta name="description" content="Sign in to the FreightHawk Freight Brokerage and Load-Matching portal. Access your Shipper or Motor Carrier dashboard.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body class="fh-auth-page">
+
+  <!-- ======================================================================
+       MINIMAL AUTH TOPBAR (Reference Image 1)
+       ====================================================================== -->
+  <header class="fh-auth-header">
+    <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+      <div class="fh-brand-icon">
+        <i class="fa-solid fa-truck-moving"></i>
+      </div>
+      <div class="fh-brand-text">
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+        <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+      </div>
+    </a>
+
+    <div class="fh-flex fh-items-center fh-gap-sm">
+      <!-- Circular RTL Toggle Button (Matching Reference Image 3) -->
+      <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+        <i class="fa-solid fa-right-left"></i>
+      </button>
+
+      <!-- Circular Theme Toggle Button -->
+      <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       SPLIT AUTHENTICATION GATEWAY (Reference Image 1 Layout)
+       ====================================================================== -->
+  <main class="fh-auth-split">
+    <!-- Left Hero Column -->
+    <div class="fh-auth-hero">
+      <div class="fh-auth-hero-content">
+        <div class="fh-eyebrow-pill" style="margin-bottom: var(--space-md); background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+          <i class="fa-solid fa-shield-halved text-orange"></i> ENTERPRISE FREIGHT GATEWAY
+        </div>
+
+        <h1 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.15; margin-bottom: var(--space-md);">
+          Secure Freight Intelligence &amp; Transparent Operations
+        </h1>
+
+        <p style="color: #CBD5E1; font-size: 1.05rem; line-height: 1.6; margin-bottom: 0;">
+          Access live spot tenders, dispatch motor carriers, download auditable rate confirmation documents, track GPS milestones in real time, and execute guaranteed 2-hour settlements.
+        </p>
+
+        <!-- Security Certification Chips -->
+        <div class="fh-auth-security-chips">
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-lock"></i>
+            <span>256-Bit TLS Encryption</span>
+          </div>
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-shield-check"></i>
+            <span>FMCSA MC-987214-B</span>
+          </div>
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-user-lock"></i>
+            <span>Role-Based Permissions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form Card Column -->
+    <div class="fh-auth-card-panel">
+      <div class="fh-auth-card">
+        <!-- Shield / Lock Icon Header -->
+        <div style="text-align: center; margin-bottom: var(--space-lg);">
+          <div style="width: 54px; height: 54px; border-radius: var(--radius-lg); background: var(--color-deep-navy); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: var(--space-sm); box-shadow: 0 4px 12px rgba(10, 19, 31, 0.25);">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; margin-bottom: 4px;">Client Portal Login</h2>
+          <p class="text-muted" style="font-size: 13px; margin: 0;">
+            Enter your corporate credentials to access your dispatch dashboard.
+          </p>
+        </div>
+
+        <!-- Role Selector Tabs (Shipper vs Carrier) -->
+        <div class="fh-auth-role-tabs">
+          <button type="button" class="fh-role-tab-btn active" id="roleShipperBtn" onclick="selectRole('shipper');">
+            <i class="fa-solid fa-warehouse"></i> Shipper / 3PL
+          </button>
+          <button type="button" class="fh-role-tab-btn" id="roleCarrierBtn" onclick="selectRole('carrier');">
+            <i class="fa-solid fa-truck"></i> Motor Carrier
+          </button>
+        </div>
+
+        <!-- Simulated Demo Disclaimer -->
+        <div style="background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: var(--radius-md); padding: 8px 12px; margin-bottom: var(--space-lg); font-size: 11px; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-circle-info text-steel"></i>
+          <span>Interactive Demo: Pre-filled credentials. Click <strong>Sign In</strong> to enter the selected dashboard.</span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="authLoginForm" onsubmit="handleAuthLogin(event)">
+          <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+            <label class="fh-label" for="loginEmail">Business Email <span style="color: #EF4444;">*</span></label>
+            <input type="email" class="fh-input" id="loginEmail" placeholder="name@company.com" required value="operations@apexlogistics.com">
+          </div>
+
+          <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+            <label class="fh-label" for="loginPassword">Password <span style="color: #EF4444;">*</span></label>
+            <div class="fh-password-field-wrapper">
+              <input type="password" class="fh-input" id="loginPassword" placeholder="Enter your password" required value="demoPass2026">
+              <button type="button" class="fh-password-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this);" aria-label="Toggle password visibility">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); font-size: 13px;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="rememberMeCheck" checked>
+              <span>Remember me</span>
+            </label>
+            <a href="#forgot" onclick="alert('Password reset link simulated: Please check your corporate email (Demo Sandbox).'); return false;" style="color: var(--color-steel-blue); font-weight: 700;">Forgot Password?</a>
+          </div>
+
+          <!-- Submit Action -->
+          <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 48px; font-size: 1rem; justify-content: center;">
+            <span id="signInBtnText">Sign In as Shipper</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- OR Divider -->
+        <div style="display: flex; align-items: center; margin-block: var(--space-xl);">
+          <div style="flex: 1; height: 1px; background: var(--border-subtle);"></div>
+          <span style="padding-inline: 12px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">OR</span>
+          <div style="flex: 1; height: 1px; background: var(--border-subtle);"></div>
+        </div>
+
+        <!-- Social SSO Buttons -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: var(--space-lg);">
+          <button type="button" class="fh-btn fh-btn-ghost" style="width: 100%; border: 1px solid var(--border-subtle); justify-content: center; font-size: 13px;" onclick="triggerSsoLogin();">
+            <i class="fa-brands fa-google" style="color: #EA4335;"></i> Continue with Google Workspace
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: var(--space-xl);">
+          <button type="button" class="fh-btn fh-btn-ghost" style="width: 100%; border: 1px solid var(--border-subtle); justify-content: center; font-size: 12px;" onclick="triggerSsoLogin();">
+            <i class="fa-brands fa-microsoft" style="color: #00A4EF;"></i> Microsoft
+          </button>
+          <button type="button" class="fh-btn fh-btn-ghost" style="width: 100%; border: 1px solid var(--border-subtle); justify-content: center; font-size: 12px;" onclick="triggerSsoLogin();">
+            <i class="fa-brands fa-apple"></i> Apple ID
+          </button>
+        </div>
+
+        <!-- Registration Link -->
+        <div style="text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--space-md);">
+          Don't have an enterprise account? <a href="register.html" style="color: var(--color-safety-orange); font-weight: 800;">Register as Shipper or Carrier</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Core Scripts inside assets/js -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    (function () {
+      let currentRole = 'shipper';
+
+      window.selectRole = function (role) {
+        currentRole = role;
+        const shipperBtn = document.getElementById('roleShipperBtn');
+        const carrierBtn = document.getElementById('roleCarrierBtn');
+        const emailInput = document.getElementById('loginEmail');
+        const submitText = document.getElementById('signInBtnText');
+
+        if (role === 'shipper') {
+          shipperBtn.classList.add('active');
+          carrierBtn.classList.remove('active');
+          if (emailInput) emailInput.value = 'operations@apexlogistics.com';
+          if (submitText) submitText.textContent = 'Sign In as Shipper';
+        } else {
+          carrierBtn.classList.add('active');
+          shipperBtn.classList.remove('active');
+          if (emailInput) emailInput.value = 'dispatch@swifthaul.com';
+          if (submitText) submitText.textContent = 'Sign In as Carrier';
+        }
+      };
+
+      window.togglePasswordVisibility = function (fieldId, btn) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        const icon = btn.querySelector('i');
+        if (field.type === 'password') {
+          field.type = 'text';
+          if (icon) {
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+          }
+        } else {
+          field.type = 'password';
+          if (icon) {
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+          }
+        }
+      };
+
+      window.handleAuthLogin = function (e) {
+        e.preventDefault();
+        if (currentRole === 'shipper') {
+          window.location.href = 'dashboard-shipper.html';
+        } else {
+          window.location.href = 'dashboard-carrier.html';
+        }
+      };
+
+      window.triggerSsoLogin = function () {
+        if (currentRole === 'shipper') {
+          window.location.href = 'dashboard-shipper.html';
+        } else {
+          window.location.href = 'dashboard-carrier.html';
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

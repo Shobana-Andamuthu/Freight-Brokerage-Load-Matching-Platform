@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — Post a Commercial Freight Load &amp; Tender Freight</title>
+  <meta name="description" content="Tender your commercial truckload freight with FreightHawk. Broadcast spot loads to over 12,500 verified FMCSA carriers with automated rate benchmarking, 2-hour QuickPay, and full GPS visibility.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       MAIN NAVBAR (Standardized Header)
+       ====================================================================== -->
+  <header class="fh-header" id="mainHeader">
+    <nav class="fh-navbar" aria-label="Main Navigation">
+      <!-- Brand Logo -->
+      <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-text">
+          <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+          <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <ul class="fh-nav-menu">
+        <li class="fh-nav-item">
+          <a href="index.html" class="fh-nav-link">Home <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="index.html" class="fh-dropdown-item">Home 1: Freight Matching <span class="fh-badge fh-badge-available">Available</span></a>
+            <a href="home-2.html" class="fh-dropdown-item">Home 2: Logistics Operations <span class="fh-badge fh-badge-verified">Active</span></a>
+          </div>
+        </li>
+        <li class="fh-nav-item">
+          <a href="how-it-works.html" class="fh-nav-link">How It Works</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="find-loads.html" class="fh-nav-link">Find Loads</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="about.html" class="fh-nav-link">About</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="contact.html" class="fh-nav-link">Contact</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="dashboard-shipper.html" class="fh-nav-link" data-nav="dashboards">Dashboards <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="dashboard-shipper.html" class="fh-dropdown-item"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</a>
+            <a href="dashboard-carrier.html" class="fh-dropdown-item"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="fh-nav-actions">
+        <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <a href="login.html" class="fh-btn-login">
+          <i class="fa-regular fa-user"></i> Login
+        </a>
+
+        <a href="post-load.html" class="fh-nav-cta active">
+          <i class="fa-solid fa-plus"></i>
+          <span>Post a Load</span>
+        </a>
+
+        <button type="button" class="fh-nav-toggle" aria-label="Toggle mobile menu" id="mobileMenuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       MOBILE DRAWER NAVIGATION
+       ====================================================================== -->
+  <div class="fh-drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="fh-mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
+    <div class="fh-drawer-header">
+      <div class="fh-brand">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+      </div>
+      <button type="button" class="fh-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <ul class="fh-mobile-nav">
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle" data-target="mobileHomeDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-house"></i> Home</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileHomeDropdown">
+          <li>
+            <a href="index.html" class="fh-mobile-sublink">
+              <span>Home 1: Freight Matching</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Available</span>
+            </a>
+          </li>
+          <li>
+            <a href="home-2.html" class="fh-mobile-sublink">
+              <span>Home 2: Logistics Operations</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Active</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="how-it-works.html" class="fh-mobile-link"><i class="fa-solid fa-diagram-project"></i> How It Works</a></li>
+      <li><a href="find-loads.html" class="fh-mobile-link"><i class="fa-solid fa-route"></i> Find Loads</a></li>
+      <li><a href="about.html" class="fh-mobile-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="contact.html" class="fh-mobile-link"><i class="fa-solid fa-phone"></i> Contact</a></li>
+
+      <!-- Dashboards with Interactive Dropdown in Mobile Drawer -->
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle" id="mobileDashboardsToggle" data-target="mobileDashboardsDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-chart-pie"></i> Dashboards</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileDashboardsDropdown">
+          <li>
+            <a href="dashboard-shipper.html" class="fh-mobile-sublink">
+              <span class="fh-flex fh-items-center fh-gap-sm"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Live</span>
+            </a>
+          </li>
+          <li>
+            <a href="dashboard-carrier.html" class="fh-mobile-sublink">
+              <span class="fh-flex fh-items-center fh-gap-sm"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Live</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Mobile Drawer Preferences & Controls -->
+    <div style="margin-top: auto; padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1);">
+      <div class="fh-drawer-prefs-box">
+        <span class="fh-drawer-prefs-label">Preferences:</span>
+        <div class="fh-drawer-prefs-actions">
+          <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+            <i class="fa-solid fa-right-left"></i>
+          </button>
+        </div>
+      </div>
+      <a href="login.html" class="fh-btn-login" style="width: 100%; justify-content: center; margin-bottom: var(--space-sm);">
+        <i class="fa-regular fa-user"></i> Login / Register
+      </a>
+      <a href="post-load.html" class="fh-nav-cta" style="width: 100%; justify-content: center;">
+        <i class="fa-solid fa-plus"></i> Post a Load
+      </a>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       SECTION 1: HERO EXPLAINING SHIPPER LOAD-POSTING WORKFLOW
+       ====================================================================== -->
+  <section class="fh-page-banner" style="background-image: linear-gradient(rgba(10, 19, 31, 0.88), rgba(10, 19, 31, 0.94)), url('assets/images/warehouse-dock.jpg');">
+    <div class="fh-container text-center">
+      <div style="max-width: 840px; margin-inline: auto;">
+        <!-- Line 1: Breadcrumb Navigation -->
+        <div class="fh-breadcrumb-wrapper">
+          <nav class="fh-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="divider"><i class="fa-solid fa-chevron-right flip-rtl"></i></span>
+            <span class="current">Post a Load</span>
+          </nav>
+        </div>
+
+        <!-- Line 2: Eyebrow Pill -->
+        <div class="fh-eyebrow-wrapper">
+          <div class="fh-eyebrow-pill">
+            <i class="fa-solid fa-truck-ramp-box"></i> Enterprise Freight Ingestion
+          </div>
+        </div>
+
+        <h1 style="color: #FFFFFF; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: var(--space-md);">
+          Post &amp; Tender Commercial Freight Loads
+        </h1>
+
+        <p class="lead" style="color: #CBD5E1; margin-bottom: var(--space-xl); max-width: 720px; margin-inline: auto;">
+          Broadcast your freight tenders to over 12,500 FMCSA-vetted commercial motor carriers in real time. Benefit from algorithmic lane pricing, live GPS telemetry, and automated electronic RateCon execution.
+        </p>
+
+        <div class="fh-flex fh-gap-md fh-justify-center" style="flex-wrap: wrap;">
+          <a href="#post-load-form" class="fh-btn fh-btn-primary fh-btn-pill">
+            <i class="fa-solid fa-file-pen"></i> Start Load Tender Form
+          </a>
+          <a href="find-loads.html" class="fh-btn fh-btn-outline-navy fh-btn-pill" style="border-color: #FFFFFF; color: #FFFFFF;">
+            <i class="fa-solid fa-route"></i> View Live Carrier Board
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       MAIN CONTENT: LOAD POSTING WORKFLOW & FORM
+       ====================================================================== -->
+  <section class="fh-section" id="post-load-form" style="padding-top: var(--space-3xl);">
+    <div class="fh-container">
+
+      <!-- Confirmation Success State (Hidden by default, shown upon demo submission) -->
+      <div class="fh-confirmation-card" id="postLoadSuccessState" style="display: none;">
+        <div class="fh-confirmation-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <span class="fh-badge fh-badge-available" style="font-size: 12px; padding: 4px 12px; margin-bottom: var(--space-sm);">
+          <i class="fa-solid fa-bolt"></i> Tender Broadcast Active
+        </span>
+        <h2 style="margin-bottom: 6px; font-size: 1.8rem;">Load Successfully Tendered!</h2>
+        <p class="text-muted" style="max-width: 600px; margin-inline: auto; margin-bottom: var(--space-md);">
+          Your shipment manifest has been formatted and broadcast across the FreightHawk regional motor carrier network.
+        </p>
+
+        <div class="fh-ref-badge" id="successRefCode">TENDER-FH-849201</div>
+
+        <div class="fh-card" style="max-width: 640px; margin: var(--space-lg) auto; background: var(--bg-secondary); text-align: left; padding: var(--space-lg);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-sm); border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+            <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">MANIFEST SUMMARY</span>
+            <span class="fh-badge fh-badge-verified" id="successEquipmentBadge">53' Dry Van</span>
+          </div>
+          <div style="font-size: 1.1rem; font-weight: 800; margin-bottom: 4px;" id="successRouteTitle">Chicago, IL &rarr; Dallas, TX</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;" id="successScheduleDetails">Pickup: Oct 26, 2026 &bull; Delivery: Oct 28, 2026</div>
+          <div class="fh-flex fh-justify-between fh-items-center">
+            <span style="font-size: 12px; color: var(--text-muted);">Target Spot Rate: <strong style="color: var(--color-safety-orange); font-size: 1.1rem;" id="successRateValue">$2,850.00</strong></span>
+            <span style="font-size: 11px; color: #10B981; font-weight: 700;"><i class="fa-solid fa-shield-halved"></i> 100% Pre-Vetted Carriers</span>
+          </div>
+        </div>
+
+        <!-- Demonstration Sandbox Disclosure -->
+        <div style="background: rgba(242, 140, 40, 0.1); border: 1px solid rgba(242, 140, 40, 0.3); border-radius: var(--radius-md); padding: 12px 18px; max-width: 640px; margin: 0 auto var(--space-xl) auto; font-size: 12px; color: var(--text-main); text-align: left;">
+          <i class="fa-solid fa-triangle-exclamation text-orange" style="margin-right: 6px;"></i>
+          <strong>Interactive Demonstration Sandbox:</strong> This freight load is recorded in the platform demo session. No actual commercial motor carriers have been dispatched and no payment has been charged.
+        </div>
+
+        <div class="fh-flex fh-gap-md fh-justify-center" style="flex-wrap: wrap;">
+          <button type="button" class="fh-btn fh-btn-primary fh-btn-pill" onclick="resetPostLoadForm();">
+            <i class="fa-solid fa-plus"></i> Tender Another Load
+          </button>
+          <a href="find-loads.html" class="fh-btn fh-btn-secondary fh-btn-pill">
+            <i class="fa-solid fa-route"></i> Browse Live Load Board
+          </a>
+          <button type="button" class="fh-btn fh-btn-outline-navy fh-btn-pill" data-open-modal="shipperDashboardModal">
+            <i class="fa-solid fa-chart-line"></i> Open Shipper Dashboard
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Tender Form Container -->
+      <form id="shipperPostLoadForm" onsubmit="handlePostLoadSubmit(event)" novalidate>
+        <div style="display: flex; flex-direction: column; gap: var(--space-xl); width: 100%; max-width: 1000px; margin-inline: auto;">
+              <!-- Top Row Info Alert -->
+              <div class="fh-card" style="background: rgba(14, 165, 233, 0.08); border-left: 4px solid var(--color-steel-blue); padding: var(--space-md) var(--space-lg);">
+                <div class="fh-flex fh-items-center fh-gap-md">
+                  <div style="color: var(--color-steel-blue); font-size: 20px;"><i class="fa-solid fa-shield-halved"></i></div>
+                  <div style="font-size: 13px; color: var(--text-main);">
+                    <strong>Automated FMCSA Compliance:</strong> All matching carriers are verified in real time for minimum $100K active cargo liability, valid DOT operating authority, and satisfactory safety tenure.
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   SECTION 2: LOAD INFORMATION & SHIPPER IDENTIFICATION
+                   ============================================================ -->
+              <div class="fh-form-card" id="step-route">
+                <div class="fh-form-card-header">
+                  <div class="fh-form-step-num">1</div>
+                  <div>
+                    <h3 class="fh-form-card-title">Shipper Identity &amp; Origin/Destination Route</h3>
+                    <p class="fh-form-card-desc">Enter your dispatch contact details and facility pickup/delivery terminals.</p>
+                  </div>
+                </div>
+
+                <!-- Shipper Identity Row -->
+                <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="shipperCompanyName"><i class="fa-solid fa-building text-steel"></i> Shipper / Cargo Owner Name <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="shipperCompanyName" placeholder="e.g. Apex Industrial Logistics LLC" required value="Apex Industrial Logistics LLC">
+                    <div class="fh-invalid-feedback">Please enter your company or business name.</div>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="shipperContactName"><i class="fa-solid fa-user text-steel"></i> Dispatch Contact Person <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="shipperContactName" placeholder="e.g. Michael Vance" required value="Michael Vance">
+                    <div class="fh-invalid-feedback">Please provide a contact person name.</div>
+                  </div>
+                </div>
+
+                <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-xl);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="shipperEmail"><i class="fa-solid fa-envelope text-steel"></i> Notification Email <span style="color: #EF4444;">*</span></label>
+                    <input type="email" class="fh-input" id="shipperEmail" placeholder="dispatch@company.com" required value="dispatch@apexlogistics.com">
+                    <div class="fh-invalid-feedback">Please enter a valid dispatch email address.</div>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="shipperPhone"><i class="fa-solid fa-phone text-steel"></i> Direct Phone / Desk <span style="color: #EF4444;">*</span></label>
+                    <input type="tel" class="fh-input" id="shipperPhone" placeholder="(555) 000-0000" required value="(312) 555-8491">
+                    <div class="fh-invalid-feedback">Please enter a direct contact phone number.</div>
+                  </div>
+                </div>
+
+                <!-- Origin Facility Location -->
+                <h4 style="font-size: 1.05rem; margin-bottom: var(--space-sm);"><i class="fa-solid fa-location-dot text-orange"></i> Origin Pickup Facility</h4>
+                <div class="fh-grid fh-grid-3" style="margin-bottom: var(--space-md);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="originAddress">Facility Street Address</label>
+                    <input type="text" class="fh-input" id="originAddress" placeholder="e.g. 4800 S Central Ave" value="4800 S Central Ave">
+                  </div>
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="originCity">Origin City <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="originCity" placeholder="e.g. Chicago" required value="Chicago" oninput="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Origin city is required.</div>
+                  </div>
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="originState">State &amp; ZIP <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="originState" placeholder="e.g. IL 60638" required value="IL 60638" oninput="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Origin state/zip is required.</div>
+                  </div>
+                </div>
+
+                <!-- Destination Delivery Location -->
+                <h4 style="font-size: 1.05rem; margin-bottom: var(--space-sm);"><i class="fa-solid fa-location-crosshairs text-green"></i> Destination Delivery Facility</h4>
+                <div class="fh-grid fh-grid-3">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="destAddress">Receiver Street Address</label>
+                    <input type="text" class="fh-input" id="destAddress" placeholder="e.g. 9100 Logistics Blvd" value="9100 Logistics Blvd">
+                  </div>
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="destCity">Destination City <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="destCity" placeholder="e.g. Dallas" required value="Dallas" oninput="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Destination city is required.</div>
+                  </div>
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="destState">State &amp; ZIP <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="destState" placeholder="e.g. TX 75241" required value="TX 75241" oninput="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Destination state/zip is required.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   SECTION 3: PICKUP AND DELIVERY DETAILS & SCHEDULE
+                   ============================================================ -->
+              <div class="fh-form-card" id="step-schedule">
+                <div class="fh-form-card-header">
+                  <div class="fh-form-step-num">2</div>
+                  <div>
+                    <h3 class="fh-form-card-title">Pickup &amp; Delivery Appointments</h3>
+                    <p class="fh-form-card-desc">Define scheduled appointment windows, dock handling, and access requirements.</p>
+                  </div>
+                </div>
+
+                <!-- Pickup Schedule Grid -->
+                <div class="fh-grid fh-grid-3" style="margin-bottom: var(--space-lg);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="pickupDate"><i class="fa-regular fa-calendar text-orange"></i> Scheduled Pickup Date <span style="color: #EF4444;">*</span></label>
+                    <input type="date" class="fh-input" id="pickupDate" required value="2026-10-26" onchange="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Pickup date is required.</div>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="pickupWindow"><i class="fa-regular fa-clock text-steel"></i> Pickup Time Window</label>
+                    <select class="fh-select" id="pickupWindow">
+                      <option value="08:00 - 12:00">Morning Window (08:00 - 12:00)</option>
+                      <option value="12:00 - 16:00">Afternoon Window (12:00 - 16:00)</option>
+                      <option value="Strict Appointment">Strict Appointment (Exact Slot)</option>
+                      <option value="24/7 FCFS">24/7 First-Come First-Served</option>
+                    </select>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="pickupDockType"><i class="fa-solid fa-warehouse text-steel"></i> Origin Loading Type</label>
+                    <select class="fh-select" id="pickupDockType">
+                      <option value="Standard Dock Height">Standard Dock Height</option>
+                      <option value="Ground Ramp">Ground Ramp (Forklift)</option>
+                      <option value="Liftgate Required">Liftgate Required</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Delivery Schedule Grid -->
+                <div class="fh-grid fh-grid-3" style="margin-bottom: var(--space-lg);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="deliveryDate"><i class="fa-regular fa-calendar-check text-green"></i> Expected Delivery Date <span style="color: #EF4444;">*</span></label>
+                    <input type="date" class="fh-input" id="deliveryDate" required value="2026-10-28" onchange="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Delivery date is required.</div>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="deliveryWindow"><i class="fa-regular fa-clock text-steel"></i> Receiving Time Window</label>
+                    <select class="fh-select" id="deliveryWindow">
+                      <option value="07:00 - 15:00">Standard Receiving (07:00 - 15:00)</option>
+                      <option value="Strict Appointment">Strict Appointment (Exact Slot)</option>
+                      <option value="24/7 Receiving">24/7 First-Come First-Served</option>
+                    </select>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="driverRole"><i class="fa-solid fa-hands text-steel"></i> Driver Unloading Role</label>
+                    <select class="fh-select" id="driverRole">
+                      <option value="No Touch Freight">No Touch Freight (Dock Crew)</option>
+                      <option value="Driver Assist Loading">Driver Assist Loading</option>
+                      <option value="Tailgate Delivery">Tailgate Delivery</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="fh-form-group" style="margin-bottom: 0;">
+                  <label class="fh-label" for="specialFacilityNotes"><i class="fa-solid fa-shield-halved text-steel"></i> Facility Gate Codes &amp; Access Instructions</label>
+                  <input type="text" class="fh-input" id="specialFacilityNotes" placeholder="e.g. Gate code 8492. Check in at Guardshack #2. Hard hat and safety vest mandatory on premises." value="Gate 4 Check-in. Hardhat &amp; Hi-Vis vest mandatory on dock premises.">
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   SECTION 4: FREIGHT AND EQUIPMENT REQUIREMENTS
+                   ============================================================ -->
+              <div class="fh-form-card" id="step-freight">
+                <div class="fh-form-card-header">
+                  <div class="fh-form-step-num">3</div>
+                  <div>
+                    <h3 class="fh-form-card-title">Freight Specifications &amp; Trailer Equipment</h3>
+                    <p class="fh-form-card-desc">Specify trailer type, cargo commodity, weight limits, and handling requirements.</p>
+                  </div>
+                </div>
+
+                <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="postEquipmentType"><i class="fa-solid fa-trailer text-orange"></i> Required Trailer Equipment <span style="color: #EF4444;">*</span></label>
+                    <select class="fh-select" id="postEquipmentType" required onchange="updateLiveReview();">
+                      <option value="dry-van">53' Dry Van (Full Truckload)</option>
+                      <option value="reefer">Refrigerated (Reefer / Temp-Controlled)</option>
+                      <option value="flatbed">Flatbed / Stepdeck (Open-Deck)</option>
+                      <option value="heavy-haul">Specialized Heavy Haul (RGN / Oversized)</option>
+                      <option value="intermodal">Intermodal Container Drayage (53' Rail)</option>
+                    </select>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="cargoCommodity"><i class="fa-solid fa-box-open text-steel"></i> Commodity Description <span style="color: #EF4444;">*</span></label>
+                    <input type="text" class="fh-input" id="cargoCommodity" placeholder="e.g. Packaged Food, Auto Parts, Electronics" required value="Packaged Commercial Retail Goods">
+                    <div class="fh-invalid-feedback">Commodity description is required.</div>
+                  </div>
+                </div>
+
+                <div class="fh-grid fh-grid-3" style="margin-bottom: var(--space-lg);">
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="cargoWeight"><i class="fa-solid fa-weight-hanging text-steel"></i> Gross Cargo Weight (lbs) <span style="color: #EF4444;">*</span></label>
+                    <input type="number" class="fh-input" id="cargoWeight" placeholder="42500" required value="42500" max="45000" oninput="updateLiveReview();">
+                    <div class="fh-invalid-feedback">Weight is required (Max 45,000 lbs for standard 53').</div>
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="palletCount"><i class="fa-solid fa-cubes text-steel"></i> Pallet Count</label>
+                    <input type="number" class="fh-input" id="palletCount" placeholder="24" value="24">
+                  </div>
+
+                  <div class="fh-form-group">
+                    <label class="fh-label" for="cargoDimensions"><i class="fa-solid fa-ruler-combined text-steel"></i> Dimensions (L x W x H)</label>
+                    <input type="text" class="fh-input" id="cargoDimensions" placeholder="53' x 102&quot; x 110&quot;" value="53' x 102&quot; x 110&quot;">
+                  </div>
+                </div>
+
+                <!-- Reefer Temperature Row (Toggled if reefer selected) -->
+                <div id="reeferOptionsRow" style="display: none; background: rgba(14, 165, 233, 0.08); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-lg); border: 1px solid rgba(14, 165, 233, 0.3);">
+                  <div class="fh-grid fh-grid-2">
+                    <div class="fh-form-group" style="margin-bottom: 0;">
+                      <label class="fh-label"><i class="fa-solid fa-temperature-arrow-down text-steel"></i> Continuous Temperature Setpoint (°F)</label>
+                      <input type="text" class="fh-input" id="reeferTemp" placeholder="e.g. -10°F or 34°F - 36°F" value="34°F - 36°F (Produce Continuous)">
+                    </div>
+                    <div class="fh-form-group" style="margin-bottom: 0;">
+                      <label class="fh-label"><i class="fa-solid fa-snowflake text-steel"></i> Reefer Operating Mode</label>
+                      <select class="fh-select" id="reeferMode">
+                        <option value="Continuous Run">Continuous Run (High Precision)</option>
+                        <option value="Cycle-Sentry">Cycle-Sentry / Start-Stop</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Special Commodity & Handling Checkboxes -->
+                <h4 style="font-size: 0.95rem; margin-bottom: var(--space-sm); color: var(--text-heading);">Special Handling &amp; Security Certifications</h4>
+                <div class="fh-grid fh-grid-2" style="gap: var(--space-sm);">
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;">
+                    <input type="checkbox" id="checkFoodGrade" checked>
+                    <span>Food Grade Clean Trailer (Odor-Free &amp; Dry)</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;">
+                    <input type="checkbox" id="checkSealed">
+                    <span>High Value Cargo / Tamper-Proof Bolt Seal</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;">
+                    <input type="checkbox" id="checkTeamDriver">
+                    <span>Expedited Transit (Team Drivers Required)</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer;">
+                    <input type="checkbox" id="checkTarp">
+                    <span>Tarping &amp; Heavy Straps Included (Flatbed)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   SECTION 5: LOAD REVIEW, RATE BENCHMARK & SUBMISSION
+                   ============================================================ -->
+              <div class="fh-form-card" id="step-pricing">
+                <div class="fh-form-card-header">
+                  <div class="fh-form-step-num">4</div>
+                  <div>
+                    <h3 class="fh-form-card-title">Target Shipper Rate &amp; Broadcast Authorization</h3>
+                    <p class="fh-form-card-desc">Set your target linehaul spot rate based on real-time diesel index benchmarks.</p>
+                  </div>
+                </div>
+
+                <!-- Interactive Pricing Guidance Card -->
+                <div class="fh-review-sticky" style="position: static; margin-bottom: var(--space-xl);">
+                  <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-md); flex-wrap: wrap; gap: 8px;">
+                    <div>
+                      <span class="fh-badge fh-badge-available" style="font-size: 11px;">
+                        <i class="fa-solid fa-chart-line"></i> Dynamic Lane Pricing Engine
+                      </span>
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
+                      ESTIMATED DISTANCE: <span id="reviewDistanceText" style="color: var(--text-heading);">920 MILES</span>
+                    </div>
+                  </div>
+
+                  <!-- Route Visual Manifest Summary -->
+                  <div class="fh-route-container" style="margin-bottom: var(--space-md); background: var(--bg-secondary); padding: 12px; border-radius: var(--radius-md);">
+                    <div class="fh-route-point">
+                      <div class="fh-route-city" id="reviewOriginCity">Chicago, IL</div>
+                      <div class="fh-route-date" id="reviewPickupDate"><i class="fa-regular fa-calendar"></i> Pickup: Oct 26, 2026</div>
+                    </div>
+                    <div class="fh-route-point destination" style="margin-top: 10px;">
+                      <div class="fh-route-city" id="reviewDestCity">Dallas, TX</div>
+                      <div class="fh-route-date" id="reviewDeliveryDate"><i class="fa-regular fa-calendar-check"></i> Delivery: Oct 28, 2026</div>
+                    </div>
+                  </div>
+
+                  <!-- Rate Benchmark Inputs Grid -->
+                  <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md); align-items: start;">
+                    <div class="fh-form-group" style="margin-bottom: 0;">
+                      <label class="fh-label" for="shipperBudgetRate" style="min-height: 22px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-dollar-sign text-orange"></i> Target Linehaul Rate (USD) <span style="color: #EF4444;">*</span></label>
+                      <input type="number" class="fh-input" id="shipperBudgetRate" placeholder="2850" required value="2850" min="500" oninput="updateRateMetrics();" style="height: 48px; box-sizing: border-box;">
+                      <div class="fh-invalid-feedback">Please enter a valid linehaul budget rate.</div>
+                    </div>
+
+                    <div class="fh-form-group" style="margin-bottom: 0;">
+                      <label class="fh-label" style="min-height: 22px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-calculator text-steel"></i> Calculated Payout / Mile</label>
+                      <div class="fh-input" id="ratePerMileDisplay" style="height: 48px; box-sizing: border-box; display: flex; align-items: center; font-weight: 800; color: #10B981; background: var(--bg-secondary); padding: 12px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm);">
+                        $3.10 / Mile
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Platform Governance Checklist -->
+                  <ul class="fh-pathway-list" style="margin-top: var(--space-md); font-size: 13px;">
+                    <li style="color: var(--text-body); font-weight: 500;"><i class="fa-solid fa-check text-orange"></i> Standard $75/hr detention reimbursement guaranteed after 2 hours.</li>
+                    <li style="color: var(--text-body); font-weight: 500;"><i class="fa-solid fa-check text-orange"></i> Electronic RateCon generated instantly upon carrier acceptance.</li>
+                    <li style="color: var(--text-body); font-weight: 500;"><i class="fa-solid fa-check text-orange"></i> Full in-transit telemetry tracking with 15-minute GPS updates.</li>
+                  </ul>
+                </div>
+
+                <!-- Terms Acceptance Checkbox -->
+                <div class="fh-form-group" style="margin-bottom: var(--space-xl);">
+                  <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-body); font-weight: 500; cursor: pointer;">
+                    <input type="checkbox" id="termsCheck" required checked style="margin-top: 3px;">
+                    <span>I certify that cargo weights and facility dimensions are accurate, and authorize FreightHawk to broadcast this freight tender to verified motor carriers.</span>
+                  </label>
+                  <div class="fh-invalid-feedback" id="termsError" style="display: none;">You must accept the brokerage tender terms to proceed.</div>
+                </div>
+
+                <!-- Submission Action Button -->
+                <div class="fh-flex fh-gap-md" style="flex-wrap: wrap;">
+                  <button type="submit" class="fh-btn fh-btn-primary fh-btn-lg" style="height: 52px; font-size: 1.05rem;">
+                    <i class="fa-solid fa-bolt"></i> Broadcast Freight Tender Live
+                  </button>
+                  <button type="button" class="fh-btn fh-btn-ghost fh-btn-lg" onclick="resetPostLoadForm();" style="border: 1px solid var(--border-subtle);">
+                    <i class="fa-solid fa-rotate-left"></i> Reset Form
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       FOOTER (Standardized 4-Column Layout)
+       ====================================================================== -->
+  <footer class="fh-footer">
+    <div class="fh-container">
+      <div class="fh-footer-grid">
+        <!-- Col 1: Platform Brand & Compliance -->
+        <div>
+          <a href="index.html" class="fh-brand" style="font-size: 1.3rem;">
+            <div class="fh-brand-icon">
+              <i class="fa-solid fa-truck-moving"></i>
+            </div>
+            <div class="fh-brand-text">
+              <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+              <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+            </div>
+          </a>
+          <p class="fh-footer-brand-desc">
+            North America's premier digital freight brokerage platform. Connecting verified motor carriers with enterprise shippers through transparent pricing, verified compliance, and 24/7 dedicated dispatch.
+          </p>
+          <div class="fh-fmcsa-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>FMCSA Broker Authority MC-987214-B</span>
+          </div>
+          <div class="fh-social-links">
+            <a href="#linkedin" class="fh-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#twitter" class="fh-social-btn" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#facebook" class="fh-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#youtube" class="fh-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="fh-footer-title">Platform Navigation</div>
+          <ul class="fh-footer-links">
+            <li><a href="index.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 1: Freight Matching</a></li>
+            <li><a href="home-2.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 2: Logistics Operations</a></li>
+            <li><a href="how-it-works.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> How Load Matching Works</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Live Load Board</a></li>
+            <li><a href="post-load.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Post a Commercial Load</a></li>
+            <li><a href="about.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> About FreightHawk</a></li>
+            <li><a href="contact.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Contact &amp; 24/7 Dispatch</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Freight Equipment & Services -->
+        <div>
+          <div class="fh-footer-title">Freight Modes</div>
+          <ul class="fh-footer-links">
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> 53' Dry Van Full Truckload</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Refrigerated &amp; Frozen (Reefer)</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Open Deck Flatbed &amp; Stepdeck</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Specialized Heavy Haul &amp; RGN</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Intermodal Rail &amp; Port Drayage</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Expedited Team &amp; Hot Shot</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Operations & Contact -->
+        <div>
+          <div class="fh-footer-title">Brokerage Operations</div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-location-dot fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">FreightHawk Headquarters</strong><br>
+              233 S Wacker Dr, Suite 4400<br>
+              Chicago, IL 60606
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-phone fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">24/7 Dispatch Desk:</strong><br>
+              <a href="tel:18005554295" style="color: var(--color-safety-orange); font-weight: 700;">(800) 555-HAWK</a>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-envelope fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">Tender Operations:</strong><br>
+              <span>tenders@freighthawk.com</span>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-clock fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">Operating Schedule:</strong><br>
+              <span style="color: #CBD5E1;">Open 24 Hours / 365 Days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Legal & Copyright -->
+      <div class="fh-footer-bottom">
+        <div class="fh-footer-copyright">
+          &copy; 2026 FreightHawk Logistics Inc. All rights reserved. Registered Property Broker FMCSA MC-987214.
+        </div>
+        <ul class="fh-legal-links">
+          <li><a href="#terms">Terms of Service</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#shipper-agreement">Shipper Agreement</a></li>
+          <li><a href="#carrier-terms">Carrier Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="fh-back-to-top" id="backToTop" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ======================================================================
+       INTERACTIVE DASHBOARD MODAL 1: ENTERPRISE SHIPPER OPERATIONS COMMAND
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="shipperDashboardModal">
+    <div class="fh-modal-dialog fh-modal-dialog-wide">
+      <div class="fh-modal-header">
+        <div class="fh-flex fh-items-center fh-gap-md">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-steel-blue); margin: 0; width: 44px; height: 44px; font-size: 20px;">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.25rem; margin: 0;">Shipper Operations Command</h3>
+            <span style="font-size: 12px; color: var(--text-muted);">Real-Time Freight Tender Telematics &bull; Apex Logistics Enterprise</span>
+          </div>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="fh-modal-body" style="padding: var(--space-xl);">
+        <div class="fh-grid fh-grid-4" style="margin-bottom: var(--space-xl);">
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Active Tenders</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-safety-orange);">14</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Loads In Transit</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-steel-blue);">28</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">On-Time Delivery</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #10B981;">99.4%</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Avg Match Speed</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--text-heading);">4.2m</div>
+          </div>
+        </div>
+        <div class="text-right">
+          <button type="button" class="fh-btn fh-btn-secondary" data-close-modal>Close Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       INTERACTIVE DASHBOARD MODAL 2: CARRIER TELEMATICS & SETTLEMENT COMMAND
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="carrierDashboardModal">
+    <div class="fh-modal-dialog fh-modal-dialog-wide">
+      <div class="fh-modal-header">
+        <div class="fh-flex fh-items-center fh-gap-md">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-safety-orange); margin: 0; width: 44px; height: 44px; font-size: 20px;">
+            <i class="fa-solid fa-truck"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.25rem; margin: 0;">Motor Carrier Fleet &amp; QuickPay Portal</h3>
+            <span style="font-size: 12px; color: var(--text-muted);">FMCSA Active Authority: MC-892401 &bull; SwiftHaul Transport</span>
+          </div>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="fh-modal-body" style="padding: var(--space-xl);">
+        <div class="fh-grid fh-grid-4" style="margin-bottom: var(--space-xl);">
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Settlements Today</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #10B981;">$8,420</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Assigned Hauls</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-safety-orange);">3 Active</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Deadhead Avoided</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-steel-blue);">1,140 Mi</div>
+          </div>
+          <div class="fh-card" style="padding: var(--space-md); text-align: center;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">QuickPay Avg</span>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--text-heading);">1.4 Hrs</div>
+          </div>
+        </div>
+        <div class="text-right">
+          <button type="button" class="fh-btn fh-btn-secondary" data-close-modal>Close Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       INTERACTIVE AUTH MODAL (Login / Register)
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="authModal">
+    <div class="fh-modal-dialog">
+      <div class="fh-modal-header">
+        <h3 style="font-size: 1.25rem; margin: 0;">FreightHawk Portal Access</h3>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="fh-modal-body">
+        <form onsubmit="event.preventDefault(); alert('✅ Authenticated successfully (Interactive Demo Sandbox).'); document.getElementById('authModal').classList.remove('active'); document.body.style.overflow='';">
+          <div class="fh-form-group">
+            <label class="fh-label">Corporate Email / Portal ID</label>
+            <input type="email" class="fh-input" placeholder="user@company.com" required value="shipper.admin@apexlogistics.com">
+          </div>
+          <div class="fh-form-group">
+            <label class="fh-label">Password</label>
+            <input type="password" class="fh-input" placeholder="••••••••" required value="demoPass2026">
+          </div>
+          <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 46px;">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Portal
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts inside assets/js -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Interactive Form Handling & Dynamic Benchmark Calculation Script -->
+  <script>
+    (function () {
+      const originCityInput = document.getElementById('originCity');
+      const originStateInput = document.getElementById('originState');
+      const destCityInput = document.getElementById('destCity');
+      const destStateInput = document.getElementById('destState');
+      const pickupDateInput = document.getElementById('pickupDate');
+      const deliveryDateInput = document.getElementById('deliveryDate');
+      const equipSelect = document.getElementById('postEquipmentType');
+      const reeferRow = document.getElementById('reeferOptionsRow');
+      const rateInput = document.getElementById('shipperBudgetRate');
+
+      // Live Review Elements
+      const reviewOrigin = document.getElementById('reviewOriginCity');
+      const reviewDest = document.getElementById('reviewDestCity');
+      const reviewPickup = document.getElementById('reviewPickupDate');
+      const reviewDelivery = document.getElementById('reviewDeliveryDate');
+      const ratePerMileEl = document.getElementById('ratePerMileDisplay');
+      const distanceEl = document.getElementById('reviewDistanceText');
+
+      // Toggle Reefer Options when Reefer selected
+      function checkReeferState() {
+        if (!equipSelect || !reeferRow) return;
+        if (equipSelect.value === 'reefer') {
+          reeferRow.style.display = 'block';
+        } else {
+          reeferRow.style.display = 'none';
+        }
+      }
+
+      window.updateLiveReview = function () {
+        checkReeferState();
+
+        const oCity = originCityInput ? originCityInput.value.trim() : 'Chicago';
+        const oState = originStateInput ? originStateInput.value.trim() : 'IL';
+        const dCity = destCityInput ? destCityInput.value.trim() : 'Dallas';
+        const dState = destStateInput ? destStateInput.value.trim() : 'TX';
+        const pDate = pickupDateInput ? pickupDateInput.value : '2026-10-26';
+        const dDate = deliveryDateInput ? deliveryDateInput.value : '2026-10-28';
+
+        if (reviewOrigin) reviewOrigin.textContent = `${oCity}, ${oState}`;
+        if (reviewDest) reviewDest.textContent = `${dCity}, ${dState}`;
+        if (reviewPickup) reviewPickup.innerHTML = `<i class="fa-regular fa-calendar"></i> Pickup: ${pDate}`;
+        if (reviewDelivery) reviewDelivery.innerHTML = `<i class="fa-regular fa-calendar-check"></i> Delivery: ${dDate}`;
+
+        updateRateMetrics();
+      };
+
+      window.updateRateMetrics = function () {
+        const rateVal = rateInput ? parseFloat(rateInput.value) || 2850 : 2850;
+        const simulatedDistance = 920; // 920 miles benchmark
+        const perMile = (rateVal / simulatedDistance).toFixed(2);
+
+        if (ratePerMileEl) {
+          ratePerMileEl.textContent = `$${perMile} / Mile`;
+        }
+        if (distanceEl) {
+          distanceEl.textContent = `${simulatedDistance} MILES`;
+        }
+      };
+
+      // Form Submission Handler with Validation
+      window.handlePostLoadSubmit = function (e) {
+        e.preventDefault();
+        const form = document.getElementById('shipperPostLoadForm');
+        if (!form) return;
+
+        let isValid = true;
+        const requiredInputs = form.querySelectorAll('[required]');
+
+        requiredInputs.forEach(input => {
+          if (input.type === 'checkbox') {
+            if (!input.checked) {
+              isValid = false;
+              const err = document.getElementById('termsError');
+              if (err) err.style.display = 'block';
+            } else {
+              const err = document.getElementById('termsError');
+              if (err) err.style.display = 'none';
+            }
+          } else if (!input.value.trim()) {
+            input.classList.add('is-invalid');
+            isValid = false;
+          } else {
+            input.classList.remove('is-invalid');
+          }
+        });
+
+        if (!isValid) {
+          // Scroll to first invalid input
+          const firstErr = form.querySelector('.is-invalid');
+          if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Generate Simulated Reference Code
+        const refCode = 'TENDER-FH-' + Math.floor(100000 + Math.random() * 900000);
+        const oCity = originCityInput.value.trim();
+        const oState = originStateInput.value.trim();
+        const dCity = destCityInput.value.trim();
+        const dState = destStateInput.value.trim();
+        const pDate = pickupDateInput.value;
+        const dDate = deliveryDateInput.value;
+        const equipLabel = equipSelect.options[equipSelect.selectedIndex].text;
+        const rate = rateInput.value;
+
+        // Populate Success State
+        document.getElementById('successRefCode').textContent = refCode;
+        document.getElementById('successRouteTitle').textContent = `${oCity}, ${oState} → ${dCity}, ${dState}`;
+        document.getElementById('successScheduleDetails').textContent = `Pickup: ${pDate} • Delivery: ${dDate}`;
+        document.getElementById('successEquipmentBadge').textContent = equipLabel;
+        document.getElementById('successRateValue').textContent = `$${parseFloat(rate).toLocaleString()}`;
+
+        // Toggle Views
+        form.style.display = 'none';
+        const successBox = document.getElementById('postLoadSuccessState');
+        if (successBox) {
+          successBox.style.display = 'block';
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      // Reset Form Action
+      window.resetPostLoadForm = function () {
+        const form = document.getElementById('shipperPostLoadForm');
+        const successBox = document.getElementById('postLoadSuccessState');
+        if (form) {
+          form.reset();
+          form.style.display = 'block';
+          form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+        }
+        if (successBox) successBox.style.display = 'none';
+        updateLiveReview();
+      };
+
+      // Initialize on load
+      document.addEventListener('DOMContentLoaded', updateLiveReview);
+      updateLiveReview();
+    })();
+  </script>
+</body>
+</html>

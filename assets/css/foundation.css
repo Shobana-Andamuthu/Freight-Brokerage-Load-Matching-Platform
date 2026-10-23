@@ -1,0 +1,358 @@
+/* ==========================================================================
+   FREIGHT BROKERAGE & LOAD-MATCHING PLATFORM (FREIGHTHAWK)
+   Phase 1: Shared Foundation - Design Tokens, Typography, Layout & Themes
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Google Fonts: Outfit (Display & Headings) + Inter (Data & Body)
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties (Theme Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Core Palette */
+  --color-deep-navy: #142B45;
+  --color-deep-navy-dark: #0D1D30;
+  --color-deep-navy-darker: #08121E;
+  --color-steel-blue: #3D6B8E;
+  --color-steel-blue-light: #5B8BAE;
+  --color-steel-blue-subtle: rgba(61, 107, 142, 0.12);
+  --color-safety-orange: #F28C28;
+  --color-safety-orange-hover: #D97314;
+  --color-safety-orange-light: #FF9F43;
+  --color-safety-orange-glow: rgba(242, 140, 40, 0.28);
+  --color-light-grey: #F2F5F8;
+  --color-pure-white: #FFFFFF;
+
+  /* Semantic Status Colors */
+  --status-available: #F28C28;
+  --status-available-bg: rgba(242, 140, 40, 0.15);
+  --status-in-transit: #2563EB;
+  --status-in-transit-bg: rgba(37, 99, 235, 0.15);
+  --status-delivered: #10B981;
+  --status-delivered-bg: rgba(16, 185, 129, 0.15);
+  --status-booked: #8B5CF6;
+  --status-booked-bg: rgba(139, 92, 246, 0.15);
+  --status-delayed: #EF4444;
+  --status-delayed-bg: rgba(239, 68, 68, 0.15);
+  --status-verified: #0EA5E9;
+  --status-verified-bg: rgba(14, 165, 233, 0.15);
+
+  /* Typography */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Font Scales */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-md: 1.125rem;   /* 18px */
+  --text-lg: 1.25rem;    /* 20px */
+  --text-xl: 1.5rem;     /* 24px */
+  --text-2xl: 1.875rem;  /* 30px */
+  --text-3xl: 2.25rem;   /* 36px */
+  --text-4xl: 3rem;      /* 48px */
+  --text-5xl: 3.75rem;   /* 60px */
+
+  /* Spacing System */
+  --space-2xs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4.5rem;   /* 72px */
+  --space-4xl: 6rem;     /* 96px */
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+  --shadow-orange: 0 10px 25px -3px rgba(242, 140, 40, 0.35);
+  --shadow-navy: 0 10px 25px -3px rgba(20, 43, 69, 0.25);
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout Containers */
+  --container-max: 1280px;
+  --container-wide: 1440px;
+  --header-height: 80px;
+  --topbar-height: 40px;
+
+  /* Light Theme Active Defaults */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F2F5F8;
+  --bg-tertiary: #E8EEF4;
+  --bg-body: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-navy-surface: #142B45;
+  --bg-navy-card: #1B3553;
+
+  --text-main: #263445;
+  --text-heading: #142B45;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --text-white: #FFFFFF;
+
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --border-navy: #1F3B5C;
+  --border-orange: rgba(242, 140, 40, 0.4);
+
+  --card-shadow: 0 4px 20px -2px rgba(20, 43, 69, 0.07);
+  --card-hover-shadow: 0 14px 30px -4px rgba(20, 43, 69, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   Dark Mode Overrides [data-theme="dark"]
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --bg-primary: #0A131F;
+  --bg-secondary: #0F1B2B;
+  --bg-tertiary: #142337;
+  --bg-body: #0A131F;
+  --bg-card: #122033;
+  --bg-card-hover: #172941;
+  --bg-navy-surface: #0B1624;
+  --bg-navy-card: #15263B;
+
+  --text-main: #CBD5E1;
+  --text-heading: #F8FAFC;
+  --text-muted: #8F9CAE;
+  --text-light: #64748B;
+  --text-white: #FFFFFF;
+
+  --border-subtle: #1C314B;
+  --border-strong: #2A4465;
+  --border-navy: #2A4465;
+  --border-orange: rgba(242, 140, 40, 0.5);
+
+  --card-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.45);
+  --card-hover-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Base Reset & Modern Norms
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   RTL Rules & Logical Layouts
+   -------------------------------------------------------------------------- */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .flip-rtl {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .ms-auto {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+[dir="rtl"] .me-auto {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Typography Foundation
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2rem, 5vw, var(--text-5xl)); font-weight: 800; }
+h2 { font-size: clamp(1.75rem, 3.5vw, var(--text-3xl)); font-weight: 800; }
+h3 { font-size: clamp(1.35rem, 2.5vw, var(--text-2xl)); font-weight: 700; }
+h4 { font-size: var(--text-xl); font-weight: 700; }
+h5 { font-size: var(--text-lg); font-weight: 600; }
+h6 { font-size: var(--text-base); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--text-main);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--color-steel-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-safety-orange);
+}
+
+/* --------------------------------------------------------------------------
+   Containers & Grids
+   -------------------------------------------------------------------------- */
+.fh-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.fh-container-fluid {
+  width: 100%;
+  padding-inline: var(--space-md);
+}
+
+.fh-container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.fh-section {
+  padding-block: var(--space-3xl);
+  position: relative;
+}
+
+.fh-section-sm {
+  padding-block: var(--space-xl);
+}
+
+.fh-section-lg {
+  padding-block: var(--space-4xl);
+}
+
+.fh-section-navy {
+  background-color: var(--color-deep-navy);
+  color: var(--text-white);
+}
+
+.fh-section-navy h1,
+.fh-section-navy h2,
+.fh-section-navy h3,
+.fh-section-navy h4 {
+  color: var(--text-white);
+}
+
+.fh-section-secondary {
+  background-color: var(--bg-secondary);
+}
+
+/* Flex & Grid Utilities */
+.fh-grid {
+  display: grid;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+/* Base Grid (Mobile: 1 column) */
+.fh-grid-2 { grid-template-columns: 1fr; }
+.fh-grid-3 { grid-template-columns: 1fr; }
+.fh-grid-4 { grid-template-columns: 1fr; }
+
+/* Tablet, iPad, and iPad Pro (640px to 1199px): Maximum 2 equal-width cards per row */
+@media (min-width: 640px) and (max-width: 1199px) {
+  .fh-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .fh-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .fh-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Wide Desktops & Large Displays (>= 1200px): Balanced multi-column layouts */
+@media (min-width: 1200px) {
+  .fh-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .fh-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .fh-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Ensure all grid direct children stretch equally */
+.fh-grid > *,
+.fh-grid-2 > *,
+.fh-grid-3 > *,
+.fh-grid-4 > *,
+.fh-ops-card-grid > *,
+.fh-dash-stats-row > *,
+.fh-tracking-timeline > *,
+.fh-contact-grid > * {
+  min-width: 0;
+  height: 100%;
+}
+
+.fh-flex { display: flex; }
+.fh-flex-col { flex-direction: column; }
+.fh-items-center { align-items: center; }
+.fh-justify-between { justify-content: space-between; }
+.fh-justify-center { justify-content: center; }
+.fh-gap-xs { gap: var(--space-xs); }
+.fh-gap-sm { gap: var(--space-sm); }
+.fh-gap-md { gap: var(--space-md); }
+.fh-gap-lg { gap: var(--space-lg); }
+.fh-gap-xl { gap: var(--space-xl); }
+
+/* Text Utilities */
+.text-orange { color: var(--color-safety-orange) !important; }
+.text-navy { color: var(--color-deep-navy) !important; }
+.text-steel { color: var(--color-steel-blue) !important; }
+.text-white { color: var(--color-pure-white) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-center { text-align: center; }
+.font-mono { font-family: var(--font-mono); }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }

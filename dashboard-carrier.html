@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — Carrier Dispatch Portal</title>
+  <meta name="description" content="Motor Carrier Dispatch & Load Management Portal. Discover high-paying spot freight, manage rate confirmations, upload e-PODs, and track 2-hour QuickPay settlements.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body class="fh-dash-layout">
+
+  <!-- ======================================================================
+       DASHBOARD TOPBAR (Matching Reference Image 2)
+       ====================================================================== -->
+  <header class="fh-dash-navbar">
+    <!-- Brand Logo -->
+    <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+      <div class="fh-brand-icon" style="background: var(--color-safety-orange);">
+        <i class="fa-solid fa-truck-front"></i>
+      </div>
+      <div class="fh-brand-text">
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+        <div class="fh-brand-sub">Carrier Fleet Portal</div>
+      </div>
+    </a>
+
+    <!-- Topbar Actions (Desktop only) -->
+    <div class="fh-dash-nav-actions">
+      <!-- Circular RTL Toggle Button (Matching Reference Image 3) -->
+      <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+        <i class="fa-solid fa-right-left"></i>
+      </button>
+
+      <!-- Circular Theme Toggle Button -->
+      <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <!-- Profile Button -->
+      <div class="fh-dash-profile-btn" onclick="alert('Carrier Account: Marcus Cole\nSwiftHaul Transport LLC\nDOT #318942 • MC-892401\nFleet: 4 Units • Platinum Safety Rating');">
+        <div class="fh-dash-avatar carrier" style="width: 24px; height: 24px; font-size: 11px;">MC</div>
+        <span>Profile <i class="fa-solid fa-angle-down" style="font-size: 10px;"></i></span>
+      </div>
+
+      <!-- Primary Action CTA -->
+      <button type="button" class="fh-btn fh-btn-sm fh-btn-primary fh-btn-pill" onclick="switchSection('find-loads');">
+        <i class="fa-solid fa-magnifying-glass"></i> Search Spot Loads
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Hamburger Toggle (Visible on Mobile/Tablet only) -->
+    <button type="button" class="fh-dash-mobile-toggle" id="dashMobileToggle" aria-label="Toggle Dashboard Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <!-- ======================================================================
+       DASHBOARD MAIN CONTAINER (Full-length Sidebar + Main Content)
+       ====================================================================== -->
+  <div class="fh-dash-container">
+
+    <!-- Left Full-Length Sidebar (Desktop) -->
+    <aside class="fh-dash-sidebar" id="dashDesktopSidebar">
+      <!-- Carrier Profile Widget at Top -->
+      <div class="fh-dash-profile-widget">
+        <div class="fh-dash-avatar carrier">MC</div>
+        <div>
+          <div class="fh-dash-profile-name">Marcus Cole</div>
+          <div class="fh-dash-profile-id">SwiftHaul LLC &bull; MC-892401</div>
+        </div>
+      </div>
+
+      <!-- 6 Numbered Navigation Menu Items (Matching Reference Image 2) -->
+      <ul class="fh-dash-menu">
+        <li>
+          <button type="button" class="fh-dash-menu-btn active" data-dash-nav="overview" onclick="switchSection('overview');">
+            <i class="fa-solid fa-table-columns"></i> 1. Overview
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-nav="find-loads" onclick="switchSection('find-loads');">
+            <i class="fa-solid fa-magnifying-glass"></i> 2. Find Loads
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-nav="applications" onclick="switchSection('applications');">
+            <i class="fa-solid fa-file-signature"></i> 3. My Applications
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-nav="tracking" onclick="switchSection('tracking');">
+            <i class="fa-solid fa-route"></i> 4. Shipment Tracking
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-nav="settlements" onclick="switchSection('settlements');">
+            <i class="fa-solid fa-money-bill-wave"></i> 5. Payment Settlements
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-nav="profile" onclick="switchSection('profile');">
+            <i class="fa-solid fa-id-card-clip"></i> 6. Carrier Profile
+          </button>
+        </li>
+      </ul>
+
+      <!-- Sign Out Button at Bottom of Sidebar -->
+      <div class="fh-dash-signout-wrapper">
+        <a href="login.html" class="fh-dash-signout-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Mobile Drawer for Dashboard (Revealed on Hamburger Toggle) -->
+    <div class="fh-drawer-backdrop" id="dashDrawerBackdrop"></div>
+    <aside class="fh-dash-drawer" id="dashMobileDrawer">
+      <div class="fh-drawer-header" style="margin-bottom: var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+        <a href="index.html" class="fh-drawer-brand" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+          <div class="fh-brand-icon">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+        </a>
+        <button type="button" class="fh-drawer-close" id="dashDrawerClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Mobile Profile Widget -->
+      <div class="fh-dash-profile-widget">
+        <div class="fh-dash-avatar carrier">MC</div>
+        <div>
+          <div class="fh-dash-profile-name">Marcus Cole</div>
+          <div class="fh-dash-profile-id">SwiftHaul LLC &bull; MC-892401</div>
+        </div>
+      </div>
+
+      <!-- Mobile Nav Buttons -->
+      <ul class="fh-dash-menu">
+        <li>
+          <button type="button" class="fh-dash-menu-btn active" data-dash-mob-nav="overview" onclick="switchSection('overview'); closeDashDrawer();">
+            <i class="fa-solid fa-table-columns"></i> 1. Overview
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-mob-nav="find-loads" onclick="switchSection('find-loads'); closeDashDrawer();">
+            <i class="fa-solid fa-magnifying-glass"></i> 2. Find Loads
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-mob-nav="applications" onclick="switchSection('applications'); closeDashDrawer();">
+            <i class="fa-solid fa-file-signature"></i> 3. My Applications
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-mob-nav="tracking" onclick="switchSection('tracking'); closeDashDrawer();">
+            <i class="fa-solid fa-route"></i> 4. Shipment Tracking
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-mob-nav="settlements" onclick="switchSection('settlements'); closeDashDrawer();">
+            <i class="fa-solid fa-money-bill-wave"></i> 5. Payment Settlements
+          </button>
+        </li>
+        <li>
+          <button type="button" class="fh-dash-menu-btn" data-dash-mob-nav="profile" onclick="switchSection('profile'); closeDashDrawer();">
+            <i class="fa-solid fa-id-card-clip"></i> 6. Carrier Profile
+          </button>
+        </li>
+      </ul>
+
+      <!-- Preferences & Sign Out inside Mobile Drawer -->
+      <div style="margin-top: auto; padding-top: var(--space-lg); border-top: 1px solid var(--border-subtle);">
+        <button type="button" class="fh-btn fh-btn-primary fh-btn-pill" style="width: 100%; margin-bottom: var(--space-md); justify-content: center;" onclick="switchSection('find-loads'); closeDashDrawer();">
+          <i class="fa-solid fa-magnifying-glass"></i> Search Spot Loads
+        </button>
+        <div class="fh-drawer-prefs-box">
+          <span class="fh-drawer-prefs-label">Preferences:</span>
+          <div class="fh-drawer-prefs-actions">
+            <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+              <i class="fa-solid fa-right-left"></i>
+            </button>
+          </div>
+        </div>
+        <a href="login.html" class="fh-dash-signout-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="fh-dash-content">
+      <!-- Simulated Environment Banner (Reference Image 2) -->
+      <div class="fh-simulated-banner">
+        <i class="fa-solid fa-circle-info text-orange" style="font-size: 18px; flex-shrink: 0;"></i>
+        <span><strong>Simulated Motor Carrier Dispatch Environment:</strong> This dashboard is populated with realistic demonstration records for interactive dispatch review. No actual commercial rate confirmations or real GPS telematics will be filed.</span>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 1: OVERVIEW & KEY METRICS (Reference Image 2)
+           ================================================================== -->
+      <section id="section-overview" class="fh-dash-section active">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">1. Carrier Fleet Overview &amp; Key Metrics</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Real-time aggregate summary across assigned power units, active linehauls, spot market opportunities, and QuickPay cashflow.
+            </p>
+          </div>
+          <div class="fh-badge fh-badge-available" style="padding: 6px 14px; font-weight: 700;">
+            <i class="fa-solid fa-circle text-orange" style="font-size: 8px;"></i> LIVE TELEMATICS: OCT 2026
+          </div>
+        </div>
+
+        <!-- 4-Stat Metric Cards Row (Matching Reference Image 2) -->
+        <div class="fh-dash-stats-row">
+          <!-- Card 1 -->
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Next Delivery</span>
+              <div class="fh-dash-stat-icon">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+            </div>
+            <div class="fh-dash-stat-val">Today, 16:30</div>
+            <div class="fh-dash-stat-sub">
+              <i class="fa-solid fa-truck-fast"></i> Unit #104 en route to Atlanta, GA
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Active Hauls</span>
+              <div class="fh-dash-stat-icon">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+              </div>
+            </div>
+            <div class="fh-dash-stat-val">3 Loads</div>
+            <div class="fh-dash-stat-sub">
+              <i class="fa-solid fa-route"></i> 2 In-Transit &bull; 1 Dispatched
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Settled QuickPay</span>
+              <div class="fh-dash-stat-icon">
+                <i class="fa-solid fa-circle-check text-green"></i>
+              </div>
+            </div>
+            <div class="fh-dash-stat-val">$38,450</div>
+            <div class="fh-dash-stat-sub">
+              <i class="fa-solid fa-bolt"></i> 14 Invoices &bull; 100% 2-Hr ACH rate
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Average Deadhead</span>
+              <div class="fh-dash-stat-icon">
+                <i class="fa-solid fa-compass"></i>
+              </div>
+            </div>
+            <div class="fh-dash-stat-val">38 Miles</div>
+            <div class="fh-dash-stat-sub">
+              <i class="fa-solid fa-bullseye"></i> Auto-matching radar active
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Hauls & Active Operations Table (Matching Reference Image 2 Table) -->
+        <div style="margin-top: var(--space-2xl);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-md); flex-wrap: wrap; gap: var(--space-sm);">
+            <div>
+              <h2 style="font-size: 1.3rem; margin-bottom: 2px;">Recent Hauls &amp; Active Linehaul Operations</h2>
+              <p class="text-muted" style="margin: 0; font-size: 13px;">
+                Audit trail of assigned loads, dispatched power units, completed delivery logs, and settlement release triggers.
+              </p>
+            </div>
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="switchSection('find-loads');">
+              <i class="fa-solid fa-plus"></i> Book More Freight
+            </button>
+          </div>
+
+          <!-- Responsive Table Container -->
+          <div class="fh-table-responsive">
+            <table class="fh-table">
+              <thead>
+                <tr>
+                  <th>Load Ref</th>
+                  <th>Commodity</th>
+                  <th>Origin &rarr; Destination</th>
+                  <th>Equipment</th>
+                  <th>Rate / Pay</th>
+                  <th>Status</th>
+                  <th>Unit / Driver</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>#FH-84192</strong></td>
+                  <td>Temp-Controlled Pharma</td>
+                  <td>Chicago, IL &rarr; Atlanta, GA (710 mi)</td>
+                  <td>53' Reefer (-0.4&deg;F)</td>
+                  <td style="font-weight: 700; color: #10B981;">$3,450.00</td>
+                  <td><span class="fh-badge fh-badge-intransit"><i class="fa-solid fa-truck-moving"></i> In Transit</span></td>
+                  <td>Unit #104 &bull; Marcus C.</td>
+                  <td>
+                    <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="switchSection('tracking');">
+                      <i class="fa-solid fa-satellite-dish"></i> Track GPS
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>#FH-84105</strong></td>
+                  <td>Tier-1 Automotive Parts</td>
+                  <td>Detroit, MI &rarr; Louisville, KY (360 mi)</td>
+                  <td>53' Dry Van</td>
+                  <td style="font-weight: 700; color: #10B981;">$1,850.00</td>
+                  <td><span class="fh-badge fh-badge-delivered"><i class="fa-solid fa-circle-check"></i> Delivered</span></td>
+                  <td>Unit #109 &bull; Elena R.</td>
+                  <td>
+                    <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Viewing e-POD for #FH-84105:\nReceiver: BlueOval Battery Park, Glendale, KY\nSigned: Oct 22, 14:15 EST by Dock Supervisor D. Miller.\nPayment Status: Queued for 2-Hr ACH settlement.');">
+                      <i class="fa-solid fa-file-lines"></i> View e-POD
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>#FH-84088</strong></td>
+                  <td>Industrial Steel Coils</td>
+                  <td>Gary, IN &rarr; Nashville, TN (390 mi)</td>
+                  <td>48' Flatbed (Tarped)</td>
+                  <td style="font-weight: 700; color: #10B981;">$2,100.00</td>
+                  <td><span class="fh-badge fh-badge-matched"><i class="fa-solid fa-money-bill-check"></i> Paid (ACH)</span></td>
+                  <td>Unit #104 &bull; Marcus C.</td>
+                  <td>
+                    <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="switchSection('settlements');">
+                      <i class="fa-solid fa-receipt"></i> Remittance
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>#FH-84240</strong></td>
+                  <td>Retail Distribution Goods</td>
+                  <td>Allentown, PA &rarr; Charlotte, NC (520 mi)</td>
+                  <td>53' Dry Van</td>
+                  <td style="font-weight: 700; color: #10B981;">$2,250.00</td>
+                  <td><span class="fh-badge fh-badge-available"><i class="fa-solid fa-file-signature"></i> RateCon Dispatched</span></td>
+                  <td>Unit #109 &bull; Elena R.</td>
+                  <td>
+                    <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="switchSection('applications');">
+                      <i class="fa-solid fa-pen-nib"></i> Sign Doc
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SECTION 2: FIND LOADS (Spot Freight Radar)
+           ================================================================== -->
+      <section id="section-find-loads" class="fh-dash-section">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">2. Find Loads &amp; Spot Freight Radar</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Live spot board filtered for SwiftHaul Transport's fleet specifications and current deadhead proximity.
+            </p>
+          </div>
+          <div class="fh-badge fh-badge-matched" style="padding: 6px 14px; font-weight: 700;">
+            <i class="fa-solid fa-satellite-dish text-blue"></i> 48 MATCHED LOADS WITHIN 75 MILES
+          </div>
+        </div>
+
+        <!-- Filter Controls Bar -->
+        <div class="fh-card" style="padding: var(--space-lg); margin-bottom: var(--space-xl);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-md);">
+            <div>
+              <label class="fh-label" for="filterOrigin">Origin City / Radius</label>
+              <input type="text" id="filterOrigin" class="fh-input" placeholder="e.g. Chicago, IL or Indianapolis" oninput="filterSpotLoads();">
+            </div>
+            <div>
+              <label class="fh-label" for="filterDest">Destination Market</label>
+              <input type="text" id="filterDest" class="fh-input" placeholder="e.g. Atlanta, GA or Any" oninput="filterSpotLoads();">
+            </div>
+            <div>
+              <label class="fh-label" for="filterEquip">Trailer Type</label>
+              <select id="filterEquip" class="fh-select" onchange="filterSpotLoads();">
+                <option value="all">All Fleet Equipment</option>
+                <option value="53' Reefer">53' Reefer</option>
+                <option value="53' Dry Van">53' Dry Van</option>
+                <option value="48' Flatbed">48' Flatbed</option>
+              </select>
+            </div>
+            <div>
+              <label class="fh-label" for="filterMinRate">Min Pay Rate ($)</label>
+              <input type="number" id="filterMinRate" class="fh-input" placeholder="e.g. 1500" oninput="filterSpotLoads();">
+            </div>
+          </div>
+
+          <!-- Quick Filter Pills -->
+          <div class="fh-flex fh-gap-sm" style="flex-wrap: wrap;">
+            <button type="button" class="fh-pill-btn active" onclick="setSpotFilter('all', this);">All Loads (4)</button>
+            <button type="button" class="fh-pill-btn" onclick="setSpotFilter('reefer', this);"><i class="fa-solid fa-snowflake"></i> High-Rate Reefer</button>
+            <button type="button" class="fh-pill-btn" onclick="setSpotFilter('dry-van', this);"><i class="fa-solid fa-box"></i> Dry Van Fast Turn</button>
+            <button type="button" class="fh-pill-btn" onclick="setSpotFilter('high-pay', this);"><i class="fa-solid fa-dollar-sign"></i> $2,500+ Premium Pay</button>
+          </div>
+        </div>
+
+        <!-- Available Loads Table -->
+        <div class="fh-table-responsive">
+          <table class="fh-table">
+            <thead>
+              <tr>
+                <th>Load ID</th>
+                <th>Lane (Origin &rarr; Dest)</th>
+                <th>Distance &bull; Deadhead</th>
+                <th>Trailer / Temp</th>
+                <th>Weight</th>
+                <th>Broker Rate</th>
+                <th>Rate / Mi</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="spotLoadsTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SECTION 3: MY APPLICATIONS & RATE CONFIRMATIONS
+           ================================================================== -->
+      <section id="section-applications" class="fh-dash-section">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">3. My Applications &amp; Rate Confirmations</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Manage submitted bids, locked rate contracts, and electronic dispatch signatures.
+            </p>
+          </div>
+          <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="switchSection('find-loads');">
+            <i class="fa-solid fa-plus"></i> Submit New Bid
+          </button>
+        </div>
+
+        <!-- Filter Status Tabs -->
+        <div class="fh-flex fh-gap-sm" style="margin-bottom: var(--space-lg); flex-wrap: wrap;">
+          <button type="button" class="fh-pill-btn active" onclick="filterApplications('all', this);">All Active (4)</button>
+          <button type="button" class="fh-pill-btn" onclick="filterApplications('ratecon-ready', this);">RateCon Ready to Sign (1)</button>
+          <button type="button" class="fh-pill-btn" onclick="filterApplications('under-review', this);">Under Review (1)</button>
+          <button type="button" class="fh-pill-btn" onclick="filterApplications('dispatched', this);">Dispatched (2)</button>
+        </div>
+
+        <!-- Applications Table -->
+        <div class="fh-table-responsive">
+          <table class="fh-table">
+            <thead>
+              <tr>
+                <th>App Ref</th>
+                <th>Load ID</th>
+                <th>Lane</th>
+                <th>Equipment</th>
+                <th>Agreed Rate</th>
+                <th>Broker &bull; Shipper</th>
+                <th>Status</th>
+                <th>Agreement Action</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody">
+              <tr>
+                <td><strong>#APP-491</strong></td>
+                <td>#FH-84240</td>
+                <td>Allentown, PA &rarr; Charlotte, NC</td>
+                <td>53' Dry Van</td>
+                <td style="font-weight: 700;">$2,250.00</td>
+                <td>FreightHawk Direct Brokerage</td>
+                <td><span class="fh-badge fh-badge-available"><i class="fa-solid fa-file-pen"></i> RateCon Ready</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="signRateCon('#FH-84240');">
+                    <i class="fa-solid fa-pen-nib"></i> Sign RateCon
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#APP-488</strong></td>
+                <td>#FH-84192</td>
+                <td>Chicago, IL &rarr; Atlanta, GA</td>
+                <td>53' Reefer (-0.4&deg;F)</td>
+                <td style="font-weight: 700;">$3,450.00</td>
+                <td>Apex Industrial Logistics</td>
+                <td><span class="fh-badge fh-badge-intransit"><i class="fa-solid fa-check-double"></i> Executed &bull; Dispatched</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Viewing Executed RateCon #RC-84192:\nBroker: FreightHawk Managed Logistics\nCarrier: SwiftHaul Transport LLC (MC-892401)\nLinehaul: $3,450.00 Guaranteed.\nQuickPay Terms: 2-Hour ACH upon clean e-POD upload.');">
+                    <i class="fa-solid fa-file-pdf text-orange"></i> View RateCon
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#APP-485</strong></td>
+                <td>#FH-84915</td>
+                <td>Cleveland, OH &rarr; Charlotte, NC</td>
+                <td>48' Flatbed</td>
+                <td style="font-weight: 700;">$1,950.00</td>
+                <td>Midwest Steel Forwarding</td>
+                <td><span class="fh-badge fh-badge-matched"><i class="fa-solid fa-hourglass-half"></i> Under Broker Review</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Bid Status: Your bid of $1,950.00 is currently 1st in queue. Broker decision expected within 15 minutes.');">
+                    <i class="fa-solid fa-clock"></i> Check Queue
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#APP-479</strong></td>
+                <td>#FH-84105</td>
+                <td>Detroit, MI &rarr; Louisville, KY</td>
+                <td>53' Dry Van</td>
+                <td style="font-weight: 700;">$1,850.00</td>
+                <td>MotorCity Logistics Hub</td>
+                <td><span class="fh-badge fh-badge-delivered"><i class="fa-solid fa-circle-check"></i> Haul Completed</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="switchSection('settlements');">
+                    <i class="fa-solid fa-receipt"></i> Remittance Stub
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SECTION 4: SHIPMENT TRACKING & IN-CAB MILESTONES
+           ================================================================== -->
+      <section id="section-tracking" class="fh-dash-section">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">4. In-Cab Shipment Tracking &amp; Milestones</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Live telematics progress, cold chain compliance, and interactive delivery milestone updater.
+            </p>
+          </div>
+          <div class="fh-badge fh-badge-intransit" style="padding: 6px 14px; font-weight: 700;">
+            <i class="fa-solid fa-satellite-dish"></i> GPS ACTIVE: 482 / 710 MILES
+          </div>
+        </div>
+
+        <!-- Active Haul Telematics Card -->
+        <div class="fh-card" style="padding: var(--space-xl); margin-bottom: var(--space-2xl);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-md); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-md);">
+            <div>
+              <div class="fh-flex fh-items-center fh-gap-sm" style="margin-bottom: 4px; flex-wrap: wrap;">
+                <span class="fh-badge fh-badge-intransit"><i class="fa-solid fa-truck-moving"></i> In Transit</span>
+                <strong style="font-size: 1.15rem;">Trip #FH-84192: Chicago, IL &rarr; Atlanta, GA</strong>
+              </div>
+              <div class="text-muted" style="font-size: 13px;">
+                Assigned Unit: <strong>Unit #104 (Kenworth T680)</strong> &bull; Driver: <strong>Marcus Cole</strong> &bull; Commodity: <strong>Pharma (-0.4&deg;F Continuous)</strong>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 1.3rem; font-weight: 800; color: #10B981;">ETA: Today, 16:30 EST</div>
+              <div class="text-muted" style="font-size: 12px;">Consignee: PeachState Cold Logistics, Atlanta</div>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div style="margin-bottom: var(--space-xl);">
+            <div class="fh-flex fh-justify-between" style="font-size: 12px; font-weight: 700; margin-bottom: 6px;">
+              <span>Progress: 68% Completed (482 of 710 Miles)</span>
+              <span>Current Marker: I-65 South, Mile 78 (Nashville, TN)</span>
+            </div>
+            <div style="width: 100%; height: 10px; background: var(--bg-secondary); border-radius: var(--radius-pill); overflow: hidden; border: 1px solid var(--border-subtle);">
+              <div style="width: 68%; height: 100%; background: linear-gradient(90deg, #F28C28, #10B981); border-radius: var(--radius-pill);"></div>
+            </div>
+          </div>
+
+          <!-- Interactive Milestone Stepper (Matching Reference Image 2 Style) -->
+          <h3 style="font-size: 1.1rem; margin-bottom: var(--space-md);">Trip Milestone Checklist &amp; QuickPay Triggers</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-xl);">
+            <!-- Step 1 -->
+            <div class="fh-timeline-card completed">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong>1. Trip Dispatched</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;">Oct 23, 06:00 &bull; Pre-trip pass</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="fh-timeline-card completed">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong>2. Shipper Dock Arrival</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;">Oct 23, 08:15 &bull; In Bay 14</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="fh-timeline-card completed">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <strong>3. Loaded &amp; Clean BOL</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;">Oct 23, 10:00 &bull; Temp: -0.4&deg;F</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="fh-timeline-card active">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-satellite-dish"></i>
+              </div>
+              <div>
+                <strong>4. Highway In-Transit</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;">Nashville, TN &bull; 62 MPH</p>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="fh-timeline-card pending" id="step5Card">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-warehouse"></i>
+              </div>
+              <div>
+                <strong>5. Receiver Arrival</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;" id="step5Sub">Pending arrival in Atlanta</p>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="fh-timeline-card pending" id="step6Card">
+              <div class="fh-timeline-indicator">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <div>
+                <strong>6. Signed e-POD / QuickPay</strong>
+                <p class="text-muted" style="font-size: 12px; margin: 2px 0 0;" id="step6Sub">Release $3,450 ACH</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Driver Action Simulation Bar -->
+          <div class="fh-card" style="background: var(--bg-secondary); border: 1px dashed var(--border-subtle); padding: var(--space-md); border-radius: var(--radius-lg);">
+            <div class="fh-flex fh-justify-between fh-items-center" style="flex-wrap: wrap; gap: var(--space-md);">
+              <div>
+                <strong style="font-size: 13px;"><i class="fa-solid fa-mobile-screen-button text-orange"></i> In-Cab Driver Console Simulation:</strong>
+                <div class="text-muted" style="font-size: 12px;">Trigger simulated delivery events to test real-time milestone transitions and 2-hour payment settlement queues.</div>
+              </div>
+              <div class="fh-flex fh-gap-sm" style="flex-wrap: wrap;">
+                <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" id="btnSimulateArrival" onclick="simulateArrival();">
+                  <i class="fa-solid fa-location-dot"></i> Simulate Dock Arrival
+                </button>
+                <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" id="btnUploadPod" onclick="simulateUploadPod();">
+                  <i class="fa-solid fa-cloud-arrow-up"></i> Upload Signed e-POD
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SECTION 5: PAYMENT SETTLEMENTS & INVOICES
+           ================================================================== -->
+      <section id="section-settlements" class="fh-dash-section">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">5. Payment Settlements &amp; Remittance Invoices</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Audited 2-hour QuickPay payouts, fuel advance reconciliations, and direct deposit remittance receipts.
+            </p>
+          </div>
+          <div class="fh-badge fh-badge-matched" style="padding: 6px 14px; font-weight: 700;">
+            <i class="fa-solid fa-bolt text-orange"></i> DIRECT DEPOSIT: CHASE BANK ****9182
+          </div>
+        </div>
+
+        <!-- Settlement Summary Stats Row -->
+        <div class="fh-dash-stats-row" style="margin-bottom: var(--space-xl);">
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Total Settled (MTD)</span>
+              <div class="fh-dash-stat-icon"><i class="fa-solid fa-sack-dollar text-green"></i></div>
+            </div>
+            <div class="fh-dash-stat-val">$38,450.00</div>
+            <div class="fh-dash-stat-sub"><i class="fa-solid fa-arrow-trend-up"></i> +18% vs last month</div>
+          </div>
+
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Pending QuickPay</span>
+              <div class="fh-dash-stat-icon"><i class="fa-solid fa-hourglass-start text-orange"></i></div>
+            </div>
+            <div class="fh-dash-stat-val" id="statPendingPay">$1,850.00</div>
+            <div class="fh-dash-stat-sub"><i class="fa-solid fa-bolt"></i> Est. ACH release in 42 mins</div>
+          </div>
+
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">QuickPay Tier</span>
+              <div class="fh-dash-stat-icon"><i class="fa-solid fa-award text-yellow"></i></div>
+            </div>
+            <div class="fh-dash-stat-val">Platinum</div>
+            <div class="fh-dash-stat-sub">1.5% Fee Waiver &bull; 0% Detent Fee</div>
+          </div>
+
+          <div class="fh-dash-stat-card">
+            <div class="fh-dash-stat-header">
+              <span class="fh-dash-stat-label">Avg Settlement Time</span>
+              <div class="fh-dash-stat-icon"><i class="fa-solid fa-stopwatch text-steel"></i></div>
+            </div>
+            <div class="fh-dash-stat-val">1.8 Hours</div>
+            <div class="fh-dash-stat-sub"><i class="fa-solid fa-check"></i> Exceeds 2-hour guarantee</div>
+          </div>
+        </div>
+
+        <!-- Settlements Table -->
+        <div class="fh-table-responsive">
+          <table class="fh-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Load Ref</th>
+                <th>Lane</th>
+                <th>Delivered Date</th>
+                <th>Linehaul</th>
+                <th>Detention / Extras</th>
+                <th>Net Payout</th>
+                <th>Status</th>
+                <th>Remittance</th>
+              </tr>
+            </thead>
+            <tbody id="settlementsTableBody">
+              <tr>
+                <td><strong>#INV-9281</strong></td>
+                <td>#FH-84105</td>
+                <td>Detroit, MI &rarr; Louisville, KY</td>
+                <td>Oct 22, 2026</td>
+                <td>$1,850.00</td>
+                <td>$0.00</td>
+                <td style="font-weight: 700; color: #10B981;">$1,850.00</td>
+                <td><span class="fh-badge fh-badge-matched"><i class="fa-solid fa-bolt"></i> Processing ACH</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Downloading Remittance PDF for #INV-9281 (Demo Sandbox)...\nDirect Deposit to Routing: *****0021 / Acct: ****9182.');">
+                    <i class="fa-solid fa-download"></i> PDF
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#INV-9240</strong></td>
+                <td>#FH-84088</td>
+                <td>Gary, IN &rarr; Nashville, TN</td>
+                <td>Oct 19, 2026</td>
+                <td>$2,100.00</td>
+                <td>$75.00 (1 Hr Layover)</td>
+                <td style="font-weight: 700; color: #10B981;">$2,175.00</td>
+                <td><span class="fh-badge fh-badge-delivered"><i class="fa-solid fa-circle-check"></i> Paid &bull; Settled</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Viewing Settlement Voucher for #INV-9240:\nTrace #ACH-9821417\nSettled: Oct 19, 16:40 EST\nStatus: Complete.');">
+                    <i class="fa-solid fa-receipt"></i> Voucher
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#INV-9198</strong></td>
+                <td>#FH-83950</td>
+                <td>Columbus, OH &rarr; St. Louis, MO</td>
+                <td>Oct 16, 2026</td>
+                <td>$1,720.00</td>
+                <td>$0.00</td>
+                <td style="font-weight: 700; color: #10B981;">$1,720.00</td>
+                <td><span class="fh-badge fh-badge-delivered"><i class="fa-solid fa-circle-check"></i> Paid &bull; Settled</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Downloading Settlement Voucher #INV-9198 (Demo)...');">
+                    <i class="fa-solid fa-download"></i> PDF
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>#INV-9154</strong></td>
+                <td>#FH-83802</td>
+                <td>Memphis, TN &rarr; Dallas, TX</td>
+                <td>Oct 12, 2026</td>
+                <td>$2,450.00</td>
+                <td>$150.00 (Driver Assist)</td>
+                <td style="font-weight: 700; color: #10B981;">$2,600.00</td>
+                <td><span class="fh-badge fh-badge-delivered"><i class="fa-solid fa-circle-check"></i> Paid &bull; Settled</span></td>
+                <td>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Downloading Settlement Voucher #INV-9154 (Demo)...');">
+                    <i class="fa-solid fa-download"></i> PDF
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           SECTION 6: CARRIER PROFILE, EQUIPMENT & COMPLIANCE
+           ================================================================== -->
+      <section id="section-profile" class="fh-dash-section">
+        <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 4px;">6. Carrier Profile, Fleet &amp; Compliance</h1>
+            <p class="text-muted" style="margin: 0; font-size: 14px;">
+              Manage motor carrier authority verification, equipment registry, certificate of insurance, and safety rating scores.
+            </p>
+          </div>
+          <div class="fh-badge fh-badge-delivered" style="padding: 6px 14px; font-weight: 700;">
+            <i class="fa-solid fa-shield-check"></i> FMCSA PLATINUM COMPLIANCE
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+          <!-- Authority & Safety Card -->
+          <div class="fh-card" style="padding: var(--space-xl);">
+            <div class="fh-flex fh-items-center fh-gap-md" style="margin-bottom: var(--space-lg); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-md); flex-wrap: wrap;">
+              <div class="fh-dash-avatar carrier" style="width: 52px; height: 52px; font-size: 18px; flex-shrink: 0;">MC</div>
+              <div style="min-width: 0;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 2px; word-break: break-word;">SwiftHaul Transport LLC</h3>
+                <div class="text-muted" style="font-size: 13px;">DOT #318942 &bull; MC-892401 &bull; Active Authority</div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-sm); font-size: 13px; margin-bottom: var(--space-lg);">
+              <div class="fh-flex fh-justify-between" style="flex-wrap: wrap; gap: 4px;">
+                <span class="text-muted">Primary Contact:</span>
+                <strong>Marcus Cole (Fleet Dispatcher)</strong>
+              </div>
+              <div class="fh-flex fh-justify-between" style="flex-wrap: wrap; gap: 4px;">
+                <span class="text-muted">Direct Phone:</span>
+                <strong>+1 (317) 555-8942</strong>
+              </div>
+              <div class="fh-flex fh-justify-between" style="flex-wrap: wrap; gap: 4px;">
+                <span class="text-muted">Dispatch Email:</span>
+                <strong style="word-break: break-all;">dispatch@swifthaul.com</strong>
+              </div>
+              <div class="fh-flex fh-justify-between" style="flex-wrap: wrap; gap: 4px;">
+                <span class="text-muted">Physical Terminal:</span>
+                <strong>Indianapolis, IN 46241</strong>
+              </div>
+              <div class="fh-flex fh-justify-between" style="flex-wrap: wrap; gap: 4px;">
+                <span class="text-muted">Safety Score:</span>
+                <strong style="color: #10B981;">99.2% Satisfactory (Zero Violations)</strong>
+              </div>
+            </div>
+
+            <button type="button" class="fh-btn fh-btn-secondary fh-btn-sm" style="width: 100%; justify-content: center;" onclick="alert('Opening FMCSA Company Profile Editor (Demo Mode)...');">
+              <i class="fa-solid fa-pen-to-square"></i> Edit Profile Information
+            </button>
+          </div>
+
+          <!-- Insurance & Compliance Documents Card -->
+          <div class="fh-card" style="padding: var(--space-xl);">
+            <h3 style="font-size: 1.25rem; margin-bottom: var(--space-md);">Insurance &amp; Onboarding Certificates</h3>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-md); margin-bottom: var(--space-lg);">
+              <!-- Doc 1 -->
+              <div class="fh-flex fh-justify-between fh-items-center" style="padding: 12px 14px; background: var(--bg-secondary); border-radius: var(--radius-md); gap: 12px;">
+                <div class="fh-flex fh-items-center fh-gap-sm" style="min-width: 0; flex: 1;">
+                  <i class="fa-solid fa-shield-halved text-green" style="font-size: 18px; flex-shrink: 0;"></i>
+                  <div style="min-width: 0;">
+                    <div style="font-weight: 700; font-size: 13px; word-break: break-word;">Auto Liability ($1,000,000)</div>
+                    <div class="text-muted" style="font-size: 11px; word-break: break-word;">Policy #AL-99281 &bull; Exp: Nov 2027</div>
+                  </div>
+                </div>
+                <span class="fh-badge fh-badge-delivered" style="flex-shrink: 0; white-space: nowrap;">Verified</span>
+              </div>
+
+              <!-- Doc 2 -->
+              <div class="fh-flex fh-justify-between fh-items-center" style="padding: 12px 14px; background: var(--bg-secondary); border-radius: var(--radius-md); gap: 12px;">
+                <div class="fh-flex fh-items-center fh-gap-sm" style="min-width: 0; flex: 1;">
+                  <i class="fa-solid fa-box-archive text-green" style="font-size: 18px; flex-shrink: 0;"></i>
+                  <div style="min-width: 0;">
+                    <div style="font-weight: 700; font-size: 13px; word-break: break-word;">Cargo Coverage ($250,000)</div>
+                    <div class="text-muted" style="font-size: 11px; word-break: break-word;">Reefer Breakdown Endorsed &bull; Exp: Nov 2027</div>
+                  </div>
+                </div>
+                <span class="fh-badge fh-badge-delivered" style="flex-shrink: 0; white-space: nowrap;">Verified</span>
+              </div>
+
+              <!-- Doc 3 -->
+              <div class="fh-flex fh-justify-between fh-items-center" style="padding: 12px 14px; background: var(--bg-secondary); border-radius: var(--radius-md); gap: 12px;">
+                <div class="fh-flex fh-items-center fh-gap-sm" style="min-width: 0; flex: 1;">
+                  <i class="fa-solid fa-file-invoice text-green" style="font-size: 18px; flex-shrink: 0;"></i>
+                  <div style="min-width: 0;">
+                    <div style="font-weight: 700; font-size: 13px; word-break: break-word;">W-9 &amp; Voided Check (ACH)</div>
+                    <div class="text-muted" style="font-size: 11px; word-break: break-word;">Chase Bank ****9182 &bull; Active</div>
+                  </div>
+                </div>
+                <span class="fh-badge fh-badge-delivered" style="flex-shrink: 0; white-space: nowrap;">Verified</span>
+              </div>
+            </div>
+
+            <!-- Upload Area Simulation -->
+            <div style="border: 2px dashed var(--border-subtle); padding: var(--space-md); border-radius: var(--radius-lg); text-align: center; cursor: pointer;" onclick="alert('Document Upload Sandbox: You can attach updated COI or IFTA renewal files here.');">
+              <i class="fa-solid fa-cloud-arrow-up text-orange" style="font-size: 24px; margin-bottom: 4px;"></i>
+              <div style="font-weight: 700; font-size: 13px;">Upload Certificate Renewal</div>
+              <div class="text-muted" style="font-size: 11px;">PDF, PNG or JPG (Max 15MB)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registered Fleet Equipment Table -->
+        <div style="margin-bottom: var(--space-2xl);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-md); flex-wrap: wrap; gap: var(--space-sm);">
+            <div>
+              <h2 style="font-size: 1.3rem; margin-bottom: 2px;">Registered Power Units &amp; Trailers</h2>
+              <p class="text-muted" style="margin: 0; font-size: 13px;">
+                Verified commercial equipment registered under SwiftHaul Transport LLC.
+              </p>
+            </div>
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Equipment Registry (Demo): Register a new tractor or trailer to expand matching eligibility.');">
+              <i class="fa-solid fa-plus"></i> Add Equipment Unit
+            </button>
+          </div>
+
+          <div class="fh-table-responsive">
+            <table class="fh-table">
+              <thead>
+                <tr>
+                  <th>Unit ID</th>
+                  <th>Equipment Classification</th>
+                  <th>Make / Model / Year</th>
+                  <th>Specs &amp; Telematics</th>
+                  <th>Assigned Driver</th>
+                  <th>Current Haul</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Unit #104</strong></td>
+                  <td>Sleeper Tractor</td>
+                  <td>2023 Kenworth T680</td>
+                  <td>Cummins X15 &bull; Samsara ELD Active</td>
+                  <td>Marcus Cole</td>
+                  <td>#FH-84192 (Pharma)</td>
+                  <td><span class="fh-badge fh-badge-intransit"><i class="fa-solid fa-truck-moving"></i> On Route</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Unit #109</strong></td>
+                  <td>Sleeper Tractor</td>
+                  <td>2024 Freightliner Cascadia</td>
+                  <td>Detroit DD15 &bull; Geotab ELD Active</td>
+                  <td>Elena Rostova</td>
+                  <td>#FH-84240 (Retail)</td>
+                  <td><span class="fh-badge fh-badge-available"><i class="fa-solid fa-circle-check"></i> Dispatched</span></td>
+                </tr>
+                <tr>
+                  <td><strong>TR #502</strong></td>
+                  <td>53' Refrigerated Trailer</td>
+                  <td>2023 Great Dane Everest</td>
+                  <td>Carrier Vector 8500 &bull; Continuous Mode</td>
+                  <td>Unit #104</td>
+                  <td>#FH-84192 (Pharma)</td>
+                  <td><span class="fh-badge fh-badge-intransit"><i class="fa-solid fa-snowflake"></i> In-Transit</span></td>
+                </tr>
+                <tr>
+                  <td><strong>TR #308</strong></td>
+                  <td>53' Dry Van Trailer</td>
+                  <td>2024 Utility 4000D-X</td>
+                  <td>Air-Ride Suspension &bull; E-Track Logistics</td>
+                  <td>Unit #109</td>
+                  <td>#FH-84240 (Retail)</td>
+                  <td><span class="fh-badge fh-badge-available"><i class="fa-solid fa-box"></i> Loaded</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Shared Global Script -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Interactive Carrier Dashboard Controller -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Demo Spot Loads Data
+      const SPOT_LOADS = [
+        {
+          id: '#FH-84910',
+          lane: 'Indianapolis, IN → Nashville, TN',
+          distance: '288 mi',
+          deadhead: '12 mi',
+          equip: "53' Dry Van",
+          temp: 'Ambient',
+          weight: '34,000 lbs',
+          rate: 1250,
+          ratePerMi: '$4.34/mi',
+          tag: 'dry-van'
+        },
+        {
+          id: '#FH-84912',
+          lane: 'Kansas City, MO → Denver, CO',
+          distance: '605 mi',
+          deadhead: '18 mi',
+          equip: "53' Reefer",
+          temp: '-10°F Frozen',
+          weight: '42,500 lbs',
+          rate: 2700,
+          ratePerMi: '$4.46/mi',
+          tag: 'reefer'
+        },
+        {
+          id: '#FH-84915',
+          lane: 'Cleveland, OH → Charlotte, NC',
+          distance: '445 mi',
+          deadhead: '24 mi',
+          equip: "48' Flatbed",
+          temp: 'N/A (Tarped)',
+          weight: '46,000 lbs',
+          rate: 1950,
+          ratePerMi: '$4.38/mi',
+          tag: 'flatbed'
+        },
+        {
+          id: '#FH-84918',
+          lane: 'Memphis, TN → Jacksonville, FL',
+          distance: '670 mi',
+          deadhead: '8 mi',
+          equip: "53' Reefer",
+          temp: '34°F Fresh Produce',
+          weight: '38,000 lbs',
+          rate: 2950,
+          ratePerMi: '$4.40/mi',
+          tag: 'reefer'
+        }
+      ];
+
+      // Switch Active Section
+      window.switchSection = function (sectionKey) {
+        document.querySelectorAll('.fh-dash-section').forEach(s => s.classList.remove('active'));
+        const targetSection = document.getElementById('section-' + sectionKey);
+        if (targetSection) targetSection.classList.add('active');
+
+        // Update Desktop Sidebar active button
+        document.querySelectorAll('.fh-dash-sidebar .fh-dash-menu-btn').forEach(btn => {
+          if (btn.getAttribute('data-dash-nav') === sectionKey) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        // Update Mobile Drawer active button
+        document.querySelectorAll('.fh-dash-drawer .fh-dash-menu-btn').forEach(btn => {
+          if (btn.getAttribute('data-dash-mob-nav') === sectionKey) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      // Filter Spot Loads
+      window.filterSpotLoads = function () {
+        const originVal = (document.getElementById('filterOrigin').value || '').toLowerCase();
+        const destVal = (document.getElementById('filterDest').value || '').toLowerCase();
+        const equipVal = document.getElementById('filterEquip').value;
+        const minRate = parseFloat(document.getElementById('filterMinRate').value) || 0;
+
+        const tbody = document.getElementById('spotLoadsTableBody');
+        if (!tbody) return;
+
+        const filtered = SPOT_LOADS.filter(load => {
+          const matchOrigin = !originVal || load.lane.toLowerCase().includes(originVal);
+          const matchDest = !destVal || load.lane.toLowerCase().includes(destVal);
+          const matchEquip = equipVal === 'all' || load.equip === equipVal;
+          const matchRate = load.rate >= minRate;
+          return matchOrigin && matchDest && matchEquip && matchRate;
+        });
+
+        renderSpotTable(filtered);
+      };
+
+      window.setSpotFilter = function (filterType, btnEl) {
+        if (btnEl) {
+          const pills = btnEl.parentElement.querySelectorAll('.fh-pill-btn');
+          pills.forEach(p => p.classList.remove('active'));
+          btnEl.classList.add('active');
+        }
+
+        let filtered = SPOT_LOADS;
+        if (filterType === 'reefer') {
+          filtered = SPOT_LOADS.filter(l => l.tag === 'reefer');
+        } else if (filterType === 'dry-van') {
+          filtered = SPOT_LOADS.filter(l => l.tag === 'dry-van');
+        } else if (filterType === 'high-pay') {
+          filtered = SPOT_LOADS.filter(l => l.rate >= 2500);
+        }
+
+        renderSpotTable(filtered);
+      };
+
+      function renderSpotTable(list) {
+        const tbody = document.getElementById('spotLoadsTableBody');
+        if (!tbody) return;
+
+        if (list.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>
+                No matching spot freight found for your filter criteria. Try expanding your search radius.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = list.map(load => `
+          <tr>
+            <td><strong>${load.id}</strong></td>
+            <td>${load.lane}</td>
+            <td>${load.distance} &bull; <span style="color: #10B981; font-weight: 700;">${load.deadhead} deadhead</span></td>
+            <td>${load.equip} <span class="text-muted" style="font-size: 11px;">(${load.temp})</span></td>
+            <td>${load.weight}</td>
+            <td style="font-weight: 800; color: #10B981; font-size: 15px;">$${load.rate.toLocaleString()}.00</td>
+            <td><strong>${load.ratePerMi}</strong></td>
+            <td>
+              <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="lockRateCon('${load.id}', '${load.lane}', ${load.rate});">
+                <i class="fa-solid fa-lock"></i> Lock RateCon
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Lock RateCon Action
+      window.lockRateCon = function (loadId, lane, rate) {
+        const confirmLock = confirm(`LOCK SPOT RATE CONFIRMATION?\n\nLoad: ${loadId}\nLane: ${lane}\nGuaranteed Rate: $${rate.toLocaleString()}.00\n\nLocking this tender reserves the freight exclusively for SwiftHaul Transport LLC under 2-Hour QuickPay terms.`);
+        if (confirmLock) {
+          alert(`✅ RATECONFIRMATION RESERVED!\n\nRateCon #RC-${loadId.replace('#', '')} has been generated and dispatched to your My Applications inbox for digital signing.`);
+          switchSection('applications');
+        }
+      };
+
+      // Sign RateCon
+      window.signRateCon = function (loadId) {
+        alert(`✍️ ELECTRONIC SIGNATURE VERIFIED!\n\nRateCon for ${loadId} signed by Marcus Cole (SwiftHaul Transport LLC).\nDispatch release sent to assigned Unit #109. Tracking milestones initialized.`);
+        switchSection('tracking');
+      };
+
+      // In-Cab Milestone Simulation
+      window.simulateArrival = function () {
+        const step5 = document.getElementById('step5Card');
+        const step5Sub = document.getElementById('step5Sub');
+        if (step5) {
+          step5.classList.remove('pending');
+          step5.classList.add('completed');
+          step5.querySelector('.fh-timeline-indicator').innerHTML = '<i class="fa-solid fa-check"></i>';
+          if (step5Sub) step5Sub.textContent = 'Arrived at Dock Bay 4 • Oct 23, 16:15';
+        }
+        alert('📍 DOCK ARRIVAL RECORDED!\n\nGPS geofence confirmed arrival at PeachState Cold Logistics in Atlanta, GA. Dock supervisor notified for unloading.');
+      };
+
+      window.simulateUploadPod = function () {
+        const step6 = document.getElementById('step6Card');
+        const step6Sub = document.getElementById('step6Sub');
+        const statPending = document.getElementById('statPendingPay');
+
+        if (step6) {
+          step6.classList.remove('pending');
+          step6.classList.add('completed');
+          step6.querySelector('.fh-timeline-indicator').innerHTML = '<i class="fa-solid fa-check"></i>';
+          if (step6Sub) step6Sub.textContent = 'e-POD Signed & Verified • QuickPay Released';
+        }
+
+        if (statPending) {
+          statPending.textContent = '$5,300.00';
+        }
+
+        alert('📄 CLEAN e-POD UPLOADED & VERIFIED!\n\nReceiver Signature: PeachState Receiving Lead R. Howard.\n2-Hour QuickPay Settlement Released!\n$3,450.00 queued for direct deposit into Chase Bank ****9182.');
+        switchSection('settlements');
+      };
+
+      // Filter Applications
+      window.filterApplications = function (status, btnEl) {
+        if (btnEl) {
+          const pills = btnEl.parentElement.querySelectorAll('.fh-pill-btn');
+          pills.forEach(p => p.classList.remove('active'));
+          btnEl.classList.add('active');
+        }
+        // Visual confirmation
+      };
+
+      // Mobile Drawer Controller
+      const mobileToggle = document.getElementById('dashMobileToggle');
+      const mobileDrawer = document.getElementById('dashMobileDrawer');
+      const drawerBackdrop = document.getElementById('dashDrawerBackdrop');
+      const drawerClose = document.getElementById('dashDrawerClose');
+
+      function openDashDrawer() {
+        if (mobileDrawer) mobileDrawer.classList.add('active');
+        if (drawerBackdrop) drawerBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      window.closeDashDrawer = function () {
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
+        if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      if (mobileToggle) mobileToggle.addEventListener('click', openDashDrawer);
+      if (drawerClose) drawerClose.addEventListener('click', closeDashDrawer);
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDashDrawer);
+
+      // Initial Render
+      renderSpotTable(SPOT_LOADS);
+    })();
+  </script>
+</body>
+</html>

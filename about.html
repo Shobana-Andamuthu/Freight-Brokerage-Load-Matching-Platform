@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — About Us | Leading Digital Freight Brokerage</title>
+  <meta name="description" content="Learn about FreightHawk, North America's premier digital freight brokerage. Founded in 2018 to eliminate predatory broker markups through 100% rate transparency, automated FMCSA safety vetting, and 2-hour QuickPay.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       MAIN NAVBAR (Shared Foundation Header)
+       ====================================================================== -->
+  <header class="fh-header" id="mainHeader">
+    <nav class="fh-navbar" aria-label="Main Navigation">
+      <!-- Brand Logo -->
+      <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-text">
+          <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+          <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+        </div>
+      </a>
+
+      <!-- Centered Desktop Navigation Menu -->
+      <ul class="fh-nav-menu">
+        <li class="fh-nav-item">
+          <a href="index.html" class="fh-nav-link">Home <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="index.html" class="fh-dropdown-item"><strong>Home 1: Freight Matching</strong> <span class="fh-badge fh-badge-available">Live</span></a>
+            <a href="home-2.html" class="fh-dropdown-item">Home 2: Logistics Operations <span class="fh-badge fh-badge-verified">Active</span></a>
+          </div>
+        </li>
+        <li class="fh-nav-item">
+          <a href="how-it-works.html" class="fh-nav-link">How It Works</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="find-loads.html" class="fh-nav-link">Find Loads</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="about.html" class="fh-nav-link active">About</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="contact.html" class="fh-nav-link">Contact</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="dashboard-shipper.html" class="fh-nav-link" data-nav="dashboards">Dashboards <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="dashboard-shipper.html" class="fh-dropdown-item"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</a>
+            <a href="dashboard-carrier.html" class="fh-dropdown-item"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Nav Actions - Theme/RTL Icons, Login (Secondary), Primary CTA, Hamburger -->
+      <div class="fh-nav-actions">
+        <!-- Persistent Theme Toggle (Icon Only) -->
+        <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Persistent Direction Toggle (Icon Only) -->
+        <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <!-- Login Button (Secondary Pill) -->
+        <a href="login.html" class="fh-btn-login">
+          <i class="fa-regular fa-user"></i> Login
+        </a>
+
+        <!-- Primary CTA: Post a Load (Safety Orange) -->
+        <a href="post-load.html" class="fh-nav-cta">
+          <i class="fa-solid fa-plus"></i>
+          <span>Post a Load</span>
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button type="button" class="fh-nav-toggle" aria-label="Toggle mobile menu" id="mobileMenuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       MOBILE DRAWER NAVIGATION
+       ====================================================================== -->
+  <div class="fh-drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="fh-mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
+    <div class="fh-drawer-header">
+      <div class="fh-brand">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+      </div>
+      <button type="button" class="fh-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <ul class="fh-mobile-nav">
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle" data-target="mobileHomeDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-house"></i> Home</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileHomeDropdown">
+          <li>
+            <a href="index.html" class="fh-mobile-sublink">
+              <span>Home 1: Freight Matching</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Live</span>
+            </a>
+          </li>
+          <li>
+            <a href="home-2.html" class="fh-mobile-sublink">
+              <span>Home 2: Logistics Operations</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Active</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="how-it-works.html" class="fh-mobile-link"><i class="fa-solid fa-diagram-project"></i> How It Works</a></li>
+      <li><a href="find-loads.html" class="fh-mobile-link"><i class="fa-solid fa-route"></i> Find Loads</a></li>
+      <li><a href="about.html" class="fh-mobile-link active"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="contact.html" class="fh-mobile-link"><i class="fa-solid fa-phone"></i> Contact</a></li>
+
+      <!-- Dashboards Dropdown -->
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle" id="mobileDashboardsToggle" data-target="mobileDashboardsDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-chart-line"></i> Dashboards</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileDashboardsDropdown">
+          <li>
+            <a href="dashboard-shipper.html" class="fh-mobile-sublink">
+              <span><i class="fa-solid fa-warehouse"></i> Shipper Operations</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Portal</span>
+            </a>
+          </li>
+          <li>
+            <a href="dashboard-carrier.html" class="fh-mobile-sublink">
+              <span><i class="fa-solid fa-truck"></i> Carrier Fleet Portal</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Portal</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Mobile Drawer Preferences & Controls -->
+    <div style="margin-top: auto; padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1);">
+      <div class="fh-drawer-prefs-box">
+        <span class="fh-drawer-prefs-label">Preferences:</span>
+        <div class="fh-drawer-prefs-actions">
+          <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+            <i class="fa-solid fa-right-left"></i>
+          </button>
+        </div>
+      </div>
+      <a href="login.html" class="fh-btn-login" style="width: 100%; justify-content: center; margin-bottom: var(--space-sm);">
+        <i class="fa-regular fa-user"></i> Login / Register
+      </a>
+      <a href="post-load.html" class="fh-nav-cta" style="width: 100%; justify-content: center;">
+        <i class="fa-solid fa-plus"></i> Post a Load
+      </a>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       SECTION 1: HERO INTRODUCTION (Standardized Height min 360px)
+       ====================================================================== -->
+  <section class="fh-page-banner" style="background-image: linear-gradient(rgba(10, 19, 31, 0.88), rgba(10, 19, 31, 0.94)), url('assets/images/about-hq.jpg');">
+    <div class="fh-container text-center">
+      <div style="max-width: 820px; margin-inline: auto;">
+        <!-- Line 1: Breadcrumb Navigation -->
+        <div class="fh-breadcrumb-wrapper">
+          <nav class="fh-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="divider"><i class="fa-solid fa-chevron-right flip-rtl"></i></span>
+            <span class="current">About Us</span>
+          </nav>
+        </div>
+
+        <!-- Line 2: Eyebrow Pill -->
+        <div class="fh-eyebrow-wrapper">
+          <div class="fh-eyebrow-pill">
+            <i class="fa-solid fa-compass text-orange"></i> Established 2018 &bull; MC-987214-B
+          </div>
+        </div>
+
+        <h1 style="color: #FFFFFF; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: var(--space-md);">
+          About FreightHawk Brokerage
+        </h1>
+
+        <p class="lead" style="color: #CBD5E1; margin-bottom: var(--space-xl); max-width: 680px; margin-inline: auto;">
+          North America's transparent freight brokerage platform, eliminating broker markups with verified FMCSA motor carrier vetting and guaranteed 2-hour QuickPay.
+        </p>
+
+        <div class="fh-flex fh-gap-md fh-justify-center" style="flex-wrap: wrap;">
+          <a href="#mission" class="fh-btn fh-btn-primary fh-btn-pill">
+            <i class="fa-solid fa-chart-pie"></i> Our Operations Model
+          </a>
+          <a href="#leadership" class="fh-btn fh-btn-outline-navy fh-btn-pill" style="border-color: #FFFFFF; color: #FFFFFF;">
+            <i class="fa-solid fa-users"></i> Executive Leadership
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Performance Telemetry Bar -->
+  <section style="background: var(--bg-card); border-bottom: 1px solid var(--border-subtle); padding-block: var(--space-xl);">
+    <div class="fh-container">
+      <div class="fh-grid fh-grid-4 text-center">
+        <div style="padding: var(--space-md);">
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-safety-orange); line-height: 1.1;">$450M+</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-top: 4px;">Annual Freight Handled</div>
+        </div>
+        <div style="padding: var(--space-md);">
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--text-heading); line-height: 1.1;">12,500+</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-top: 4px;">Active Motor Fleets</div>
+        </div>
+        <div style="padding: var(--space-md);">
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-deep-navy-light); line-height: 1.1;">99.8%</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-top: 4px;">On-Time Dock Arrival</div>
+        </div>
+        <div style="padding: var(--space-md);">
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: #10B981; line-height: 1.1;">&lt; 2-Hr</div>
+          <div style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin-top: 4px;">QuickPay Carrier Payout</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 2: THE BROKEN LEGACY MODEL VS. FREIGHTHAWK AUTONOMOUS MODEL
+       ====================================================================== -->
+  <section class="fh-section" id="mission">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-3xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-scale-balanced"></i> Architectural Paradigm Shift
+        </div>
+        <h2>Why We Built FreightHawk</h2>
+        <p class="lead">The multi-billion dollar freight industry has long suffered from predatory middlemen. We replaced opaque phone-brokerage with algorithmic precision and verified trust.</p>
+      </div>
+
+      <!-- Split Asymmetric Comparison Grid (Brand-New Layout) -->
+      <div class="fh-comparison-grid" style="margin-bottom: var(--space-3xl);">
+        <!-- Legacy Broker Model (Negative Red Line) -->
+        <div class="fh-compare-card fh-compare-legacy">
+          <div class="fh-flex fh-items-center fh-gap-md" style="margin-bottom: var(--space-sm);">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(239, 68, 68, 0.15); color: #EF4444; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 1.35rem; margin: 0; color: var(--text-heading);">The Legacy Brokerage Model</h3>
+              <span style="font-size: 11px; color: #EF4444; font-weight: 700; text-transform: uppercase;">Opaque &bull; Adversarial &bull; Inefficient</span>
+            </div>
+          </div>
+
+          <p class="text-muted" style="font-size: 0.92rem; margin-bottom: 0;">
+            Traditional freight brokers operate as black-box intermediaries, extracting hidden margins from both shippers and carriers while slowing down essential cash flow.
+          </p>
+
+          <ul class="fh-compare-list">
+            <li>
+              <i class="fa-solid fa-circle-xmark" style="color: #EF4444; margin-top: 3px;"></i>
+              <div><strong>Concealed Rate Margins:</strong> Brokers pocket 20% to 35% of the linehaul fee without disclosing it to either party.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-xmark" style="color: #EF4444; margin-top: 3px;"></i>
+              <div><strong>30-to-60 Day Net Terms:</strong> Motor carriers are forced to use high-interest invoice factoring companies just to fund diesel fuel.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-xmark" style="color: #EF4444; margin-top: 3px;"></i>
+              <div><strong>Phantom Load Postings:</strong> Load boards cluttered with stale, fake, or pre-booked freight designed solely to harvest carrier phone calls.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-xmark" style="color: #EF4444; margin-top: 3px;"></i>
+              <div><strong>Manual Check-Call Harassment:</strong> Drivers interrupted multiple times per day with phone calls rather than modern GPS geofencing.</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The FreightHawk Model (Positive Safety Orange) -->
+        <div class="fh-compare-card fh-compare-hawk">
+          <div class="fh-flex fh-items-center fh-gap-md" style="margin-bottom: var(--space-sm);">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(242, 140, 40, 0.18); color: var(--color-safety-orange); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 1.35rem; margin: 0; color: var(--text-heading);">The FreightHawk Autonomous Model</h3>
+              <span style="font-size: 11px; color: var(--color-safety-orange); font-weight: 700; text-transform: uppercase;">100% Transparent &bull; Instant &bull; Direct</span>
+            </div>
+          </div>
+
+          <p class="text-muted" style="font-size: 0.92rem; margin-bottom: 0;">
+            A direct digital platform connecting verified shippers with compliant motor carriers. Every linehaul rate is transparently visible, contracts are signed instantly, and funds settle in 2 hours.
+          </p>
+
+          <ul class="fh-compare-list">
+            <li>
+              <i class="fa-solid fa-circle-check" style="color: #10B981; margin-top: 3px;"></i>
+              <div><strong>Guaranteed Rate Transparency:</strong> 100% visibility into linehaul payouts and fuel indices. Zero hidden markups or deductions.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-check" style="color: #10B981; margin-top: 3px;"></i>
+              <div><strong>Under 2-Hour QuickPay Settlements:</strong> Direct ACH deposit or fleet fuel card funding immediately upon electronic POD upload.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-check" style="color: #10B981; margin-top: 3px;"></i>
+              <div><strong>Verified Live Inventory Only:</strong> Every load on our board is backed by an active shipper tender and legally binding RateCon.</div>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-check" style="color: #10B981; margin-top: 3px;"></i>
+              <div><strong>Silent ELD Telematics Checkpoints:</strong> Continuous GPS telemetry and geofence triggers automatically log arrivals, departures, and detention.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Photographic Centerpiece Visual with Key Takeaways -->
+      <div class="fh-card" style="padding: 0; overflow: hidden; border-radius: var(--radius-xl);">
+        <div style="display: grid; grid-template-columns: 1fr; align-items: center;" class="fh-about-showcase-split">
+          <div style="height: 380px; overflow: hidden; position: relative;">
+            <img src="assets/images/about-leadership.jpg" alt="FreightHawk Board of Logistics Directors" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(10, 19, 31, 0.4) 0%, transparent 60%);"></div>
+            <div style="position: absolute; bottom: 20px; left: 24px; background: rgba(10, 19, 31, 0.85); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: var(--radius-pill); border: 1px solid rgba(255, 255, 255, 0.2); font-size: 11px; color: #FFFFFF; font-weight: 700;">
+              <i class="fa-solid fa-users text-orange"></i> Executive Board of Logistics Directors &bull; Chicago Headquarters
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 3: CORPORATE EVOLUTION & MILESTONE ROADMAP (Alternating Stepper)
+       ====================================================================== -->
+  <section class="fh-section fh-section-secondary" id="timeline">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-4xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-route"></i> Track Record of Innovation
+        </div>
+        <h2>Our 8-Year Evolution</h2>
+        <p class="lead">From a single regional dispatch office in Chicago to North America's most trusted digital freight exchange handling over $450M in annual linehaul volume.</p>
+      </div>
+
+      <!-- Alternating Zig-Zag Stepper Component -->
+      <div class="fh-evolution-timeline">
+        <!-- Milestone 1: 2018 -->
+        <div class="fh-evolution-step">
+          <div class="fh-evolution-marker">18</div>
+          <div class="fh-evolution-card">
+            <div class="fh-evolution-year">2018</div>
+            <h4 style="margin-bottom: 6px;">Founding &amp; First 100 Motor Carriers</h4>
+            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">
+              Founded in Chicago, IL by veteran freight brokers frustrated with predatory intermediary practices. Seeded initial network with 100 verified dry van fleets along the I-80 corridor.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2: 2020 -->
+        <div class="fh-evolution-step">
+          <div class="fh-evolution-marker">20</div>
+          <div class="fh-evolution-card">
+            <div class="fh-evolution-year">2020</div>
+            <h4 style="margin-bottom: 6px;">Autonomous RateCon Engine Launch</h4>
+            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">
+              Launched the industry's first 30-second digital Rate Confirmation generation engine. Integrated direct RESTful TMS webhooks for enterprise shippers and automated SaferWatch safety auditing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3: 2023 -->
+        <div class="fh-evolution-step">
+          <div class="fh-evolution-marker">23</div>
+          <div class="fh-evolution-card">
+            <div class="fh-evolution-year">2023</div>
+            <h4 style="margin-bottom: 6px;">Instant 2-Hour QuickPay &amp; Geofencing</h4>
+            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">
+              Disrupted freight finance by guaranteeing under 2-hour ACH settlements upon e-POD signoff. Introduced cellular ELD geofencing to eliminate detention disputes and manual phone check calls.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 4: 2026 -->
+        <div class="fh-evolution-step">
+          <div class="fh-evolution-marker">26</div>
+          <div class="fh-evolution-card">
+            <div class="fh-evolution-year">2026</div>
+            <h4 style="margin-bottom: 6px;">AI Freight-Pairing Cloud &amp; 12,500 Fleets</h4>
+            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 0;">
+              Today, FreightHawk operates across all 48 lower states and cross-border Canadian routes, pairing freight in under 4.2 minutes with full predictive backhaul optimization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 4: EXECUTIVE LEADERSHIP & LOGISTICS COMMAND BOARD
+       ====================================================================== -->
+  <section class="fh-section" id="leadership">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-3xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-user-shield"></i> Experienced Freight Veterans
+        </div>
+        <h2>Executive Leadership Team</h2>
+        <p class="lead">Led by transportation executives with over 80 combined years inside commercial motor fleet operations, federal safety enforcement, and logistics telematics.</p>
+      </div>
+
+      <!-- 4 Leadership Profile Cards Grid -->
+      <div class="fh-grid fh-grid-4">
+        <!-- Leader 1 -->
+        <div class="fh-leader-card">
+          <div class="fh-leader-avatar">
+            <img src="assets/images/logistics-team.jpg" alt="Marcus Vance Chief Executive Officer" loading="lazy">
+          </div>
+          <div class="fh-leader-body">
+            <div class="fh-leader-name">Marcus Vance</div>
+            <div class="fh-leader-role">Chief Executive Officer &amp; Co-Founder</div>
+            <p class="fh-leader-bio">
+              Former FMCSA Regional Director and 22-year freight logistics veteran. Architect of FreightHawk's zero-hidden-margin transparent broker charter.
+            </p>
+            <div class="fh-leader-credentials">
+              <span><i class="fa-solid fa-award text-orange"></i> 22 Yrs Experience</span>
+              <span>Chicago, IL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leader 2 -->
+        <div class="fh-leader-card">
+          <div class="fh-leader-avatar">
+            <img src="assets/images/driver-mobile.jpg" alt="Elena Rostova Chief Technology Officer" loading="lazy">
+          </div>
+          <div class="fh-leader-body">
+            <div class="fh-leader-name">Elena Rostova</div>
+            <div class="fh-leader-role">Chief Technology Officer</div>
+            <p class="fh-leader-bio">
+              Former Principal Telematics Architect at major enterprise IoT firms. Led engineering of the autonomous 30-second RateCon matching algorithm.
+            </p>
+            <div class="fh-leader-credentials">
+              <span><i class="fa-solid fa-microchip text-steel"></i> AI / ELD Telemetry</span>
+              <span>Austin, TX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leader 3 -->
+        <div class="fh-leader-card">
+          <div class="fh-leader-avatar">
+            <img src="assets/images/fleet-ops.jpg" alt="David Kalu VP of Carrier Networks" loading="lazy">
+          </div>
+          <div class="fh-leader-body">
+            <div class="fh-leader-name">David Kalu</div>
+            <div class="fh-leader-role">VP of Carrier Networks &amp; Relations</div>
+            <p class="fh-leader-bio">
+              18-year fleet owner-operator turned logistics executive. Spearheads carrier QuickPay guarantees and nationwide motor fleet partner onboarding.
+            </p>
+            <div class="fh-leader-credentials">
+              <span><i class="fa-solid fa-truck-moving text-orange"></i> 12.5K Carrier Network</span>
+              <span>Dallas, TX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leader 4 -->
+        <div class="fh-leader-card">
+          <div class="fh-leader-avatar">
+            <img src="assets/images/warehouse-dock.jpg" alt="Sarah Chen Head of Compliance and Cargo Governance" loading="lazy">
+          </div>
+          <div class="fh-leader-body">
+            <div class="fh-leader-name">Sarah Chen, J.D.</div>
+            <div class="fh-leader-role">Head of Legal &amp; Safety Compliance</div>
+            <p class="fh-leader-bio">
+              Specialized in Interstate Commerce Commission governance, BMC-84 broker surety bonds, and auto-verification of $1M+ motor carrier certificates of insurance.
+            </p>
+            <div class="fh-leader-credentials">
+              <span><i class="fa-solid fa-scale-balanced text-steel"></i> FMCSA &amp; DOT Bar</span>
+              <span>Washington, D.C.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 5: CORPORATE GOVERNANCE, SAFETY AUDITING & SURETY BACKING
+       ====================================================================== -->
+  <section class="fh-section fh-section-navy" id="compliance">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-3xl);">
+        <div class="fh-eyebrow-pill" style="border-color: rgba(242, 140, 40, 0.5);">
+          <i class="fa-solid fa-certificate"></i> Strict Regulatory Adherence
+        </div>
+        <h2 style="color: #FFFFFF;">Certified Governance &amp; Carrier Safety</h2>
+        <p class="lead" style="color: #CBD5E1;">Every tender dispatched across our exchange adheres to strict Department of Transportation and Federal Motor Carrier Safety Administration standards.</p>
+      </div>
+
+      <div class="fh-grid fh-grid-4">
+        <!-- Safety 1 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-steel-blue); margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-file-shield"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">FMCSA Licensed Broker</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Operating under active federal property brokerage license MC-987214-B and USDOT #318942 with clean audit ratings.
+          </p>
+          <div style="font-size: 11px; color: #38BDF8; font-weight: 700;">Federal Operating Authority</div>
+        </div>
+
+        <!-- Safety 2 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-safety-orange); margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-vault"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">$75,000 BMC-84 Bond</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Fully bonded with third-party surety guarantee ensuring carrier settlements are 100% legally and financially backed.
+          </p>
+          <div style="font-size: 11px; color: var(--color-safety-orange); font-weight: 700;">Zero Default Risk</div>
+        </div>
+
+        <!-- Safety 3 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: #10B981; margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-shield-virus"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">$1,000,000 Cargo Policy</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Contingent cargo policy coverage auto-verifies carrier certificates before tender assignment to guarantee freight protection.
+          </p>
+          <div style="font-size: 11px; color: #10B981; font-weight: 700;">Full Contingent Protection</div>
+        </div>
+
+        <!-- Safety 4 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: #8B5CF6; margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">SaferWatch API Sync</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Continuous programmatic safety scoring automatically disqualifies revoked authorities, insurance lapses, or unsatisfactory DOT ratings.
+          </p>
+          <div style="font-size: 11px; color: #A78BFA; font-weight: 700;">Automated 24/7 Screening</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 6: NATIONWIDE REGIONAL COMMAND HUBS & PHYSICAL INFRASTRUCTURE
+       ====================================================================== -->
+  <section class="fh-section" id="facilities">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-3xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-city"></i> Continental Logistics Footprint
+        </div>
+        <h2>Regional Command Terminals</h2>
+        <p class="lead">Combining physical freight terminal facilities with centralized digital dispatch across major freight corridors in the United States.</p>
+      </div>
+
+      <!-- Large Architectural Terminal Banner -->
+      <div style="position: relative; border-radius: var(--radius-xl); overflow: hidden; height: 340px; margin-bottom: var(--space-2xl); box-shadow: var(--shadow-xl);">
+        <img src="assets/images/about-terminal.jpg" alt="FreightHawk Commercial Trucking Hub Terminal at Twilight" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 19, 31, 0.2) 0%, rgba(10, 19, 31, 0.85) 100%);"></div>
+        <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <span class="fh-badge fh-badge-available" style="margin-bottom: 6px;">Facility Spotlight</span>
+            <h3 style="color: #FFFFFF; font-size: 1.5rem; margin: 0;">Midwest Freight Staging Terminal 4A &bull; Chicago Inland Port</h3>
+            <span style="font-size: 12px; color: #CBD5E1;">128 Cross-Dock Bays &bull; 24/7 RFID Gate Access &bull; On-Site Scales</span>
+          </div>
+          <span style="font-size: 12px; color: #10B981; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 6px 14px; border-radius: var(--radius-pill);">
+            <i class="fa-solid fa-circle-check"></i> Active Dispatch Ready
+          </span>
+        </div>
+      </div>
+
+      <!-- 4 Regional Hubs Grid -->
+      <div class="fh-grid fh-grid-4">
+        <!-- Hub 1 -->
+        <div class="fh-hub-card">
+          <div class="fh-hub-city"><i class="fa-solid fa-location-dot text-orange"></i> Chicago, IL</div>
+          <div class="fh-hub-role">National Operations HQ</div>
+          <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 0;">
+            Central algorithmic pairing nerve center coordinating midwestern manufacturing, refrigerated, and consumer goods freight.
+          </p>
+          <div class="fh-hub-meta">
+            <div><i class="fa-solid fa-truck-ramp-box"></i> <strong>Throughput:</strong> 4,200 Loads/Wk</div>
+            <div><i class="fa-solid fa-headset"></i> <strong>Dispatchers:</strong> 42 On-Site 24/7</div>
+          </div>
+        </div>
+
+        <!-- Hub 2 -->
+        <div class="fh-hub-card">
+          <div class="fh-hub-city"><i class="fa-solid fa-location-dot text-steel"></i> Dallas, TX</div>
+          <div class="fh-hub-role">Southern Corridor Command</div>
+          <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 0;">
+            Manages I-35 and I-10 cross-country freight corridors, Mexico cross-border transloading, and specialized heavy haul equipment.
+          </p>
+          <div class="fh-hub-meta">
+            <div><i class="fa-solid fa-truck-ramp-box"></i> <strong>Throughput:</strong> 3,100 Loads/Wk</div>
+            <div><i class="fa-solid fa-headset"></i> <strong>Dispatchers:</strong> 28 On-Site 24/7</div>
+          </div>
+        </div>
+
+        <!-- Hub 3 -->
+        <div class="fh-hub-card">
+          <div class="fh-hub-city"><i class="fa-solid fa-location-dot text-orange"></i> Savannah, GA</div>
+          <div class="fh-hub-role">East Coast Port Intermodal</div>
+          <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 0;">
+            Dedicated port container drayage dispatch connecting ocean marine terminals with inland rail ramps and distribution warehouses.
+          </p>
+          <div class="fh-hub-meta">
+            <div><i class="fa-solid fa-truck-ramp-box"></i> <strong>Throughput:</strong> 2,400 Loads/Wk</div>
+            <div><i class="fa-solid fa-headset"></i> <strong>Dispatchers:</strong> 20 On-Site 24/7</div>
+          </div>
+        </div>
+
+        <!-- Hub 4 -->
+        <div class="fh-hub-card">
+          <div class="fh-hub-city"><i class="fa-solid fa-location-dot text-steel"></i> Inland Empire, CA</div>
+          <div class="fh-hub-role">Pacific Logistics Gateway</div>
+          <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 0;">
+            High-volume outbound distribution hub managing West Coast agricultural perishables and transpacific import staging.
+          </p>
+          <div class="fh-hub-meta">
+            <div><i class="fa-solid fa-truck-ramp-box"></i> <strong>Throughput:</strong> 3,800 Loads/Wk</div>
+            <div><i class="fa-solid fa-headset"></i> <strong>Dispatchers:</strong> 34 On-Site 24/7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 7: HIGH-IMPACT DUAL ACTION CALL-TO-ACTION BANNER
+       ====================================================================== -->
+  <section class="fh-section" id="cta" style="padding-bottom: var(--space-4xl);">
+    <div class="fh-container">
+      <div class="fh-cta-banner-orange">
+        <div style="max-width: 650px;">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; background: rgba(0, 0, 0, 0.2); padding: 4px 12px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: var(--space-sm);">
+            <i class="fa-solid fa-bolt"></i> Join North America's Verified Freight Network
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; margin-bottom: var(--space-sm);">
+            Ready to Experience Frictionless Freight Matching?
+          </h2>
+          <p style="font-size: 1.05rem; opacity: 0.95; margin-bottom: 0;">
+            Whether you are an enterprise shipper seeking guaranteed contracted capacity or an independent carrier looking for high-paying spot freight with 2-hour QuickPay, FreightHawk is built for you.
+          </p>
+        </div>
+
+        <div class="fh-flex fh-gap-md" style="flex-wrap: wrap;">
+          <a href="post-load.html" class="fh-btn fh-btn-navy fh-btn-lg fh-btn-pill">
+            <i class="fa-solid fa-plus"></i> Post a Load Now
+          </a>
+          <a href="find-loads.html" class="fh-btn fh-btn-outline-navy fh-btn-lg fh-btn-pill" style="background: rgba(10, 19, 31, 0.15); border-color: #FFFFFF; color: #FFFFFF;">
+            <i class="fa-solid fa-magnifying-glass"></i> Browse Live Loads
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CANONICAL STANDARDIZED FOOTER (Shared across all pages)
+       ====================================================================== -->
+  <footer class="fh-footer">
+    <div class="fh-container">
+      <div class="fh-footer-grid">
+        <!-- Col 1: Brand & Broker Authority -->
+        <div>
+          <a href="index.html" class="fh-brand" style="margin-bottom: var(--space-md); display: inline-flex;">
+            <div class="fh-brand-icon">
+              <i class="fa-solid fa-truck-moving"></i>
+            </div>
+            <div class="fh-brand-text">
+              <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+              <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+            </div>
+          </a>
+          <p class="fh-footer-brand-desc">
+            North America's premier digital freight brokerage platform. Connecting verified motor carriers with enterprise shippers through transparent pricing, verified compliance, and 24/7 dedicated dispatch.
+          </p>
+          <div class="fh-footer-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>FMCSA Broker Authority MC-987214-B</span>
+          </div>
+          <div class="fh-social-links">
+            <a href="#linkedin" class="fh-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#twitter" class="fh-social-btn" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#facebook" class="fh-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#youtube" class="fh-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="fh-footer-title">Platform Navigation</div>
+          <ul class="fh-footer-links">
+            <li><a href="index.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 1: Freight Matching</a></li>
+            <li><a href="home-2.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 2: Logistics Operations</a></li>
+            <li><a href="how-it-works.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> How Load Matching Works</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Live Load Board</a></li>
+            <li><a href="post-load.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Post a Commercial Load</a></li>
+            <li><a href="about.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> About FreightHawk</a></li>
+            <li><a href="contact.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Contact &amp; 24/7 Dispatch</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Freight Equipment & Services -->
+        <div>
+          <div class="fh-footer-title">Freight Modes</div>
+          <ul class="fh-footer-links">
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> 53' Dry Van Full Truckload</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Refrigerated &amp; Frozen (Reefer)</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Open Deck Flatbed &amp; Stepdeck</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Specialized Heavy Haul &amp; RGN</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Intermodal Rail &amp; Port Drayage</a></li>
+            <li><a href="find-loads.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Expedited Team &amp; Hot Shot</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Operations & Contact -->
+        <div>
+          <div class="fh-footer-title">Brokerage Operations</div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-location-dot fh-footer-contact-icon"></i>
+            <div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 13px;">FreightHawk Headquarters</div>
+              <div style="color: #94A3B8; font-size: 12px; margin-top: 2px;">233 S Wacker Dr, Suite 4400<br>Chicago, IL 60606</div>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-phone fh-footer-contact-icon"></i>
+            <div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 13px;">24/7 Carrier Dispatch</div>
+              <a href="tel:8005554295" style="color: var(--color-safety-orange); font-weight: 700; text-decoration: none; font-size: 13px;">(800) 555-HAWK</a>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-envelope fh-footer-contact-icon"></i>
+            <div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 13px;">Tender &amp; Load Inquiries</div>
+              <a href="mailto:tenders@freighthawk.com" style="color: #CBD5E1; text-decoration: none; font-size: 12px;">tenders@freighthawk.com</a>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-clock fh-footer-contact-icon"></i>
+            <div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 13px;">Dispatch Center Hours</div>
+              <div style="color: #94A3B8; font-size: 12px;">Continuous 24/7/365 Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="fh-footer-bottom">
+        <div class="fh-footer-copyright">
+          &copy; 2026 FreightHawk Logistics Inc. All rights reserved. Registered Property Broker FMCSA MC-987214.
+        </div>
+        <div class="fh-footer-bottom-links">
+          <a href="#terms">Terms of Service</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#shipper-agreement">Shipper Agreement</a>
+          <a href="#carrier-terms">Carrier Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="fh-back-to-top" id="backToTop" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Core Scripts inside assets/js -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

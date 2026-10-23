@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — Portal Registration</title>
+  <meta name="description" content="Create an enterprise Shipper account or register your commercial Motor Carrier fleet on FreightHawk.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body class="fh-auth-page">
+
+  <!-- ======================================================================
+       MINIMAL AUTH TOPBAR (Reference Image 1)
+       ====================================================================== -->
+  <header class="fh-auth-header">
+    <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+      <div class="fh-brand-icon">
+        <i class="fa-solid fa-truck-moving"></i>
+      </div>
+      <div class="fh-brand-text">
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+        <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+      </div>
+    </a>
+
+    <div class="fh-flex fh-items-center fh-gap-sm">
+      <!-- Circular RTL Toggle Button (Matching Reference Image 3) -->
+      <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+        <i class="fa-solid fa-right-left"></i>
+      </button>
+
+      <!-- Circular Theme Toggle Button -->
+      <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       SPLIT REGISTRATION GATEWAY (Reference Image 1 Layout)
+       ====================================================================== -->
+  <main class="fh-auth-split">
+    <!-- Left Hero Column -->
+    <div class="fh-auth-hero">
+      <div class="fh-auth-hero-content">
+        <div class="fh-eyebrow-pill" style="margin-bottom: var(--space-md); background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+          <i class="fa-solid fa-id-card-clip text-orange"></i> INSTANT ONBOARDING
+        </div>
+
+        <h1 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.15; margin-bottom: var(--space-md);">
+          Join North America's Verified Freight Network
+        </h1>
+
+        <p style="color: #CBD5E1; font-size: 1.05rem; line-height: 1.6; margin-bottom: 0;">
+          Tender freight with zero hidden broker markups or haul premium spot freight with automated 2-hour QuickPay settlements upon clean e-POD upload.
+        </p>
+
+        <!-- Security Certification Chips -->
+        <div class="fh-auth-security-chips">
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Sub-5-Min Approval</span>
+          </div>
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-file-contract"></i>
+            <span>FMCSA Vetted MC-987214-B</span>
+          </div>
+          <div class="fh-security-chip">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <span>Guaranteed QuickPay</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form Card Column -->
+    <div class="fh-auth-card-panel">
+      <div class="fh-auth-card" style="max-width: 520px;">
+        <!-- Header Icon -->
+        <div style="text-align: center; margin-bottom: var(--space-lg);">
+          <div style="width: 54px; height: 54px; border-radius: var(--radius-lg); background: var(--color-deep-navy); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: var(--space-sm); box-shadow: 0 4px 12px rgba(10, 19, 31, 0.25);">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+          <h2 style="font-size: 1.6rem; margin-bottom: 4px;">Create Your Account</h2>
+          <p class="text-muted" style="font-size: 13px; margin: 0;">
+            Select your industry role to begin enterprise registration.
+          </p>
+        </div>
+
+        <!-- Role Selector Tabs (Shipper vs Carrier) -->
+        <div class="fh-auth-role-tabs">
+          <button type="button" class="fh-role-tab-btn active" id="registerRoleShipperBtn" onclick="selectRegisterRole('shipper');">
+            <i class="fa-solid fa-warehouse"></i> Shipper / 3PL
+          </button>
+          <button type="button" class="fh-role-tab-btn" id="registerRoleCarrierBtn" onclick="selectRegisterRole('carrier');">
+            <i class="fa-solid fa-truck"></i> Motor Carrier
+          </button>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="authRegisterForm" onsubmit="handleAuthRegister(event)">
+          <!-- Company Name -->
+          <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+            <label class="fh-label" for="regCompanyName" id="regCompanyLabel">Shipper / Business Name <span style="color: #EF4444;">*</span></label>
+            <input type="text" class="fh-input" id="regCompanyName" placeholder="e.g. Apex Industrial Logistics LLC" required value="Apex Industrial Logistics LLC">
+          </div>
+
+          <!-- Email & Phone Grid -->
+          <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+            <div class="fh-form-group" style="margin-bottom: 0;">
+              <label class="fh-label" for="regEmail">Corporate Email <span style="color: #EF4444;">*</span></label>
+              <input type="email" class="fh-input" id="regEmail" placeholder="user@company.com" required value="dispatch@apexlogistics.com">
+            </div>
+            <div class="fh-form-group" style="margin-bottom: 0;">
+              <label class="fh-label" for="regPhone">Direct Phone <span style="color: #EF4444;">*</span></label>
+              <input type="tel" class="fh-input" id="regPhone" placeholder="(555) 000-0000" required value="(312) 555-8491">
+            </div>
+          </div>
+
+          <!-- Dynamic Shipper Specific Field -->
+          <div id="shipperFieldsBox" style="margin-bottom: var(--space-md);">
+            <div class="fh-form-group" style="margin-bottom: 0;">
+              <label class="fh-label" for="regVolume">Estimated Monthly Freight Volume</label>
+              <select class="fh-select" id="regVolume">
+                <option value="1-10">1 - 10 Loads / Month (Spot Freight)</option>
+                <option value="11-50" selected>11 - 50 Loads / Month (Regular Lanes)</option>
+                <option value="51-200">51 - 200 Loads / Month (High Volume)</option>
+                <option value="200+">200+ Dedicated Trailer Contract</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Carrier Specific Field (Hidden for Shipper, shown for Carrier) -->
+          <div id="carrierFieldsBox" style="display: none; margin-bottom: var(--space-md);">
+            <div class="fh-grid fh-grid-2">
+              <div class="fh-form-group" style="margin-bottom: 0;">
+                <label class="fh-label" for="regCarrierMc">USDOT / MC Number <span style="color: #EF4444;">*</span></label>
+                <input type="text" class="fh-input" id="regCarrierMc" placeholder="e.g. MC-892401" value="MC-892401">
+              </div>
+              <div class="fh-form-group" style="margin-bottom: 0;">
+                <label class="fh-label" for="regCarrierEquip">Primary Equipment</label>
+                <select class="fh-select" id="regCarrierEquip">
+                  <option value="dry-van">53' Dry Van</option>
+                  <option value="reefer">Reefer (Temp-Controlled)</option>
+                  <option value="flatbed">Flatbed / Stepdeck</option>
+                  <option value="heavy-haul">Heavy Haul (RGN)</option>
+                  <option value="intermodal">Intermodal Drayage</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Password Fields -->
+          <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+            <div class="fh-form-group" style="margin-bottom: 0;">
+              <label class="fh-label" for="regPassword">Password <span style="color: #EF4444;">*</span></label>
+              <div class="fh-password-field-wrapper">
+                <input type="password" class="fh-input" id="regPassword" placeholder="••••••••" required value="demoPass2026">
+                <button type="button" class="fh-password-toggle-btn" onclick="togglePasswordVisibility('regPassword', this);" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="fh-form-group" style="margin-bottom: 0;">
+              <label class="fh-label" for="regConfirmPassword">Confirm <span style="color: #EF4444;">*</span></label>
+              <div class="fh-password-field-wrapper">
+                <input type="password" class="fh-input" id="regConfirmPassword" placeholder="••••••••" required value="demoPass2026">
+                <button type="button" class="fh-password-toggle-btn" onclick="togglePasswordVisibility('regConfirmPassword', this);" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms Checkbox -->
+          <div class="fh-form-group" style="margin-bottom: var(--space-lg);">
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text-main); cursor: pointer;">
+              <input type="checkbox" required checked style="margin-top: 3px;">
+              <span>I certify that our business agrees to the FreightHawk Property Broker Terms, Carmack freight rules, and electronic RateCon execution.</span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 48px; font-size: 1rem; justify-content: center;">
+            <span id="registerBtnText">Complete Shipper Registration</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Login Link -->
+        <div style="text-align: center; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--space-md); margin-top: var(--space-lg);">
+          Already have an account? <a href="login.html" style="color: var(--color-steel-blue); font-weight: 800;">Sign In to Portal</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Core Scripts inside assets/js -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    (function () {
+      let regRole = 'shipper';
+
+      window.selectRegisterRole = function (role) {
+        regRole = role;
+        const shipperBtn = document.getElementById('registerRoleShipperBtn');
+        const carrierBtn = document.getElementById('registerRoleCarrierBtn');
+        const shipperBox = document.getElementById('shipperFieldsBox');
+        const carrierBox = document.getElementById('carrierFieldsBox');
+        const label = document.getElementById('regCompanyLabel');
+        const btnText = document.getElementById('registerBtnText');
+        const nameInput = document.getElementById('regCompanyName');
+
+        if (role === 'shipper') {
+          shipperBtn.classList.add('active');
+          carrierBtn.classList.remove('active');
+          shipperBox.style.display = 'block';
+          carrierBox.style.display = 'none';
+          label.innerHTML = 'Shipper / Business Name <span style="color: #EF4444;">*</span>';
+          btnText.textContent = 'Complete Shipper Registration';
+          if (nameInput) nameInput.value = 'Apex Industrial Logistics LLC';
+        } else {
+          carrierBtn.classList.add('active');
+          shipperBtn.classList.remove('active');
+          shipperBox.style.display = 'none';
+          carrierBox.style.display = 'block';
+          label.innerHTML = 'Motor Carrier Fleet Name <span style="color: #EF4444;">*</span>';
+          btnText.textContent = 'Complete Motor Carrier Registration';
+          if (nameInput) nameInput.value = 'SwiftHaul Transport LLC';
+        }
+      };
+
+      window.togglePasswordVisibility = function (fieldId, btn) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        const icon = btn.querySelector('i');
+        if (field.type === 'password') {
+          field.type = 'text';
+          if (icon) {
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+          }
+        } else {
+          field.type = 'password';
+          if (icon) {
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+          }
+        }
+      };
+
+      window.handleAuthRegister = function (e) {
+        e.preventDefault();
+        alert('✅ Account registered successfully! Entering interactive dashboard sandbox...');
+        if (regRole === 'shipper') {
+          window.location.href = 'dashboard-shipper.html';
+        } else {
+          window.location.href = 'dashboard-carrier.html';
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

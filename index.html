@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightHawk — Nationwide Freight Brokerage &amp; Digital Load-Matching Platform</title>
+  <meta name="description" content="Connect enterprise shippers with verified motor carriers nationwide. Fast digital load matching, FMCSA safety compliance, guaranteed capacity, and transparent freight rates.">
+
+  <!-- FontAwesome 6 for Industrial Logistics Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Foundation & Component Stylesheets inside assets/css -->
+  <link rel="stylesheet" href="assets/css/foundation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       MAIN NAVBAR (Shared Foundation Header)
+       ====================================================================== -->
+  <header class="fh-header" id="mainHeader">
+    <nav class="fh-navbar" aria-label="Main Navigation">
+      <!-- Brand Logo - Compact and Balanced -->
+      <a href="index.html" class="fh-brand" aria-label="FreightHawk Home">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-text">
+          <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+          <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (Dashboards next to Contact) -->
+      <ul class="fh-nav-menu">
+        <li class="fh-nav-item">
+          <a href="index.html" class="fh-nav-link active">Home <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="index.html" class="fh-dropdown-item"><strong>Home 1: Freight Matching</strong> <span class="fh-badge fh-badge-available">Current</span></a>
+            <a href="home-2.html" class="fh-dropdown-item">Home 2: Logistics Operations <span class="fh-badge fh-badge-verified">Active</span></a>
+          </div>
+        </li>
+        <li class="fh-nav-item">
+          <a href="how-it-works.html" class="fh-nav-link">How It Works</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="find-loads.html" class="fh-nav-link">Find Loads</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="about.html" class="fh-nav-link">About</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="contact.html" class="fh-nav-link">Contact</a>
+        </li>
+        <li class="fh-nav-item">
+          <a href="dashboard-shipper.html" class="fh-nav-link" data-nav="dashboards">Dashboards <i class="fa-solid fa-angle-down" style="font-size: 11px;"></i></a>
+          <div class="fh-dropdown-menu">
+            <a href="dashboard-shipper.html" class="fh-dropdown-item"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</a>
+            <a href="dashboard-carrier.html" class="fh-dropdown-item"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Nav Actions - Theme/RTL Icons, Login (Secondary), Primary CTA, Hamburger -->
+      <div class="fh-nav-actions">
+        <!-- Persistent Theme Toggle (Icon Only) -->
+        <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Persistent Direction Toggle (Icon Only) -->
+        <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <!-- Login Button (Secondary Pill) -->
+        <a href="login.html" class="fh-btn-login">
+          <i class="fa-regular fa-user"></i> Login
+        </a>
+
+        <!-- Primary CTA: Post a Load (Safety Orange) -->
+        <a href="post-load.html" class="fh-nav-cta">
+          <i class="fa-solid fa-plus"></i>
+          <span>Post a Load</span>
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button type="button" class="fh-nav-toggle" aria-label="Toggle mobile menu" id="mobileMenuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       MOBILE DRAWER NAVIGATION
+       ====================================================================== -->
+  <div class="fh-drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="fh-mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
+    <div class="fh-drawer-header">
+      <div class="fh-brand">
+        <div class="fh-brand-icon">
+          <i class="fa-solid fa-truck-moving"></i>
+        </div>
+        <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+      </div>
+      <button type="button" class="fh-drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Mobile Navigation Links (Home & Dashboards with Interactive Dropdowns) -->
+    <ul class="fh-mobile-nav">
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle active" data-target="mobileHomeDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-house"></i> Home</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileHomeDropdown">
+          <li>
+            <a href="index.html" class="fh-mobile-sublink active">
+              <span>Home 1: Freight Matching</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Current</span>
+            </a>
+          </li>
+          <li>
+            <a href="home-2.html" class="fh-mobile-sublink">
+              <span>Home 2: Logistics Operations</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Active</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="how-it-works.html" class="fh-mobile-link"><i class="fa-solid fa-diagram-project"></i> How It Works</a></li>
+      <li><a href="find-loads.html" class="fh-mobile-link"><i class="fa-solid fa-route"></i> Find Loads</a></li>
+      <li><a href="about.html" class="fh-mobile-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="contact.html" class="fh-mobile-link"><i class="fa-solid fa-phone"></i> Contact</a></li>
+
+      <!-- Dashboards with Interactive Dropdown in Mobile Drawer -->
+      <li class="fh-mobile-item-dropdown">
+        <button type="button" class="fh-mobile-dropdown-toggle" id="mobileDashboardsToggle" data-target="mobileDashboardsDropdown" aria-expanded="false">
+          <span class="fh-mobile-dropdown-title"><i class="fa-solid fa-chart-pie"></i> Dashboards</span>
+          <i class="fa-solid fa-angle-down fh-mobile-arrow"></i>
+        </button>
+        <ul class="fh-mobile-subnav" id="mobileDashboardsDropdown">
+          <li>
+            <a href="dashboard-shipper.html" class="fh-mobile-sublink">
+              <span class="fh-flex fh-items-center fh-gap-sm"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</span>
+              <span class="fh-badge fh-badge-available" style="font-size: 10px; padding: 2px 6px;">Live</span>
+            </a>
+          </li>
+          <li>
+            <a href="dashboard-carrier.html" class="fh-mobile-sublink">
+              <span class="fh-flex fh-items-center fh-gap-sm"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</span>
+              <span class="fh-badge fh-badge-verified" style="font-size: 10px; padding: 2px 6px;">Live</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Mobile Drawer Preferences & Controls (Housed neatly inside mobile menu) -->
+    <div style="margin-top: auto; padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1);">
+      <div class="fh-drawer-prefs-box">
+        <span class="fh-drawer-prefs-label">Preferences:</span>
+        <div class="fh-drawer-prefs-actions">
+          <button type="button" class="fh-icon-btn" data-theme-toggle title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button type="button" class="fh-icon-btn" data-dir-toggle title="Toggle LTR/RTL Direction" aria-label="Toggle LTR/RTL Direction">
+            <i class="fa-solid fa-right-left"></i>
+          </button>
+        </div>
+      </div>
+      <a href="login.html" class="fh-btn-login" style="width: 100%; justify-content: center; margin-bottom: var(--space-sm);">
+        <i class="fa-regular fa-user"></i> Login / Register
+      </a>
+      <a href="post-load.html" class="fh-nav-cta" style="width: 100%; justify-content: center;">
+        <i class="fa-solid fa-plus"></i> Post a Load
+      </a>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       SECTION 1: HERO — FULL SCREEN HEIGHT WITH INTEGRATED RATE CALCULATOR
+       ====================================================================== -->
+  <section class="fh-hero-matching">
+    <div class="fh-container">
+      <div class="fh-hero-grid-home1">
+        <!-- Left: Headline, Description & Direct Actions -->
+        <div>
+          <div class="fh-eyebrow-pill" style="margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-truck-fast"></i> Verified Capacity &bull; 24/7 Digital Dispatch
+          </div>
+
+          <h1 style="color: #FFFFFF; font-size: clamp(2.2rem, 4.5vw, 3.5rem); margin-bottom: var(--space-md); line-height: 1.15;">
+            Matching Verified Shippers with <span class="text-orange">Reliable Motor Carriers</span> Nationwide
+          </h1>
+
+          <p class="lead" style="color: #CBD5E1; max-width: 620px; margin-bottom: var(--space-xl); font-size: 1.05rem;">
+            Eliminate deadhead miles and freight bottlenecks. FreightHawk's intelligent load-matching platform connects enterprise shippers with pre-vetted FMCSA carriers at transparent, market-leading rates.
+          </p>
+
+          <!-- Dual Separate CTAs -->
+          <div class="fh-flex fh-gap-md" style="flex-wrap: wrap;">
+            <a href="#post-load" class="fh-btn fh-btn-primary fh-btn-lg fh-btn-pill" data-open-modal="postLoadModal">
+              <i class="fa-solid fa-plus"></i> Post a Load
+            </a>
+            <a href="#load-board" class="fh-btn fh-btn-outline-orange fh-btn-lg fh-btn-pill" style="background: rgba(20, 43, 69, 0.6); color: #FFFFFF; border-color: var(--color-safety-orange);">
+              <i class="fa-solid fa-magnifying-glass"></i> Find Loads
+            </a>
+          </div>
+
+          <!-- Reference-style Hero Stats Bar -->
+          <div class="fh-hero-stats-bar">
+            <div class="fh-hero-stat-item">
+              <div class="fh-hero-stat-icon">
+                <i class="fa-solid fa-truck-moving"></i>
+              </div>
+              <div>
+                <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #FFFFFF; line-height: 1;">1,480+</div>
+                <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-top: 2px;">Active Loads</div>
+              </div>
+            </div>
+
+            <div class="fh-hero-stat-item">
+              <div class="fh-hero-stat-icon" style="background: rgba(14, 165, 233, 0.18); color: #0EA5E9;">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #FFFFFF; line-height: 1;">12,500+</div>
+                <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-top: 2px;">Verified Fleets</div>
+              </div>
+            </div>
+
+            <div class="fh-hero-stat-item">
+              <div class="fh-hero-stat-icon" style="background: rgba(16, 185, 129, 0.18); color: #10B981;">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #FFFFFF; line-height: 1;">15 Min</div>
+                <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; margin-top: 2px;">Avg Match Time</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Rate Calculator Form (Different Layout from Home 2) -->
+        <div>
+          <div class="fh-hero-calc-card">
+            <div class="fh-flex fh-items-center fh-gap-sm" style="margin-bottom: var(--space-sm);">
+              <div class="fh-brand-icon" style="width: 32px; height: 32px; font-size: 14px;">
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <div>
+                <h3 style="color: #FFFFFF; font-size: 1.2rem; margin: 0;">Instant Freight Rate Calculator</h3>
+                <span style="font-size: 11px; color: #94A3B8;">Real-time linehaul &amp; spot market rate estimator</span>
+              </div>
+            </div>
+
+            <form onsubmit="event.preventDefault(); const rate = Math.floor(1800 + Math.random()*1600); document.getElementById('calcResult').style.display='block'; document.getElementById('calcRateVal').textContent='$' + rate.toLocaleString(); document.getElementById('calcPerMile').textContent='$' + (rate/750).toFixed(2) + ' / mi';">
+              <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-sm);">
+                <div class="fh-form-group" style="margin-bottom: 0;">
+                  <label class="fh-label" style="color: #CBD5E1;"><i class="fa-solid fa-location-dot text-orange"></i> Origin</label>
+                  <input type="text" class="fh-input" placeholder="City, State" required value="Chicago, IL">
+                </div>
+                <div class="fh-form-group" style="margin-bottom: 0;">
+                  <label class="fh-label" style="color: #CBD5E1;"><i class="fa-solid fa-flag-checkered text-navy"></i> Destination</label>
+                  <input type="text" class="fh-input" placeholder="City, State" required value="Dallas, TX">
+                </div>
+              </div>
+
+              <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-sm);">
+                <div class="fh-form-group" style="margin-bottom: 0;">
+                  <label class="fh-label" style="color: #CBD5E1;">Equipment</label>
+                  <select class="fh-select">
+                    <option value="dry-van">53' Dry Van</option>
+                    <option value="reefer">53' Reefer</option>
+                    <option value="flatbed">Flatbed 48'</option>
+                    <option value="stepdeck">Stepdeck / RGN</option>
+                  </select>
+                </div>
+                <div class="fh-form-group" style="margin-bottom: 0;">
+                  <label class="fh-label" style="color: #CBD5E1;">Weight (lbs)</label>
+                  <input type="text" class="fh-input" placeholder="e.g. 42,000" required value="41,500">
+                </div>
+              </div>
+
+              <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+                <label class="fh-label" style="color: #CBD5E1;">Target Pickup Date</label>
+                <input type="date" class="fh-input" value="2026-10-25" required>
+              </div>
+
+              <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 46px;">
+                <i class="fa-solid fa-bolt"></i> Calculate Market Rate &amp; Match
+              </button>
+            </form>
+
+            <!-- Dynamic Calculation Output Box -->
+            <div id="calcResult" style="display: none; margin-top: var(--space-md); padding: 12px; background: rgba(20, 43, 69, 0.8); border: 1px solid var(--color-safety-orange); border-radius: var(--radius-sm);">
+              <div class="fh-flex fh-justify-between fh-items-center">
+                <div>
+                  <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase;">Estimated Market Rate:</div>
+                  <div id="calcRateVal" style="font-size: 1.5rem; font-weight: 800; color: var(--color-safety-orange); font-family: var(--font-heading);">$2,850</div>
+                </div>
+                <div class="text-right">
+                  <div id="calcPerMile" style="font-size: 12px; color: #38BDF8; font-family: var(--font-mono); font-weight: 700;">$3.08 / mi</div>
+                  <button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" data-open-modal="postLoadModal" style="margin-top: 4px;">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 2: HOW LOAD MATCHING WORKS (4-Step Process)
+       ====================================================================== -->
+  <section class="fh-section fh-section-secondary" id="how-it-works">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 720px; margin-inline: auto; margin-bottom: var(--space-2xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-diagram-project"></i> Seamless 4-Step Execution
+        </div>
+        <h2>How Load Matching Works</h2>
+        <p class="lead">From initial freight posting to delivery signoff, our automated broker platform provides end-to-end transparency and safety.</p>
+      </div>
+
+      <div class="fh-grid fh-grid-4">
+        <!-- Step 1 -->
+        <div class="fh-process-card">
+          <div class="fh-process-header">
+            <div class="fh-process-num">01</div>
+            <div class="fh-process-icon">
+              <i class="fa-solid fa-file-invoice"></i>
+            </div>
+          </div>
+          <h3 class="fh-card-title">1. Post Freight Specs</h3>
+          <p class="fh-card-desc">
+            Shippers input origin, destination, equipment type, weight, and target pickup window in under 60 seconds with instant automated rate guidance.
+          </p>
+          <span class="fh-badge fh-badge-available" style="align-self: flex-start;">Instant Post</span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="fh-process-card">
+          <div class="fh-process-header">
+            <div class="fh-process-num">02</div>
+            <div class="fh-process-icon">
+              <i class="fa-solid fa-route"></i>
+            </div>
+          </div>
+          <h3 class="fh-card-title">2. Intelligent Matching</h3>
+          <p class="fh-card-desc">
+            Our algorithm broadcasts loads directly to verified motor carriers currently operating in that specific shipping lane with matching empty capacity.
+          </p>
+          <span class="fh-badge fh-badge-verified" style="align-self: flex-start;">Lane Optimized</span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="fh-process-card">
+          <div class="fh-process-header">
+            <div class="fh-process-num">03</div>
+            <div class="fh-process-icon">
+              <i class="fa-solid fa-signature"></i>
+            </div>
+          </div>
+          <h3 class="fh-card-title">3. Carrier Selection &amp; RateCon</h3>
+          <p class="fh-card-desc">
+            Shippers select preferred carrier ratings, pricing, and equipment. A digitally binding Rate Confirmation is generated and signed in one click.
+          </p>
+          <span class="fh-badge fh-badge-booked" style="align-self: flex-start;">Rate Locked</span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="fh-process-card">
+          <div class="fh-process-header">
+            <div class="fh-process-num">04</div>
+            <div class="fh-process-icon">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+          </div>
+          <h3 class="fh-card-title">4. Shipment Execution</h3>
+          <p class="fh-card-desc">
+            Real-time GPS tracking checkpoints throughout transit, automated detention monitoring, and instant digital Proof of Delivery (e-POD) signoff.
+          </p>
+          <span class="fh-badge fh-badge-delivered" style="align-self: flex-start;">Delivery Confirmed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 3: FREIGHT SERVICES (Image-led Cards with Local Images)
+       ====================================================================== -->
+  <section class="fh-section" id="services">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 720px; margin-inline: auto; margin-bottom: var(--space-2xl);">
+        <div class="fh-eyebrow-pill">
+          <i class="fa-solid fa-truck-ramp-box"></i> Comprehensive Freight Capabilities
+        </div>
+        <h2>Specialized Freight Services</h2>
+        <p class="lead">Engineered to handle every equipment specification, specialized route requirement, and cargo dimension across the continent.</p>
+      </div>
+
+      <div class="fh-grid fh-grid-3">
+        <!-- Service 1: Dry Van -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-dry-van.png" alt="53 Foot Dry Van Truckload Freight" loading="lazy">
+            <span class="fh-service-tag">High Demand</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">53' Dry Van Full Truckload</h3>
+            <p class="fh-card-desc">
+              Standardized nationwide non-perishable freight transport. Enclosed protection against weather and theft with continuous load tracking.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">Max: 45,000 lbs</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Van <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Reefer -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-reefer.jpg" alt="Temperature Controlled Refrigerated Reefer Freight" loading="lazy">
+            <span class="fh-service-tag" style="background: rgba(14, 165, 233, 0.9);">Temp-Controlled</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">Refrigerated &amp; Frozen (Reefer)</h3>
+            <p class="fh-card-desc">
+              Precision climate-controlled trailers with active temperature telemetry logging for perishables, pharmaceuticals, and sensitive cargo.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">-20&deg;F to +70&deg;F Range</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Reefer <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: Flatbed -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-flatbed.jpg" alt="Flatbed and Stepdeck Open Deck Freight" loading="lazy">
+            <span class="fh-service-tag" style="background: rgba(242, 140, 40, 0.9);">Open Deck</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">Flatbed &amp; Stepdeck Hauling</h3>
+            <p class="fh-card-desc">
+              Versatile open deck equipment for construction supplies, steel coils, lumber, and machinery requiring side or crane loading access.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">Up to 48,000 lbs</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Flatbed <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Heavy Haul -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-heavy-haul.png" alt="Heavy Haul Oversized Specialized Logistics" loading="lazy">
+            <span class="fh-service-tag" style="background: rgba(139, 92, 246, 0.9);">Specialized</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">Heavy Haul &amp; Oversized (RGN)</h3>
+            <p class="fh-card-desc">
+              Permitted specialized logistics for dimensional, overweight, industrial generators, and multi-axle Removable Gooseneck freight.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">DOT Permitted</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Heavy Haul <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 5: Intermodal -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-intermodal.jpg" alt="Intermodal Drayage and Container Freight" loading="lazy">
+            <span class="fh-service-tag" style="background: rgba(16, 185, 129, 0.9);">Eco Friendly</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">Intermodal Drayage</h3>
+            <p class="fh-card-desc">
+              Cost-effective rail and ocean port container drayage connecting marine terminals, railheads, and inland distribution centers seamlessly.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">Port &amp; Rail Ramp</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Drayage <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 6: Expedited -->
+        <div class="fh-service-img-card">
+          <div class="fh-service-img-wrapper">
+            <img src="assets/images/service-expedited.png" alt="Expedited Team Driver Cargo Transport" loading="lazy">
+            <span class="fh-service-tag" style="background: rgba(239, 68, 68, 0.9);">Time Critical</span>
+          </div>
+          <div class="fh-service-body">
+            <h3 class="fh-card-title">Expedited Team Transit</h3>
+            <p class="fh-card-desc">
+              Non-stop team-driver transit for urgent JIT manufacturing lines, emergency inventory replenishment, and time-critical deliveries.
+            </p>
+            <div class="fh-flex fh-justify-between fh-items-center" style="margin-top: auto; padding-top: var(--space-md); border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: var(--text-xs); color: var(--text-muted); font-weight: 600;">Non-Stop Transit</span>
+              <a href="#post-load" class="fh-card-link" data-open-modal="postLoadModal">Book Expedited <i class="fa-solid fa-arrow-right flip-rtl"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 4: WHY USE THE PLATFORM (Practical Benefits)
+       ====================================================================== -->
+  <section class="fh-section fh-section-navy" id="why-us">
+    <div class="fh-container">
+      <div class="text-center" style="max-width: 760px; margin-inline: auto; margin-bottom: var(--space-2xl);">
+        <div class="fh-eyebrow-pill" style="border-color: rgba(242, 140, 40, 0.5);">
+          <i class="fa-solid fa-award"></i> The FreightHawk Advantage
+        </div>
+        <h2 style="color: #FFFFFF;">Why Enterprise Shippers &amp; Carriers Choose Us</h2>
+        <p class="lead" style="color: #CBD5E1;">Built by veteran freight brokers to eliminate predatory broker markups, ensure strict safety compliance, and speed up carrier cash flow.</p>
+      </div>
+
+      <div class="fh-grid fh-grid-4">
+        <!-- Benefit 1 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">100% FMCSA Vetted</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Automated API integration with federal safety databases verifies active authority, $100K+ cargo insurance, and clean safety scores before dispatch.
+          </p>
+          <div style="font-size: 11px; color: var(--color-safety-orange); font-weight: 700;">Zero Unverified Carriers</div>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: #0EA5E9; margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">True Rate Transparency</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            No hidden margins. Shippers see exact linehaul rates and fuel surcharges, while motor carriers know their exact take-home pay up front.
+          </p>
+          <div style="font-size: 11px; color: #0EA5E9; font-weight: 700;">Guaranteed Price Parity</div>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: #10B981; margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">Carrier QuickPay in 2 Hrs</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Motor carriers get paid same-day upon electronic Proof of Delivery upload. No 30-day waiting periods, no high-interest factoring friction.
+          </p>
+          <div style="font-size: 11px; color: #10B981; font-weight: 700;">Direct Deposit / ACH</div>
+        </div>
+
+        <!-- Benefit 4 -->
+        <div class="fh-card" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1);">
+          <div class="fh-card-icon-wrapper" style="background: #8B5CF6; margin-bottom: var(--space-md);">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="fh-card-title" style="color: #FFFFFF;">24/7 Human Dispatch</h3>
+          <p class="fh-card-desc" style="color: #94A3B8;">
+            Technology backed by licensed freight professionals available round-the-clock for re-routing, detention claims, breakdown assistance, and check calls.
+          </p>
+          <div style="font-size: 11px; color: #A78BFA; font-weight: 700;">1-800-555-LOAD Hotline</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 5: LOAD MATCHING PROCESS (Visual Route-based Showcase)
+       ====================================================================== -->
+  <section class="fh-section fh-section-secondary" id="load-board">
+    <div class="fh-container">
+      <div class="fh-flex fh-justify-between fh-items-center" style="flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl);">
+        <div>
+          <div class="fh-eyebrow-pill">
+            <i class="fa-solid fa-route"></i> Real-time Freight Exchange
+          </div>
+          <h2>Live Load-Matching Opportunities</h2>
+          <p class="lead" style="margin-bottom: 0;">Verified loads posted in the last 15 minutes across prime North American shipping corridors.</p>
+        </div>
+        <div class="fh-flex fh-gap-sm">
+          <a href="#post-load" class="fh-btn fh-btn-primary fh-btn-sm fh-btn-pill" data-open-modal="postLoadModal">
+            <i class="fa-solid fa-plus"></i> Post Your Freight
+          </a>
+        </div>
+      </div>
+
+      <!-- Real Route Load Cards Grid -->
+      <div class="fh-grid fh-grid-3">
+        <!-- Load 1: Chicago -> Dallas -->
+        <div class="fh-load-card">
+          <div class="fh-load-header">
+            <span class="fh-load-id">LOAD #FH-94821</span>
+            <span class="fh-badge fh-badge-available"><span class="fh-badge-dot"></span> Available</span>
+          </div>
+
+          <div class="fh-route-container">
+            <div class="fh-route-point">
+              <div class="fh-route-city">Chicago, IL</div>
+              <div class="fh-route-date">Pick: Tomorrow &bull; 08:00 CST</div>
+            </div>
+            <div class="fh-route-point destination">
+              <div class="fh-route-city">Dallas, TX</div>
+              <div class="fh-route-date">Drop: Oct 26 &bull; 14:00 CST</div>
+            </div>
+          </div>
+
+          <div class="fh-load-specs">
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Distance</span>
+              <span class="fh-spec-value">924 mi</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Equipment</span>
+              <span class="fh-spec-value">53' Reefer</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Weight</span>
+              <span class="fh-spec-value">41,500 lbs</span>
+            </div>
+          </div>
+
+          <div class="fh-load-footer">
+            <div>
+              <div class="fh-rate-value">$2,850</div>
+              <div class="fh-rate-permile">$3.08 / mile</div>
+            </div>
+            <button type="button" class="fh-btn fh-btn-primary fh-btn-sm" data-open-modal="postLoadModal">
+              <i class="fa-solid fa-truck-fast"></i> Book Load
+            </button>
+          </div>
+        </div>
+
+        <!-- Load 2: Atlanta -> Philadelphia -->
+        <div class="fh-load-card">
+          <div class="fh-load-header">
+            <span class="fh-load-id">LOAD #FH-94822</span>
+            <span class="fh-badge fh-badge-available"><span class="fh-badge-dot"></span> Available</span>
+          </div>
+
+          <div class="fh-route-container">
+            <div class="fh-route-point">
+              <div class="fh-route-city">Atlanta, GA</div>
+              <div class="fh-route-date">Pick: Oct 25 &bull; 06:00 EST</div>
+            </div>
+            <div class="fh-route-point destination">
+              <div class="fh-route-city">Philadelphia, PA</div>
+              <div class="fh-route-date">Drop: Oct 26 &bull; 11:30 EST</div>
+            </div>
+          </div>
+
+          <div class="fh-load-specs">
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Distance</span>
+              <span class="fh-spec-value">780 mi</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Equipment</span>
+              <span class="fh-spec-value">53' Dry Van</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Weight</span>
+              <span class="fh-spec-value">38,000 lbs</span>
+            </div>
+          </div>
+
+          <div class="fh-load-footer">
+            <div>
+              <div class="fh-rate-value">$2,180</div>
+              <div class="fh-rate-permile">$2.79 / mile</div>
+            </div>
+            <button type="button" class="fh-btn fh-btn-primary fh-btn-sm" data-open-modal="postLoadModal">
+              <i class="fa-solid fa-truck-fast"></i> Book Load
+            </button>
+          </div>
+        </div>
+
+        <!-- Load 3: Los Angeles -> Phoenix -->
+        <div class="fh-load-card">
+          <div class="fh-load-header">
+            <span class="fh-load-id">LOAD #FH-94823</span>
+            <span class="fh-badge fh-badge-available"><span class="fh-badge-dot"></span> Available</span>
+          </div>
+
+          <div class="fh-route-container">
+            <div class="fh-route-point">
+              <div class="fh-route-city">Los Angeles, CA</div>
+              <div class="fh-route-date">Pick: Tonight &bull; 21:00 PST</div>
+            </div>
+            <div class="fh-route-point destination">
+              <div class="fh-route-city">Phoenix, AZ</div>
+              <div class="fh-route-date">Drop: Tomorrow &bull; 07:00 MST</div>
+            </div>
+          </div>
+
+          <div class="fh-load-specs">
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Distance</span>
+              <span class="fh-spec-value">372 mi</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Equipment</span>
+              <span class="fh-spec-value">Flatbed 48'</span>
+            </div>
+            <div class="fh-spec-item">
+              <span class="fh-spec-label">Weight</span>
+              <span class="fh-spec-value">44,000 lbs</span>
+            </div>
+          </div>
+
+          <div class="fh-load-footer">
+            <div>
+              <div class="fh-rate-value">$1,350</div>
+              <div class="fh-rate-permile">$3.63 / mile</div>
+            </div>
+            <button type="button" class="fh-btn fh-btn-primary fh-btn-sm" data-open-modal="postLoadModal">
+              <i class="fa-solid fa-truck-fast"></i> Book Load
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECTION 6: FINAL CTA (Full-Width High-Impact Safety Orange Banner)
+       ====================================================================== -->
+  <section class="fh-section" id="contact" style="padding-bottom: var(--space-4xl);">
+    <div class="fh-container">
+      <div class="fh-cta-banner-orange">
+        <div style="max-width: 650px;">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; background: rgba(0, 0, 0, 0.2); padding: 4px 12px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: var(--space-sm);">
+            <i class="fa-solid fa-bolt"></i> Ready for Immediate Dispatch
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; margin-bottom: var(--space-sm);">
+            Start Moving Freight with North America's Most Reliable Network
+          </h2>
+          <p style="font-size: 1.05rem; opacity: 0.95; margin-bottom: 0;">
+            Whether you have freight to move or empty trailers to fill, FreightHawk provides instant rate confirmations, zero hidden fees, and dedicated 24/7 human support.
+          </p>
+        </div>
+
+        <div class="fh-flex fh-gap-md" style="flex-wrap: wrap;">
+          <a href="#post-load" class="fh-btn fh-btn-navy fh-btn-lg fh-btn-pill" data-open-modal="postLoadModal" style="background: var(--color-deep-navy-darker); border-color: rgba(255, 255, 255, 0.2);">
+            <i class="fa-solid fa-plus"></i> Post a Load (Shippers)
+          </a>
+          <a href="home-2.html#lanes" class="fh-btn fh-btn-lg fh-btn-pill" style="background: #FFFFFF; color: var(--color-deep-navy); font-weight: 800;">
+            <i class="fa-solid fa-truck"></i> Find Loads (Carriers)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       FOOTER (4-Column Layout Aligned with Reference)
+       ====================================================================== -->
+  <footer class="fh-footer">
+    <div class="fh-container">
+      <div class="fh-footer-grid">
+        <!-- Col 1: Platform Brand & Compliance -->
+        <div>
+          <a href="index.html" class="fh-brand" style="font-size: 1.3rem;">
+            <div class="fh-brand-icon">
+              <i class="fa-solid fa-truck-moving"></i>
+            </div>
+            <div class="fh-brand-text">
+              <div class="fh-brand-title">FREIGHT<span>HAWK</span></div>
+              <div class="fh-brand-sub">Brokerage &amp; Load Matching</div>
+            </div>
+          </a>
+          <p class="fh-footer-brand-desc">
+            North America's premier digital freight brokerage platform. Connecting verified motor carriers with enterprise shippers through transparent pricing, verified compliance, and 24/7 dedicated dispatch.
+          </p>
+          <div class="fh-fmcsa-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>FMCSA Broker Authority MC-987214-B</span>
+          </div>
+          <div class="fh-social-links">
+            <a href="#linkedin" class="fh-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#twitter" class="fh-social-btn" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#facebook" class="fh-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#youtube" class="fh-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <div class="fh-footer-title">Platform Navigation</div>
+          <ul class="fh-footer-links">
+            <li><a href="index.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 1: Freight Matching</a></li>
+            <li><a href="home-2.html" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Home 2: Logistics Operations</a></li>
+            <li><a href="#how-it-works" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> How Load Matching Works</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Freight Equipment &amp; Modes</a></li>
+            <li><a href="#why-us" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Safety &amp; FMCSA Compliance</a></li>
+            <li><a href="#load-board" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Live Load Board</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Freight Equipment & Services -->
+        <div>
+          <div class="fh-footer-title">Freight Modes</div>
+          <ul class="fh-footer-links">
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> 53' Dry Van Full Truckload</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Refrigerated &amp; Frozen (Reefer)</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Flatbed &amp; Stepdeck Hauling</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Heavy Haul &amp; Oversized (RGN)</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Intermodal Drayage</a></li>
+            <li><a href="#services" class="fh-footer-link"><i class="fa-solid fa-chevron-right flip-rtl" style="font-size: 11px;"></i> Carrier QuickPay &amp; Factoring</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: 24/7 Operations Dispatch Headquarters -->
+        <div>
+          <div class="fh-footer-title">Dispatch Headquarters</div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-location-dot fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">FreightHawk Central Terminal</strong><br>
+              450 Logistics Parkway, Suite 800<br>
+              Chicago, IL 60607
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-phone fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">24/7 Dispatch Desk:</strong><br>
+              <a href="tel:18005555623" style="color: var(--color-safety-orange); font-weight: 700;">1-800-555-LOAD (5623)</a>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-envelope fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">Direct Inquiries:</strong><br>
+              <span>dispatch@freighthawk.io</span>
+            </div>
+          </div>
+          <div class="fh-footer-contact-item">
+            <i class="fa-solid fa-clock fh-footer-contact-icon"></i>
+            <div>
+              <strong style="color: #FFFFFF;">Operating Schedule:</strong><br>
+              <span style="color: #CBD5E1;">Open 24 Hours / 365 Days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Legal & Copyright -->
+      <div class="fh-footer-bottom">
+        <div>
+          &copy; 2026 FreightHawk Brokerage Inc. All Rights Reserved. USDOT# 3892104 | MC# 987214.
+        </div>
+        <ul class="fh-legal-links">
+          <li><a href="#terms">Terms of Carriage</a></li>
+          <li><a href="#broker-agreement">Broker-Carrier Agreement</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#fmcsa-safety">FMCSA Compliance</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       FLOATING BOTTOM-TO-TOP ARROW BUTTON
+       ====================================================================== -->
+  <button type="button" id="backToTop" class="fh-back-to-top" title="Back to top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ======================================================================
+       INTERACTIVE DASHBOARD MODAL 1: ENTERPRISE SHIPPER OPERATIONS COMMAND
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="shipperDashboardModal">
+    <div class="fh-modal-dialog fh-modal-dialog-wide">
+      <div class="fh-modal-header">
+        <div class="fh-flex fh-items-center fh-gap-md">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-steel-blue); margin: 0; width: 44px; height: 44px; font-size: 20px;">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div>
+            <div class="fh-flex fh-items-center fh-gap-sm">
+              <h3 style="font-size: 1.25rem; margin: 0;">Enterprise Shipper Operations Command</h3>
+              <span class="fh-badge fh-badge-available" style="padding: 2px 8px; font-size: 10px;">Direct Access</span>
+            </div>
+            <span style="font-size: 12px; color: var(--text-muted);">Real-time shipment tracking, active carrier tenders &amp; spend telemetry</span>
+          </div>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="fh-modal-body" style="padding: var(--space-xl);">
+        <!-- Shipper Top KPI Stats -->
+        <div class="fh-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-xl);">
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Active Tenders</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading); font-family: var(--font-heading);">42 Loads</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-arrow-trend-up"></i> +8 dispatched today</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">In-Transit Tracking</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #0EA5E9; font-family: var(--font-heading);">18 Units</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-circle-check"></i> 100% On-Schedule</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Freight Spend YTD</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-safety-orange); font-family: var(--font-heading);">$248,500</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-arrow-trend-down"></i> 12% under spot avg</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Carrier Compliance</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #10B981; font-family: var(--font-heading);">99.8%</div>
+              <div style="font-size: 11px; color: #64748B; font-weight: 600;">100% Insured Validated</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Shipments Management Table -->
+        <div style="margin-bottom: var(--space-lg);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-sm); flex-wrap: wrap; gap: var(--space-sm);">
+            <h4 style="margin: 0; font-size: 1.05rem;"><i class="fa-solid fa-truck-ramp-box text-steel"></i> Live Tendered Shipments</h4>
+            <div class="fh-flex fh-gap-xs">
+              <span class="fh-badge fh-badge-available" style="cursor: pointer;">All (42)</span>
+              <span class="fh-badge" style="background: rgba(14, 165, 233, 0.15); color: #0EA5E9; cursor: pointer;">En Route (18)</span>
+              <span class="fh-badge" style="background: rgba(16, 185, 129, 0.15); color: #10B981; cursor: pointer;">Delivered (12)</span>
+            </div>
+          </div>
+
+          <div style="overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+            <table class="fh-table" style="width: 100%; font-size: 12.5px;">
+              <thead>
+                <tr>
+                  <th>Tender ID</th>
+                  <th>Origin &rarr; Destination</th>
+                  <th>Equipment</th>
+                  <th>Carrier</th>
+                  <th>Telemetry Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>#TND-8921</strong></td>
+                  <td>Chicago, IL &rarr; Dallas, TX (920 mi)</td>
+                  <td>53' Dry Van</td>
+                  <td>Midwest Linehaul (MC-4821)</td>
+                  <td><span class="fh-badge fh-badge-booked"><i class="fa-solid fa-satellite-dish"></i> En Route (MO-I44)</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('GPS Telemetry: Truck #104 is 312 miles out, traveling 64 mph on I-44 S. Estimated Arrival: 18:30 CST.');">Track Live</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#TND-8924</strong></td>
+                  <td>Atlanta, GA &rarr; Orlando, FL (440 mi)</td>
+                  <td>53' Reefer (-10&deg;F)</td>
+                  <td>Sunbelt Express (MC-9201)</td>
+                  <td><span class="fh-badge fh-badge-available"><i class="fa-solid fa-circle-check"></i> At Receiver Dock</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Electronic BOL signed and verified by consignee. Detention: 0 hrs.');">View e-BOL</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#TND-8929</strong></td>
+                  <td>Philadelphia, PA &rarr; Cleveland, OH (430 mi)</td>
+                  <td>Flatbed (Steel Coils)</td>
+                  <td>Keystone Heavy (MC-3180)</td>
+                  <td><span class="fh-badge fh-badge-verified"><i class="fa-solid fa-truck-arrow-right"></i> Dispatched / Staging</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Driver checked in at gate. Loading sequence in progress.');">Live Ping</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Dashboard Modal Footer Actions -->
+        <div class="fh-flex fh-justify-between fh-items-center" style="border-top: 1px solid var(--border-subtle); padding-top: var(--space-md); flex-wrap: wrap; gap: var(--space-md);">
+          <div style="font-size: 12px; color: var(--text-muted);">
+            <i class="fa-solid fa-shield-halved text-orange"></i> Full broker authority active &bull; 24/7 dedicated dispatch monitor
+          </div>
+          <div class="fh-flex fh-gap-sm">
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-outline-navy" data-close-modal>
+              Close Portal
+            </button>
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" data-open-modal="postLoadModal">
+              <i class="fa-solid fa-plus"></i> Post New Freight Tender
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       INTERACTIVE DASHBOARD MODAL 2: MOTOR CARRIER FLEET & SETTLEMENT PORTAL
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="carrierDashboardModal">
+    <div class="fh-modal-dialog fh-modal-dialog-wide">
+      <div class="fh-modal-header">
+        <div class="fh-flex fh-items-center fh-gap-md">
+          <div class="fh-card-icon-wrapper" style="background: var(--color-safety-orange); margin: 0; width: 44px; height: 44px; font-size: 20px;">
+            <i class="fa-solid fa-truck"></i>
+          </div>
+          <div>
+            <div class="fh-flex fh-items-center fh-gap-sm">
+              <h3 style="font-size: 1.25rem; margin: 0;">Motor Carrier Fleet &amp; QuickPay Command</h3>
+              <span class="fh-badge fh-badge-verified" style="padding: 2px 8px; font-size: 10px;">MC-987214 Verified</span>
+            </div>
+            <span style="font-size: 12px; color: var(--text-muted);">Assigned linehauls, driver dispatch &amp; 2-hour QuickPay settlements</span>
+          </div>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="fh-modal-body" style="padding: var(--space-xl);">
+        <!-- Carrier Top KPI Stats -->
+        <div class="fh-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-xl);">
+          <div class="fh-stat-card" style="padding: var(--space-md); border-color: rgba(242, 140, 40, 0.4);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Available QuickPay</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-safety-orange); font-family: var(--font-heading);">$8,450.00</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-bolt"></i> 2-Hour Direct Transfer</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Active Power Units</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading); font-family: var(--font-heading);">6 Trucks</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-satellite"></i> 100% ELD Telematics</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Nearby Backhauls</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #0EA5E9; font-family: var(--font-heading);">14 Loads</div>
+              <div style="font-size: 11px; color: #10B981; font-weight: 600;"><i class="fa-solid fa-check"></i> Zero Deadhead Return</div>
+            </div>
+          </div>
+          <div class="fh-stat-card" style="padding: var(--space-md);">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Carrier Performance</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: #10B981; font-family: var(--font-heading);">99.4%</div>
+              <div style="font-size: 11px; color: #64748B; font-weight: 600;">Premier Gold Tier Carrier</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carrier Active Linehauls Table -->
+        <div style="margin-bottom: var(--space-lg);">
+          <div class="fh-flex fh-justify-between fh-items-center" style="margin-bottom: var(--space-sm); flex-wrap: wrap; gap: var(--space-sm);">
+            <h4 style="margin: 0; font-size: 1.05rem;"><i class="fa-solid fa-route text-orange"></i> Assigned Linehauls &amp; Settlements</h4>
+            <span class="fh-badge fh-badge-available"><i class="fa-solid fa-check"></i> 0 Unpaid Invoices</span>
+          </div>
+
+          <div style="overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+            <table class="fh-table" style="width: 100%; font-size: 12.5px;">
+              <thead>
+                <tr>
+                  <th>Load #</th>
+                  <th>Lane Route</th>
+                  <th>Agreed Rate</th>
+                  <th>Assigned Driver</th>
+                  <th>Status</th>
+                  <th>Settlement Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>#LD-4412</strong></td>
+                  <td>Indianapolis, IN &rarr; Nashville, TN</td>
+                  <td><strong class="text-orange">$2,450</strong> ($3.22/mi)</td>
+                  <td>Unit #104 (Dave Miller)</td>
+                  <td><span class="fh-badge fh-badge-delivered">Delivered Today</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="alert('e-POD uploaded! QuickPay transfer of $2,450 initiated to Chase Bank (Acct ***8821). Expected in 45 minutes.');"><i class="fa-solid fa-file-invoice-dollar"></i> Instant QuickPay</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#LD-4418</strong></td>
+                  <td>Columbus, OH &rarr; Detroit, MI</td>
+                  <td><strong class="text-orange">$1,850</strong> ($3.45/mi)</td>
+                  <td>Unit #109 (Marcus Turner)</td>
+                  <td><span class="fh-badge fh-badge-booked">In Transit (I-75)</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Digital Rate Confirmation signed on file: RateCon #RC-9981.');"><i class="fa-solid fa-signature"></i> View RateCon</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#LD-4425</strong></td>
+                  <td>Louisville, KY &rarr; Memphis, TN</td>
+                  <td><strong class="text-orange">$2,100</strong> ($3.18/mi)</td>
+                  <td>Unit #112 (Alex Rivera)</td>
+                  <td><span class="fh-badge fh-badge-available">Scheduled Pickup</span></td>
+                  <td><button type="button" class="fh-btn fh-btn-sm fh-btn-secondary" onclick="alert('Facility gate pass verified. Shipper dock appointment: 14:00 CST.');"><i class="fa-solid fa-barcode"></i> Gate Pass</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Dashboard Modal Footer Actions -->
+        <div class="fh-flex fh-justify-between fh-items-center" style="border-top: 1px solid var(--border-subtle); padding-top: var(--space-md); flex-wrap: wrap; gap: var(--space-md);">
+          <div style="font-size: 12px; color: var(--text-muted);">
+            <i class="fa-solid fa-clock text-steel"></i> Automated detention billing active &bull; Fuel surcharge calculated per DOE weekly index
+          </div>
+          <div class="fh-flex fh-gap-sm">
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-outline-navy" data-close-modal>
+              Close Portal
+            </button>
+            <button type="button" class="fh-btn fh-btn-sm fh-btn-primary" onclick="alert('Settlement of $8,450 approved! ACH transfer scheduled for processing in under 2 hours.');">
+              <i class="fa-solid fa-bolt"></i> Transfer $8,450 Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       INTERACTIVE MODAL: POST A LOAD
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="postLoadModal">
+    <div class="fh-modal-dialog">
+      <div class="fh-modal-header">
+        <div class="fh-flex fh-items-center fh-gap-sm">
+          <div class="fh-brand-icon" style="width: 32px; height: 32px; font-size: 15px;">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.15rem; margin: 0;">Post a Freight Load</h3>
+            <span style="font-size: 11px; color: var(--text-muted);">Instant dispatch broadcast to 12,500+ verified carriers</span>
+          </div>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="fh-modal-body">
+        <form onsubmit="event.preventDefault(); alert('Success! Load #FH-' + Math.floor(10000 + Math.random()*90000) + ' has been posted and dispatched to nearby verified carriers.'); document.getElementById('postLoadModal').classList.remove('active'); document.body.style.overflow='';">
+          <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+            <div class="fh-form-group">
+              <label class="fh-label"><i class="fa-solid fa-location-dot text-orange"></i> Origin City, State</label>
+              <input type="text" class="fh-input" placeholder="e.g. Chicago, IL" required value="Chicago, IL">
+            </div>
+            <div class="fh-form-group">
+              <label class="fh-label"><i class="fa-solid fa-flag-checkered text-navy"></i> Destination City, State</label>
+              <input type="text" class="fh-input" placeholder="e.g. Dallas, TX" required value="Dallas, TX">
+            </div>
+          </div>
+
+          <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-md);">
+            <div class="fh-form-group">
+              <label class="fh-label">Equipment Type</label>
+              <select class="fh-select">
+                <option value="dry-van">53' Dry Van</option>
+                <option value="reefer">Refrigerated (Reefer)</option>
+                <option value="flatbed">Flatbed / Stepdeck</option>
+                <option value="heavy-haul">Heavy Haul / RGN</option>
+              </select>
+            </div>
+            <div class="fh-form-group">
+              <label class="fh-label">Estimated Weight</label>
+              <input type="text" class="fh-input" placeholder="e.g. 42,000 lbs" required value="42,000 lbs">
+            </div>
+          </div>
+
+          <div class="fh-grid fh-grid-2" style="margin-bottom: var(--space-lg);">
+            <div class="fh-form-group">
+              <label class="fh-label">Pickup Date</label>
+              <input type="date" class="fh-input" value="2026-10-25" required>
+            </div>
+            <div class="fh-form-group">
+              <label class="fh-label">Target Rate (USD)</label>
+              <input type="text" class="fh-input" placeholder="e.g. $2,850" required value="$2,850">
+            </div>
+          </div>
+
+          <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 48px;">
+            <i class="fa-solid fa-paper-plane"></i> Broadcast Load to Carriers
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       INTERACTIVE MODAL: AUTHENTICATION (LOGIN / REGISTER)
+       ====================================================================== -->
+  <div class="fh-modal-overlay" id="authModal">
+    <div class="fh-modal-dialog" style="max-width: 480px;">
+      <div class="fh-modal-header">
+        <div>
+          <h3 style="font-size: 1.15rem; margin: 0;">Account Login</h3>
+          <span style="font-size: 11px; color: var(--text-muted);">Shipper and Motor Carrier Secure Portal</span>
+        </div>
+        <button type="button" class="fh-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="fh-modal-body">
+        <form onsubmit="event.preventDefault(); alert('Login authenticated! Redirecting to operations portal...'); document.getElementById('authModal').classList.remove('active'); document.body.style.overflow='';">
+          <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+            <label class="fh-label">Account Type</label>
+            <select class="fh-select">
+              <option value="shipper">Enterprise Shipper</option>
+              <option value="carrier">Verified Motor Carrier (MC / DOT)</option>
+              <option value="dispatcher">Independent Freight Dispatcher</option>
+            </select>
+          </div>
+          <div class="fh-form-group" style="margin-bottom: var(--space-md);">
+            <label class="fh-label">Email or MC#</label>
+            <input type="text" class="fh-input" placeholder="e.g. dispatch@carrier.com or MC-123456" required value="dispatch@carrier.com">
+          </div>
+          <div class="fh-form-group" style="margin-bottom: var(--space-lg);">
+            <label class="fh-label">Password</label>
+            <input type="password" class="fh-input" placeholder="Enter secure password" required value="••••••••••••">
+          </div>
+          <button type="submit" class="fh-btn fh-btn-primary" style="width: 100%; height: 46px;">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Portal
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Core Scripts inside assets/js -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
