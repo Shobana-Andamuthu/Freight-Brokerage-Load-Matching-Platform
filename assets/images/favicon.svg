@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="fhGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9F43" />
+      <stop offset="100%" stop-color="#F28C28" />
+    </linearGradient>
+    <filter id="fhShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- Rounded Brand Squircle -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#fhGrad)" filter="url(#fhShadow)"/>
+  <!-- Commercial Freight Semi-Truck Silhouette in Pure White -->
+  <g fill="#FFFFFF" transform="translate(10, 14)">
+    <!-- Trailer Box with aerodynamic slope -->
+    <path d="M2 5C2 3.34 3.34 2 5 2H26V26H5C3.34 26 2 24.66 2 23V5Z"/>
+    <!-- Cab Front & Windshield -->
+    <path d="M28 6H34C35.5 6 36.8 7.1 37.3 8.5L39.8 15.2C40.6 15.6 42 16.5 42 18.5V23C42 24.66 40.66 26 39 26H28V6Z"/>
+    <!-- Windshield cut-out -->
+    <path d="M30 8H33.2C33.8 8 34.3 8.4 34.6 9L36.8 15H30V8Z" fill="#F28C28" opacity="0.9"/>
+    <!-- Chassis undercarriage bar -->
+    <rect x="4" y="24" width="36" height="3" fill="#FFFFFF"/>
+    <!-- Rear Wheels -->
+    <circle cx="8" cy="28" r="4.5" fill="#142B45"/>
+    <circle cx="8" cy="28" r="2" fill="#FFFFFF"/>
+    <circle cx="17" cy="28" r="4.5" fill="#142B45"/>
+    <circle cx="17" cy="28" r="2" fill="#FFFFFF"/>
+    <!-- Front Wheels -->
+    <circle cx="34" cy="28" r="4.5" fill="#142B45"/>
+    <circle cx="34" cy="28" r="2" fill="#FFFFFF"/>
+    <!-- Speed Lines -->
+    <path d="M-1 9H-5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-2 15H-7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-1 21H-4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

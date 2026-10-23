@@ -392,9 +392,70 @@
   };
 
   /**
+   * Preloader Controller
+   */
+  const PreloaderController = {
+    init: function () {
+      const loader = document.getElementById('pageLoader');
+      if (!loader) return;
+
+      const hideLoader = function () {
+        if (!loader.classList.contains('fade-out')) {
+          loader.classList.add('fade-out');
+          setTimeout(() => {
+            if (loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, 450);
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        setTimeout(hideLoader, 150);
+      } else {
+        window.addEventListener('load', () => setTimeout(hideLoader, 200));
+        // Fallback safeguard so loader never gets stuck
+        setTimeout(hideLoader, 2500);
+      }
+    }
+  };
+
+  /**
+   * Sticky Header Controller
+   */
+  const StickyHeader = {
+    init: function () {
+      const header = document.getElementById('mainHeader');
+      if (!header) return;
+
+      const onScroll = function () {
+        if (window.scrollY > 15) {
+          header.classList.add('is-scrolled');
+        } else {
+          header.classList.remove('is-scrolled');
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  };
+
+  // Immediate preloader attachment
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    PreloaderController.init();
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      PreloaderController.init();
+    });
+  }
+
+  /**
    * Initialize on DOM Content Loaded
    */
   document.addEventListener('DOMContentLoaded', function () {
+    PreloaderController.init();
+    StickyHeader.init();
     ThemeController.init();
     DirectionController.init();
     MobileDrawer.init();
@@ -411,6 +472,8 @@
     Drawer: MobileDrawer,
     Modal: ModalController,
     BackToTop: BackToTop,
-    Accordion: AccordionController
+    Accordion: AccordionController,
+    Preloader: PreloaderController,
+    StickyHeader: StickyHeader
   };
 })();

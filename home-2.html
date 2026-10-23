@@ -9,11 +9,25 @@
   <!-- FontAwesome 6 for Industrial Logistics Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
   <!-- Foundation & Component Stylesheets inside assets/css -->
   <link rel="stylesheet" href="assets/css/foundation.css">
   <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
+
+  <!-- ======================================================================
+       PAGE PRELOADER (Global Branded Loading State)
+       ====================================================================== -->
+  <div id="pageLoader" class="fh-page-loader" aria-hidden="true">
+    <div class="fh-loader-spinner-wrapper">
+      <div class="fh-loader-ring"></div>
+      <i class="fa-solid fa-truck-fast fh-loader-center-icon"></i>
+    </div>
+    <div class="fh-loader-brand">FREIGHT<span>HAWK</span></div>
+    <div class="fh-loader-bar"><div class="fh-loader-bar-fill"></div></div>
+  </div>
 
   <!-- ======================================================================
        MAIN NAVBAR (Shared Foundation Header)
@@ -58,6 +72,9 @@
             <a href="dashboard-shipper.html" class="fh-dropdown-item"><i class="fa-solid fa-chart-line text-steel"></i> Shipper Dashboard</a>
             <a href="dashboard-carrier.html" class="fh-dropdown-item"><i class="fa-solid fa-truck text-orange"></i> Carrier Dashboard</a>
           </div>
+        </li>
+        <li class="fh-nav-item">
+          <a href="login.html" class="fh-nav-link fh-nav-link-login"><i class="fa-regular fa-user"></i> Login</a>
         </li>
       </ul>
 
@@ -154,6 +171,11 @@
             </a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="login.html" class="fh-mobile-link fh-mobile-link-login">
+          <i class="fa-regular fa-user"></i> Login / Client Portal
+        </a>
       </li>
     </ul>
 
@@ -388,7 +410,7 @@
 
         <!-- Card 4 -->
         <div class="fh-ops-card">
-          <img src="assets/images/logistics-team.jpg" alt="24/7 Freight Operations Dispatch Team" class="fh-ops-card-img" loading="lazy">
+          <img src="assets/images/facility-dispatcher.png" alt="24/7 Logistics Dispatchers Operations Room" class="fh-ops-card-img" loading="lazy">
           <div class="fh-ops-card-body">
             <span class="fh-badge fh-badge-delivered" style="align-self: flex-start; margin-bottom: 8px;">Human Expertise</span>
             <h4 style="margin-bottom: 6px;">24/7 Logistics Dispatchers</h4>
