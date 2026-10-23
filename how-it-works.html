@@ -546,77 +546,89 @@
 
       <!-- 4-Stage Horizontal Milestone Timeline with Industrial Images -->
       <div class="fh-tracking-timeline" style="margin-bottom: var(--space-2xl);">
-        <div class="fh-timeline-card completed" style="padding: 0; overflow: hidden;">
-          <div style="position: relative; height: 130px; overflow: hidden;">
-            <img src="assets/images/hiw-gate-arrival.jpg" alt="Gate Arrival" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10, 19, 31, 0.2) 0%, rgba(10, 19, 31, 0.75) 100%);"></div>
-            <div style="position: absolute; top: 10px; left: 10px; z-index: 2;">
-              <div class="fh-timeline-indicator" style="margin-bottom: 0;">
+        <!-- Card 1: Stage 1 Verified -->
+        <div class="fh-timeline-card completed has-img">
+          <div class="fh-timeline-img-wrap">
+            <img src="assets/images/hiw-gate-arrival.jpg" alt="Gate Arrival" loading="lazy">
+            <div class="fh-timeline-img-overlay"></div>
+            <div class="fh-timeline-indicator-pin">
+              <div class="fh-timeline-indicator" title="Stage 1 Verified">
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
           </div>
-          <div style="padding: var(--space-lg);">
-            <span class="fh-badge fh-badge-available" style="margin-bottom: 6px;">Stage 1: Verified</span>
-            <h4 style="margin-bottom: 4px;">Gate Arrival Check-in</h4>
-            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
+          <div class="fh-timeline-card-body">
+            <span class="fh-badge fh-badge-available">
+              <i class="fa-solid fa-circle-check"></i> Stage 1: Verified
+            </span>
+            <h4>Gate Arrival Check-in</h4>
+            <p class="text-muted">
               Driver enters shipper 0.5-mile geofence. Automated arrival timestamp notifies warehouse dock team.
             </p>
           </div>
         </div>
 
-        <div class="fh-timeline-card completed" style="padding: 0; overflow: hidden;">
-          <div style="position: relative; height: 130px; overflow: hidden;">
-            <img src="assets/images/hiw-bol-signing.jpg" alt="Electronic BOL Signing" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10, 19, 31, 0.2) 0%, rgba(10, 19, 31, 0.75) 100%);"></div>
-            <div style="position: absolute; top: 10px; left: 10px; z-index: 2;">
-              <div class="fh-timeline-indicator" style="margin-bottom: 0;">
+        <!-- Card 2: Stage 2 Loaded -->
+        <div class="fh-timeline-card completed has-img">
+          <div class="fh-timeline-img-wrap">
+            <img src="assets/images/hiw-bol-signing.jpg" alt="Electronic BOL Signing" loading="lazy">
+            <div class="fh-timeline-img-overlay"></div>
+            <div class="fh-timeline-indicator-pin">
+              <div class="fh-timeline-indicator" title="Stage 2 Loaded">
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
           </div>
-          <div style="padding: var(--space-lg);">
-            <span class="fh-badge fh-badge-verified" style="margin-bottom: 6px;">Stage 2: Loaded</span>
-            <h4 style="margin-bottom: 4px;">Electronic BOL Signing</h4>
-            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
+          <div class="fh-timeline-card-body">
+            <span class="fh-badge fh-badge-verified">
+              <i class="fa-solid fa-file-signature"></i> Stage 2: Loaded
+            </span>
+            <h4>Electronic BOL Signing</h4>
+            <p class="text-muted">
               Trailer sealed, piece count confirmed, and digital Bill of Lading (BOL) signed via driver mobile app.
             </p>
           </div>
         </div>
 
-        <div class="fh-timeline-card active" style="padding: 0; overflow: hidden;">
-          <div style="position: relative; height: 130px; overflow: hidden;">
-            <img src="assets/images/hiw-linehaul-telemetry.jpg" alt="Linehaul Telemetry" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10, 19, 31, 0.2) 0%, rgba(10, 19, 31, 0.75) 100%);"></div>
-            <div style="position: absolute; top: 10px; left: 10px; z-index: 2;">
-              <div class="fh-timeline-indicator" style="margin-bottom: 0;">
+        <!-- Card 3: Stage 3 En Route (Active) -->
+        <div class="fh-timeline-card active has-img">
+          <div class="fh-timeline-img-wrap">
+            <img src="assets/images/hiw-linehaul-telemetry.jpg" alt="Linehaul Telemetry" loading="lazy">
+            <div class="fh-timeline-img-overlay"></div>
+            <div class="fh-timeline-indicator-pin">
+              <div class="fh-timeline-indicator" title="Stage 3 In Transit">
                 <i class="fa-solid fa-truck-moving"></i>
               </div>
             </div>
           </div>
-          <div style="padding: var(--space-lg);">
-            <span class="fh-badge fh-badge-intransit" style="margin-bottom: 6px;">Stage 3: En Route</span>
-            <h4 style="margin-bottom: 4px;">Linehaul Telemetry</h4>
-            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
+          <div class="fh-timeline-card-body">
+            <span class="fh-badge fh-badge-intransit">
+              <i class="fa-solid fa-truck-fast"></i> Stage 3: En Route
+            </span>
+            <h4>Linehaul Telemetry</h4>
+            <p class="text-muted">
               GPS telemetry pings every 15 minutes with live ETA updates, weather routing, and speed verification.
             </p>
           </div>
         </div>
 
-        <div class="fh-timeline-card pending" style="padding: 0; overflow: hidden;">
-          <div style="position: relative; height: 130px; overflow: hidden;">
-            <img src="assets/images/hiw-quickpay-epod.jpg" alt="e-POD and QuickPay" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10, 19, 31, 0.2) 0%, rgba(10, 19, 31, 0.75) 100%);"></div>
-            <div style="position: absolute; top: 10px; left: 10px; z-index: 2;">
-              <div class="fh-timeline-indicator" style="margin-bottom: 0;">
+        <!-- Card 4: Stage 4 Settled (Pending) -->
+        <div class="fh-timeline-card pending has-img">
+          <div class="fh-timeline-img-wrap">
+            <img src="assets/images/hiw-quickpay-epod.jpg" alt="e-POD and QuickPay" loading="lazy">
+            <div class="fh-timeline-img-overlay"></div>
+            <div class="fh-timeline-indicator-pin">
+              <div class="fh-timeline-indicator" title="Stage 4 Pending">
                 <i class="fa-solid fa-flag-checkered"></i>
               </div>
             </div>
           </div>
-          <div style="padding: var(--space-lg);">
-            <span class="fh-badge fh-badge-delivered" style="margin-bottom: 6px;">Stage 4: Settled</span>
-            <h4 style="margin-bottom: 4px;">e-POD &amp; 2-Hr QuickPay</h4>
-            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
+          <div class="fh-timeline-card-body">
+            <span class="fh-badge fh-badge-delivered">
+              <i class="fa-solid fa-money-bill-transfer"></i> Stage 4: Settled
+            </span>
+            <h4>e-POD &amp; 2-Hr QuickPay</h4>
+            <p class="text-muted">
               Consignee signs delivery receipt. Instant e-POD upload triggers direct automated carrier payout within 120 minutes.
             </p>
           </div>
