@@ -2392,6 +2392,24 @@ input[type="date"].fh-input {
   z-index: 2;
 }
 
+/* Timeline card header aligning indicator icon and status badge */
+.fh-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  width: 100%;
+}
+
+.fh-timeline-header .fh-timeline-indicator {
+  margin-bottom: 0 !important;
+}
+
+.fh-timeline-header .fh-badge {
+  margin-bottom: 0 !important;
+}
+
 /* High-contrast status indicator icon */
 .fh-timeline-indicator {
   width: 38px;
@@ -2406,6 +2424,11 @@ input[type="date"].fh-input {
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   transition: all var(--transition-normal);
+}
+
+/* Fallback margin when indicator is a direct child without header */
+.fh-timeline-card > .fh-timeline-indicator {
+  margin-bottom: var(--space-md);
 }
 
 /* Stage 1 & 2 Completed checkmark: Solid vibrant emerald green with crisp pure white check icon */
